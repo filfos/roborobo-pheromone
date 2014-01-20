@@ -1,0 +1,41 @@
+To copy a old project (BASE_PROJECT) in a new project (NEW_PROJECT).
+
+
+
+If the files in the BASE_PROJECT have the following form : BASE_PROJECT/BASE_PROJECTAgentObserver.cpp 
+And you want the files in the NEW_PROJECT with the following form : NEW_PROJECT/NEW_PROJECTAgentObserver.cpp
+$./createProjectFrom.sh BASE_PROJECT NEW_PROJECT
+
+If the files in the BASE_PROJECT have the following form : OTHER_NAME/BASE_PROJECTAgentObserver.cpp 
+And you want the files in the NEW_PROJECT with the following form : NEW_PROJECT/NEW_PROJECTAgentObserver.cpp
+$./createProjectFrom.sh -b OTHER_NAME BASE_PROJECT NEW_PROJECT
+
+If the files in the BASE_PROJECT have the following form : BASE_PROJECT/BASE_PROJECTAgentObserver.cpp 
+And you want the files in the NEW_PROJECT with the following form : OTHER_NEW_NAME/NEW_PROJECTAgentObserver.cpp
+$./createProjectFrom.sh -n OTHER_NEW_NAME BASE_PROJECT NEW_PROJECT
+
+If the files in the BASE_PROJECT have the following form : OTHER_NAME/BASE_PROJECTAgentObserver.cpp 
+And you want the files in the NEW_PROJECT with the following form : OTHER_NEW_NAME/NEW_PROJECTAgentObserver.cpp
+$./createProjectFrom.sh -b OTHER_NAME -n OTHER_NEW_NAME BASE_PROJECT NEW_PROJECT
+
+
+
+
+
+If the files in the BASE_PROJECT have the following form : BASE_PROJECT/WHATEVER.cpp 
+With the configuration loader of the base project has the following form : src/ext/FOO_CONFIGURATION_LOADER.CPP
+And you want the files in the NEW_PROJECT with the following form : NEW_PROJECT/NEW_PROJECTWHATEVER.cpp
+With the configuration loader of the new project using the following form : src/ext/NEW_PROJECTConfigurationLoader.CPP
+$./createProjectFrom.sh -c FOO_CONFIGURATION_LOADER BASE_PROJECT NEW_PROJECT
+
+If the files in the BASE_PROJECT have the following form : BASE_PROJECT/WHATEVER.cpp 
+With the configuration loader of the base project has the following form : src/ext/BASE_PROJECTConfigurationLoader.CPP
+And you want the files in the NEW_PROJECT with the following form : NEW_PROJECT/NEW_PROJECTWHATEVER.cpp
+With the configuration loader of the new project using the following form : src/ext/FOO_CONFIGURATION_LOADER.CPP
+$./createProjectFrom.sh -C FOO_CONFIGURATION_LOADER BASE_PROJECT NEW_PROJECT
+
+If the files in the BASE_PROJECT have the following form : BASE_PROJECT/WHATEVER.cpp 
+With the configuration loader of the base project has the following form : src/ext/FOO_CONFIGURATION_LOADER.CPP
+And you want the files in the NEW_PROJECT with the following form : NEW_PROJECT/NEW_PROJECTWHATEVER.cpp
+With the configuration loader of the new project using the following form : src/ext/FOOFOO_CONFIGURATION_LOADER.CPP
+$./createProjectFrom.sh -c FOO_CONFIGURATION_LOADER -C FOOFOO_CONFIGURATION_LOADER BASE_PROJECT NEW_PROJECT

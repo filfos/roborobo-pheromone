@@ -1,0 +1,47 @@
+CC           = g++ 
+CCFLAGS      = -Wall 
+LDFLAGS      = `sdl-config --cflags --libs` -lSDL_image
+RM           = rm -f 
+MAKE         = make 
+INCLUDE      = -Iinclude/ext -Iinclude/contrib -Iinclude/core -Iinclude/src/$(PRJ)
+SRC_C	     = $(wildcard src/core/*.c src/contrib/*.c src/ext/*.c src/prj/$(PRJ))	
+SRC_CC	     = $(wildcard src/core/*.cpp src/contrib/*.cpp src/ext/*.cpp src/prj/$(PRJ))	
+OBJ          = $(SRC_C:.c=.o) $(SRC_CC:.cpp=.o)#	$(src/prj/$(PRJ):.cpp=.o) $(src/prj/$(PRJ):.c=.o)
+TARGET       = roborobo
+
+.IGNORE: 
+#.SILENT: 
+
+all: 
+	clear
+	@echo Making target roborobo[$(PRJ)]
+#	$(MAKE) distclean
+	$(MAKE) $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CC) $(LDFLAGS) -o $@ $^
+#	$(MAKE) clean
+
+%.o: %.cpp
+	$(CC) -o $@ -c $< $(CCFLAGS) $(INCLUDE) -Iinclude/prj/$(PRJ)
+
+%.o: %.c
+	$(CC) -o $@ -c $< $(CCFLAGS) $(INCLUDE) -Iinclude/prj/$(PRJ)
+
+clean:
+	$(RM) $(OBJ) 
+	@echo note: you may ignore error related to prj directory. # try to delete prj/ if no project name is specified
+
+distclean:
+	$(MAKE) clean 
+	$(RM) $(TARGET) 
+
+help:
+	@echo .
+	@echo . == roborobo Makefile help ==
+	@echo .
+	@echo . default make usage......... : make
+	@echo . default clean usage........ : make clean #-- note: will not clean project objects
+	@echo . make with specific project. : make PRJ=project_dirname #-- e.g. make PRJ=MyProj
+	@echo . clean specific project..... : make clean PRJ=project_dirname #-- e.g. make clean PRJ=MyProj
+	@echo .

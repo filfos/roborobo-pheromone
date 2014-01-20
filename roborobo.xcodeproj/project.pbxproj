@@ -1,0 +1,1895 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 002F39F909D0881F00EBEB88 /* SDL.framework */; };
+		002F3A2E09D0888800EBEB88 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 002F3A2C09D0888800EBEB88 /* SDLMain.m */; };
+		3701DAB11382892400B12539 /* Elman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3701DAAA1382892400B12539 /* Elman.cpp */; };
+		3701DAB21382892400B12539 /* LayeredNeuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3701DAAB1382892400B12539 /* LayeredNeuralNetwork.cpp */; };
+		3701DAB31382892400B12539 /* MLP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3701DAAC1382892400B12539 /* MLP.cpp */; };
+		3701DAB41382892400B12539 /* NeuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3701DAAD1382892400B12539 /* NeuralNetwork.cpp */; };
+		3701DAB51382892400B12539 /* NeuralNetworkException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3701DAAE1382892400B12539 /* NeuralNetworkException.cpp */; };
+		3701DAB61382892400B12539 /* Perceptron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3701DAAF1382892400B12539 /* Perceptron.cpp */; };
+		3701DAB71382892400B12539 /* ReservoirNeuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3701DAB01382892400B12539 /* ReservoirNeuralNetwork.cpp */; };
+		370BD56611AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370BD55111AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.cpp */; };
+		370BD56711AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370BD55211AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.cpp */; };
+		370BD64511AD899100C09541 /* MedeaConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370BD64411AD899100C09541 /* MedeaConfigurationLoader.cpp */; };
+		370E46500FD41B20001E0985 /* RobotAgentWorldInterfaceDangerWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370E464F0FD41B20001E0985 /* RobotAgentWorldInterfaceDangerWorld.cpp */; };
+		370F27EA11B797AA0058F313 /* BattleAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F27DE11B797AA0058F313 /* BattleAgentObserver.cpp */; };
+		370F27EB11B797AA0058F313 /* BattleWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F27DF11B797AA0058F313 /* BattleWorldObserver.cpp */; };
+		370F27EC11B797AA0058F313 /* MedeaAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F27E011B797AA0058F313 /* MedeaAgentObserver.cpp */; };
+		370F27ED11B797AA0058F313 /* MedeaPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F27E111B797AA0058F313 /* MedeaPerceptronControlArchitecture.cpp */; };
+		370F27EF11B797AA0058F313 /* MedeaWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F27E311B797AA0058F313 /* MedeaWorldObserver.cpp */; };
+		370F27F011B797AA0058F313 /* ReplayAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F27E411B797AA0058F313 /* ReplayAgentObserver.cpp */; };
+		370F27F111B797AA0058F313 /* ReplayWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F27E511B797AA0058F313 /* ReplayWorldObserver.cpp */; };
+		370F28B111B7AD850058F313 /* MedeaSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28B011B7AD850058F313 /* MedeaSharedData.cpp */; };
+		370F28D211B7AF560058F313 /* MedeaTwoSunsAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28CD11B7AF560058F313 /* MedeaTwoSunsAgentObserver.cpp */; };
+		370F28D311B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28CE11B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.cpp */; };
+		370F28D411B7AF560058F313 /* MedeaTwoSunsSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28CF11B7AF560058F313 /* MedeaTwoSunsSharedData.cpp */; };
+		370F28D611B7AF560058F313 /* MedeaTwoSunsWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28D111B7AF560058F313 /* MedeaTwoSunsWorldObserver.cpp */; };
+		370F28D811B7AF860058F313 /* MedeaTwoSunsConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28D711B7AF860058F313 /* MedeaTwoSunsConfigurationLoader.cpp */; };
+		370F28F111B7B1B00058F313 /* MedeaAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28F011B7B1B00058F313 /* MedeaAgentWorldModel.cpp */; };
+		370F28F411B7B1DC0058F313 /* MedeaTwoSunsAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370F28F311B7B1DC0058F313 /* MedeaTwoSunsAgentWorldModel.cpp */; };
+		370FF3D111760287006697B2 /* BattleConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370FF3CF11760287006697B2 /* BattleConfigurationLoader.cpp */; };
+		3720BD0E0F7D149100D5FF81 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCD40F7D149100D5FF81 /* Agent.cpp */; };
+		3720BD0F0F7D149100D5FF81 /* AgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCD50F7D149100D5FF81 /* AgentObserver.cpp */; };
+		3720BD100F7D149100D5FF81 /* BehaviorControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCD60F7D149100D5FF81 /* BehaviorControlArchitecture.cpp */; };
+		3720BD110F7D149100D5FF81 /* Observer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCD70F7D149100D5FF81 /* Observer.cpp */; };
+		3720BD120F7D149100D5FF81 /* InspectorAgent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCD80F7D149100D5FF81 /* InspectorAgent.cpp */; };
+		3720BD130F7D149100D5FF81 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCD90F7D149100D5FF81 /* main.cpp */; };
+		3720BD140F7D149100D5FF81 /* Misc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCDA0F7D149100D5FF81 /* Misc.cpp */; };
+		3720BD150F7D149100D5FF81 /* roborobo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCDB0F7D149100D5FF81 /* roborobo.cpp */; };
+		3720BD160F7D149100D5FF81 /* RobotAgent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCDC0F7D149100D5FF81 /* RobotAgent.cpp */; };
+		3720BD170F7D149100D5FF81 /* RobotAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCDD0F7D149100D5FF81 /* RobotAgentWorldModel.cpp */; };
+		3720BD180F7D149100D5FF81 /* SDL_gfxPrimitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCDE0F7D149100D5FF81 /* SDL_gfxPrimitives.c */; };
+		3720BD190F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCDF0F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.cpp */; };
+		3720BD1A0F7D149100D5FF81 /* SDL_gfxRoborobo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCE00F7D149100D5FF81 /* SDL_gfxRoborobo.cpp */; };
+		3720BD1B0F7D149100D5FF81 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCE10F7D149100D5FF81 /* Timer.cpp */; };
+		3720BD1D0F7D149100D5FF81 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCE30F7D149100D5FF81 /* World.cpp */; };
+		3720BD1E0F7D149100D5FF81 /* WorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCE40F7D149100D5FF81 /* WorldObserver.cpp */; };
+		3720BD1F0F7D149100D5FF81 /* WorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCE50F7D149100D5FF81 /* WorldModel.cpp */; };
+		3720BD200F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCE70F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.cpp */; };
+		3720BD220F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3720BCE90F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.cpp */; };
+		372B8E2D137B2F9500E7276B /* BasicProjectMedeaAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372B8E28137B2F9500E7276B /* BasicProjectMedeaAgentObserver.cpp */; };
+		372B8E2E137B2F9500E7276B /* BasicProjectMedeaAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372B8E29137B2F9500E7276B /* BasicProjectMedeaAgentWorldModel.cpp */; };
+		372B8E2F137B2F9500E7276B /* BasicProjectMedeaNNControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372B8E2A137B2F9500E7276B /* BasicProjectMedeaNNControlArchitecture.cpp */; };
+		372B8E30137B2F9500E7276B /* BasicProjectMedeaSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372B8E2B137B2F9500E7276B /* BasicProjectMedeaSharedData.cpp */; };
+		372B8E31137B2F9500E7276B /* BasicProjectMedeaWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372B8E2C137B2F9500E7276B /* BasicProjectMedeaWorldObserver.cpp */; };
+		372B8E4F137B305900E7276B /* BasicProjectMedeaConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372B8E4E137B305900E7276B /* BasicProjectMedeaConfigurationLoader.cpp */; };
+		374E0CFA11AECDDC0003E446 /* BasicAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 374E0CF611AECDDC0003E446 /* BasicAgentObserver.cpp */; };
+		374E0CFB11AECDDC0003E446 /* BasicControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 374E0CF711AECDDC0003E446 /* BasicControlArchitecture.cpp */; };
+		374E0CFD11AECDDC0003E446 /* BasicWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 374E0CF911AECDDC0003E446 /* BasicWorldObserver.cpp */; };
+		374E0D1B11AED0100003E446 /* BasicAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 374E0D1A11AED0100003E446 /* BasicAgentWorldModel.cpp */; };
+		374E89F4117F0EA800DE0B7A /* ReplayConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 374E89F1117F0EA800DE0B7A /* ReplayConfigurationLoader.cpp */; };
+		3754B7B50FD097E800EAC800 /* RobotAgentWorldInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3754B7B40FD097E800EAC800 /* RobotAgentWorldInterface.cpp */; };
+		37568CB012E64FAB00780C8A /* MedeaOptimSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37568CAB12E64FAB00780C8A /* MedeaOptimSharedData.cpp */; };
+		37568CB112E64FAB00780C8A /* MedeaOptimWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37568CAC12E64FAB00780C8A /* MedeaOptimWorldObserver.cpp */; };
+		37568CB212E64FAB00780C8A /* MedeaOptimPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37568CAD12E64FAB00780C8A /* MedeaOptimPerceptronControlArchitecture.cpp */; };
+		37568CB312E64FAB00780C8A /* MedeaOptimAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37568CAE12E64FAB00780C8A /* MedeaOptimAgentWorldModel.cpp */; };
+		37568CB412E64FAB00780C8A /* MedeaOptimAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37568CAF12E64FAB00780C8A /* MedeaOptimAgentObserver.cpp */; };
+		37568CB612E64FBF00780C8A /* MedeaOptimConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37568CB512E64FBF00780C8A /* MedeaOptimConfigurationLoader.cpp */; };
+		375FBD2011AC145500597CE9 /* LogManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 375FBD1F11AC145500597CE9 /* LogManager.cpp */; };
+		375FC01C11AD286E00597CE9 /* EnergyPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 375FC01B11AD286E00597CE9 /* EnergyPoint.cpp */; };
+		37680501129C1DC900C97859 /* BasicConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37680500129C1DC900C97859 /* BasicConfigurationLoader.cpp */; };
+		3778DD65132EC3650000F4E6 /* Properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3778DD63132EC3650000F4E6 /* Properties.cpp */; };
+		3778DD66132EC3650000F4E6 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3778DD64132EC3650000F4E6 /* StringUtils.cpp */; };
+		377F21CC14DC295700BC00D1 /* EnergyPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21CB14DC295700BC00D1 /* EnergyPerceptronControlArchitecture.cpp */; };
+		377F21CE14DC299F00BC00D1 /* MedeaCommConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21CD14DC299F00BC00D1 /* MedeaCommConfigurationLoader.cpp */; };
+		377F21E014DC2C3C00BC00D1 /* MedeaCommAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21DA14DC2C3C00BC00D1 /* MedeaCommAgentObserver.cpp */; };
+		377F21E114DC2C3C00BC00D1 /* MedeaCommAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21DB14DC2C3C00BC00D1 /* MedeaCommAgentWorldModel.cpp */; };
+		377F21E214DC2C3C00BC00D1 /* MedeaCommEnergyPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21DC14DC2C3C00BC00D1 /* MedeaCommEnergyPoint.cpp */; };
+		377F21E314DC2C3C00BC00D1 /* MedeaCommPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21DD14DC2C3C00BC00D1 /* MedeaCommPerceptronControlArchitecture.cpp */; };
+		377F21E414DC2C3C00BC00D1 /* MedeaCommSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21DE14DC2C3C00BC00D1 /* MedeaCommSharedData.cpp */; };
+		377F21E514DC2C3C00BC00D1 /* MedeaCommWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377F21DF14DC2C3C00BC00D1 /* MedeaCommWorldObserver.cpp */; };
+		377F21E914DC2E8600BC00D1 /* roborobo-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 377F21E814DC2E8600BC00D1 /* roborobo-icon.jpg */; };
+		377F221E14DC4F2100BC00D1 /* battle.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220014DC4F2100BC00D1 /* battle.properties */; };
+		377F221F14DC4F2100BC00D1 /* dangerzone.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220114DC4F2100BC00D1 /* dangerzone.properties */; };
+		377F222014DC4F2100BC00D1 /* default-mas.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220214DC4F2100BC00D1 /* default-mas.properties */; };
+		377F222114DC4F2100BC00D1 /* default-medea.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220314DC4F2100BC00D1 /* default-medea.properties */; };
+		377F222214DC4F2100BC00D1 /* default-mono.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220414DC4F2100BC00D1 /* default-mono.properties */; };
+		377F222314DC4F2100BC00D1 /* default.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220514DC4F2100BC00D1 /* default.properties */; };
+		377F222414DC4F2100BC00D1 /* medea-jm.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220614DC4F2100BC00D1 /* medea-jm.properties */; };
+		377F222514DC4F2100BC00D1 /* medea-ni.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220714DC4F2100BC00D1 /* medea-ni.properties */; };
+		377F222614DC4F2100BC00D1 /* medea-optim.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220814DC4F2100BC00D1 /* medea-optim.properties */; };
+		377F222714DC4F2100BC00D1 /* medea-sp.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220914DC4F2100BC00D1 /* medea-sp.properties */; };
+		377F222814DC4F2100BC00D1 /* medea-specialize-0.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220A14DC4F2100BC00D1 /* medea-specialize-0.properties */; };
+		377F222914DC4F2100BC00D1 /* medea-twosuns-bigrobots-ni.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220B14DC4F2100BC00D1 /* medea-twosuns-bigrobots-ni.properties */; };
+		377F222A14DC4F2100BC00D1 /* medea-twosuns-ni.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220C14DC4F2100BC00D1 /* medea-twosuns-ni.properties */; };
+		377F222B14DC4F2100BC00D1 /* MedeaAltruism.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220D14DC4F2100BC00D1 /* MedeaAltruism.properties */; };
+		377F222C14DC4F2100BC00D1 /* MedeaAltruismBig.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220E14DC4F2100BC00D1 /* MedeaAltruismBig.properties */; };
+		377F222D14DC4F2100BC00D1 /* MedeaAltruismReEvo.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F220F14DC4F2100BC00D1 /* MedeaAltruismReEvo.properties */; };
+		377F222E14DC4F2100BC00D1 /* MedeaAltruismReplay.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221014DC4F2100BC00D1 /* MedeaAltruismReplay.properties */; };
+		377F222F14DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvo.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221114DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvo.properties */; };
+		377F223014DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoBeginRun.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221214DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoBeginRun.properties */; };
+		377F223114DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoEndRun.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221314DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoEndRun.properties */; };
+		377F223214DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoFirstsGeneration.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221414DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoFirstsGeneration.properties */; };
+		377F223314DC4F2100BC00D1 /* MedeaAltruismSigma0.01.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221514DC4F2100BC00D1 /* MedeaAltruismSigma0.01.properties */; };
+		377F223414DC4F2100BC00D1 /* MedeaAltUtility.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221614DC4F2100BC00D1 /* MedeaAltUtility.properties */; };
+		377F223514DC4F2100BC00D1 /* MedeaComm.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221714DC4F2100BC00D1 /* MedeaComm.properties */; };
+		377F223614DC4F2100BC00D1 /* oneplusoneonline.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221814DC4F2100BC00D1 /* oneplusoneonline.properties */; };
+		377F223714DC4F2100BC00D1 /* Replay.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221914DC4F2100BC00D1 /* Replay.properties */; };
+		377F223814DC4F2100BC00D1 /* SelfRep.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221A14DC4F2100BC00D1 /* SelfRep.properties */; };
+		377F223914DC4F2100BC00D1 /* spikeants-batch.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221B14DC4F2100BC00D1 /* spikeants-batch.properties */; };
+		377F223A14DC4F2100BC00D1 /* spikeants.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221C14DC4F2100BC00D1 /* spikeants.properties */; };
+		377F223B14DC4F2100BC00D1 /* strongcausality.properties in Resources */ = {isa = PBXBuildFile; fileRef = 377F221D14DC4F2100BC00D1 /* strongcausality.properties */; };
+		378B2C4E0FE6AF4600B90B67 /* ExtendedProperties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 378B2C4D0FE6AF4600B90B67 /* ExtendedProperties.cpp */; };
+		37907CD3143217A60036BF64 /* MedeaSpAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CCA143217A60036BF64 /* MedeaSpAgentObserver.cpp */; };
+		37907CD4143217A60036BF64 /* MedeaSpAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CCB143217A60036BF64 /* MedeaSpAgentWorldModel.cpp */; };
+		37907CD5143217A60036BF64 /* MedeaSpEnergyPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CCC143217A60036BF64 /* MedeaSpEnergyPoint.cpp */; };
+		37907CD6143217A60036BF64 /* MedeaSpNetworkGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CCD143217A60036BF64 /* MedeaSpNetworkGenerator.cpp */; };
+		37907CD7143217A60036BF64 /* MedeaSpPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CCE143217A60036BF64 /* MedeaSpPerceptronControlArchitecture.cpp */; };
+		37907CD8143217A60036BF64 /* MedeaSpSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CCF143217A60036BF64 /* MedeaSpSharedData.cpp */; };
+		37907CD9143217A60036BF64 /* MedeaSpWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CD0143217A60036BF64 /* MedeaSpWorldObserver.cpp */; };
+		37907CF2143217F80036BF64 /* MedeaSpConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37907CF0143217F80036BF64 /* MedeaSpConfigurationLoader.cpp */; };
+		3792E2E9124A4A4200574CCB /* MedeaAltruismConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E2E8124A4A4200574CCB /* MedeaAltruismConfigurationLoader.cpp */; };
+		3792E327124A4B8500574CCB /* MedeaAltruismAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E31E124A4B8500574CCB /* MedeaAltruismAgentObserver.cpp */; };
+		3792E328124A4B8500574CCB /* MedeaAltruismAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E31F124A4B8500574CCB /* MedeaAltruismAgentWorldModel.cpp */; };
+		3792E329124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E320124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.cpp */; };
+		3792E32A124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E321124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.cpp */; };
+		3792E32B124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E322124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.cpp */; };
+		3792E32C124A4B8500574CCB /* MedeaAltruismReplayAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E323124A4B8500574CCB /* MedeaAltruismReplayAgentObserver.cpp */; };
+		3792E32D124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E324124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.cpp */; };
+		3792E32E124A4B8500574CCB /* MedeaAltruismSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E325124A4B8500574CCB /* MedeaAltruismSharedData.cpp */; };
+		3792E32F124A4B8500574CCB /* MedeaAltruismWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3792E326124A4B8500574CCB /* MedeaAltruismWorldObserver.cpp */; };
+		3794BE0C1240FB150098580F /* MedeaSpecializeAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3794BE071240FB150098580F /* MedeaSpecializeAgentObserver.cpp */; };
+		3794BE0D1240FB150098580F /* MedeaSpecializeAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3794BE081240FB150098580F /* MedeaSpecializeAgentWorldModel.cpp */; };
+		3794BE0E1240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3794BE091240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.cpp */; };
+		3794BE0F1240FB150098580F /* MedeaSpecializeSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3794BE0A1240FB150098580F /* MedeaSpecializeSharedData.cpp */; };
+		3794BE101240FB150098580F /* MedeaSpecializeWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3794BE0B1240FB150098580F /* MedeaSpecializeWorldObserver.cpp */; };
+		3794BE261240FCD30098580F /* MedeaSpecializeConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3794BE251240FCD30098580F /* MedeaSpecializeConfigurationLoader.cpp */; };
+		37A33D79158D43BA00434B20 /* MedeaPheromonesAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A33D74158D43BA00434B20 /* MedeaPheromonesAgentObserver.cpp */; };
+		37A33D7A158D43BA00434B20 /* MedeaPheromonesAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A33D75158D43BA00434B20 /* MedeaPheromonesAgentWorldModel.cpp */; };
+		37A33D7B158D43BA00434B20 /* MedeaPheromonesControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A33D76158D43BA00434B20 /* MedeaPheromonesControlArchitecture.cpp */; };
+		37A33D7C158D43BA00434B20 /* MedeaPheromonesSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A33D77158D43BA00434B20 /* MedeaPheromonesSharedData.cpp */; };
+		37A33D7D158D43BA00434B20 /* MedeaPheromonesWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A33D78158D43BA00434B20 /* MedeaPheromonesWorldObserver.cpp */; };
+		37A33D7F158D43D100434B20 /* MedeaPheromonesConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37A33D7E158D43D100434B20 /* MedeaPheromonesConfigurationLoader.cpp */; };
+		37AA972E1132E38E001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37AA972D1132E38E001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.cpp */; };
+		37AF796B1296B11B00D7EAA3 /* MedeaAltruismReplayConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37AF796A1296B11B00D7EAA3 /* MedeaAltruismReplayConfigurationLoader.cpp */; };
+		37B8B2BA136709E600A9C660 /* MedeaAltruismReEvoConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B8B2B9136709E600A9C660 /* MedeaAltruismReEvoConfigurationLoader.cpp */; };
+		37B8B2C813670A4800A9C660 /* MedeaAltruismReEvoWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B8B2C613670A4800A9C660 /* MedeaAltruismReEvoWorldObserver.cpp */; };
+		37B8B2C913670A4800A9C660 /* MedeaAltruismReEvoAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B8B2C713670A4800A9C660 /* MedeaAltruismReEvoAgentObserver.cpp */; };
+		37DBAA69130EDD05008D312B /* MedeaAltUtilityAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA60130EDD05008D312B /* MedeaAltUtilityAgentObserver.cpp */; };
+		37DBAA6A130EDD05008D312B /* MedeaAltUtilityAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA61130EDD05008D312B /* MedeaAltUtilityAgentWorldModel.cpp */; };
+		37DBAA6B130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA62130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.cpp */; };
+		37DBAA6C130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA63130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.cpp */; };
+		37DBAA6D130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA64130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.cpp */; };
+		37DBAA6E130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA65130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.cpp */; };
+		37DBAA6F130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA66130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.cpp */; };
+		37DBAA70130EDD05008D312B /* MedeaAltUtilitySharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA67130EDD05008D312B /* MedeaAltUtilitySharedData.cpp */; };
+		37DBAA71130EDD05008D312B /* MedeaAltUtilityWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA68130EDD05008D312B /* MedeaAltUtilityWorldObserver.cpp */; };
+		37DBAA78130EDD51008D312B /* MedeaAltruismReplayPartialEvoConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA77130EDD51008D312B /* MedeaAltruismReplayPartialEvoConfigurationLoader.cpp */; };
+		37DBAA80130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA7D130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentObserver.cpp */; };
+		37DBAA81130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA7E130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentWorldModel.cpp */; };
+		37DBAA82130EDDA9008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA7F130EDDA9008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.cpp */; };
+		37DBAA88130EDDDC008D312B /* MedeaAltUtilityConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DBAA87130EDDDC008D312B /* MedeaAltUtilityConfigurationLoader.cpp */; };
+		37E256DD158D34D6005021B0 /* MedeaEcologyAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E256D8158D34D6005021B0 /* MedeaEcologyAgentObserver.cpp */; };
+		37E256DE158D34D6005021B0 /* MedeaEcologyAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E256D9158D34D6005021B0 /* MedeaEcologyAgentWorldModel.cpp */; };
+		37E256DF158D34D6005021B0 /* MedeaEcologyControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E256DA158D34D6005021B0 /* MedeaEcologyControlArchitecture.cpp */; };
+		37E256E0158D34D6005021B0 /* MedeaEcologySharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E256DB158D34D6005021B0 /* MedeaEcologySharedData.cpp */; };
+		37E256E1158D34D6005021B0 /* MedeaEcologyWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E256DC158D34D6005021B0 /* MedeaEcologyWorldObserver.cpp */; };
+		37E256E4158D36BA005021B0 /* MedeaEcologyConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E256E3158D36BA005021B0 /* MedeaEcologyConfigurationLoader.cpp */; };
+		37E6F8DF156FCE20005F3325 /* MedeaHGTConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E6F8DE156FCE20005F3325 /* MedeaHGTConfigurationLoader.cpp */; };
+		37E6F8E3156FCE95005F3325 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E6F8E1156FCE95005F3325 /* SDL.framework */; };
+		37E6F8E4156FCE95005F3325 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E6F8E2156FCE95005F3325 /* SDL_image.framework */; };
+		37E6F8F4156FD021005F3325 /* MedeaHGTAgentObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E6F8EF156FD021005F3325 /* MedeaHGTAgentObserver.cpp */; };
+		37E6F8F5156FD021005F3325 /* MedeaHGTAgentWorldModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E6F8F0156FD021005F3325 /* MedeaHGTAgentWorldModel.cpp */; };
+		37E6F8F6156FD021005F3325 /* MedeaHGTNNControlArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E6F8F1156FD021005F3325 /* MedeaHGTNNControlArchitecture.cpp */; };
+		37E6F8F7156FD021005F3325 /* MedeaHGTSharedData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E6F8F2156FD021005F3325 /* MedeaHGTSharedData.cpp */; };
+		37E6F8F8156FD021005F3325 /* MedeaHGTWorldObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E6F8F3156FD021005F3325 /* MedeaHGTWorldObserver.cpp */; };
+		37ECDD17136AF6370037E7CE /* InanimateObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37ECDD16136AF6370037E7CE /* InanimateObject.cpp */; };
+		37F6CF61116A32DB00ABAE5D /* ConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37F6CF5F116A32DB00ABAE5D /* ConfigurationLoader.cpp */; };
+		37F6CF71116A331F00ABAE5D /* OnePlusOneOnlineConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37F6CF6E116A331F00ABAE5D /* OnePlusOneOnlineConfigurationLoader.cpp */; };
+		37F6CF81116A333800ABAE5D /* StrongCausalityConfigurationLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37F6CF79116A333800ABAE5D /* StrongCausalityConfigurationLoader.cpp */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		002F39FD09D0883400EBEB88 /* Copy Frameworks into .app bundle */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */,
+			);
+			name = "Copy Frameworks into .app bundle";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		002F39F909D0881F00EBEB88 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		002F3A2B09D0888800EBEB88 /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = SOURCE_ROOT; };
+		002F3A2C09D0888800EBEB88 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = SOURCE_ROOT; };
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* roborobo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = roborobo_Prefix.pch; sourceTree = "<group>"; };
+		3701DAAA1382892400B12539 /* Elman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elman.cpp; sourceTree = "<group>"; };
+		3701DAAB1382892400B12539 /* LayeredNeuralNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayeredNeuralNetwork.cpp; sourceTree = "<group>"; };
+		3701DAAC1382892400B12539 /* MLP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MLP.cpp; sourceTree = "<group>"; };
+		3701DAAD1382892400B12539 /* NeuralNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NeuralNetwork.cpp; sourceTree = "<group>"; };
+		3701DAAE1382892400B12539 /* NeuralNetworkException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NeuralNetworkException.cpp; sourceTree = "<group>"; };
+		3701DAAF1382892400B12539 /* Perceptron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perceptron.cpp; sourceTree = "<group>"; };
+		3701DAB01382892400B12539 /* ReservoirNeuralNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReservoirNeuralNetwork.cpp; sourceTree = "<group>"; };
+		3701DAB91382893200B12539 /* Elman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elman.h; sourceTree = "<group>"; };
+		3701DABA1382893200B12539 /* LayeredNeuralNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayeredNeuralNetwork.h; sourceTree = "<group>"; };
+		3701DABB1382893200B12539 /* MLP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLP.h; sourceTree = "<group>"; };
+		3701DABC1382893200B12539 /* NeuralNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeuralNetwork.h; sourceTree = "<group>"; };
+		3701DABD1382893200B12539 /* NeuralNetworkException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeuralNetworkException.h; sourceTree = "<group>"; };
+		3701DABE1382893200B12539 /* Perceptron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perceptron.h; sourceTree = "<group>"; };
+		3701DABF1382893200B12539 /* ReservoirNeuralNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservoirNeuralNetwork.h; sourceTree = "<group>"; };
+		370BD54E11AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePlusOneOnlineGeneticsEngineAgentObserver.h; sourceTree = "<group>"; };
+		370BD54F11AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongCausalityExperimentAgentObserver.h; sourceTree = "<group>"; };
+		370BD55111AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnePlusOneOnlineGeneticsEngineAgentObserver.cpp; sourceTree = "<group>"; };
+		370BD55211AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StrongCausalityExperimentAgentObserver.cpp; sourceTree = "<group>"; };
+		370BD64211AD895D00C09541 /* MedeaConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaConfigurationLoader.h; sourceTree = "<group>"; };
+		370BD64411AD899100C09541 /* MedeaConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaConfigurationLoader.cpp; sourceTree = "<group>"; };
+		370E464F0FD41B20001E0985 /* RobotAgentWorldInterfaceDangerWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RobotAgentWorldInterfaceDangerWorld.cpp; sourceTree = "<group>"; };
+		370E46520FD41B66001E0985 /* RobotAgentWorldInterfaceDangerWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RobotAgentWorldInterfaceDangerWorld.h; path = World/RobotAgentWorldInterfaceDangerWorld.h; sourceTree = "<group>"; };
+		370F27D411B797AA0058F313 /* BattleAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleAgentObserver.h; sourceTree = "<group>"; };
+		370F27D511B797AA0058F313 /* BattleWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleWorldObserver.h; sourceTree = "<group>"; };
+		370F27D611B797AA0058F313 /* MedeaAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAgentObserver.h; sourceTree = "<group>"; };
+		370F27D711B797AA0058F313 /* MedeaPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		370F27DA11B797AA0058F313 /* MedeaWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaWorldObserver.h; sourceTree = "<group>"; };
+		370F27DB11B797AA0058F313 /* ReplayAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayAgentObserver.h; sourceTree = "<group>"; };
+		370F27DC11B797AA0058F313 /* ReplayWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayWorldObserver.h; sourceTree = "<group>"; };
+		370F27DE11B797AA0058F313 /* BattleAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleAgentObserver.cpp; sourceTree = "<group>"; };
+		370F27DF11B797AA0058F313 /* BattleWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleWorldObserver.cpp; sourceTree = "<group>"; };
+		370F27E011B797AA0058F313 /* MedeaAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAgentObserver.cpp; sourceTree = "<group>"; };
+		370F27E111B797AA0058F313 /* MedeaPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		370F27E311B797AA0058F313 /* MedeaWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaWorldObserver.cpp; sourceTree = "<group>"; };
+		370F27E411B797AA0058F313 /* ReplayAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReplayAgentObserver.cpp; sourceTree = "<group>"; };
+		370F27E511B797AA0058F313 /* ReplayWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReplayWorldObserver.cpp; sourceTree = "<group>"; };
+		370F28AB11B7AD330058F313 /* MedeaSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSharedData.h; sourceTree = "<group>"; };
+		370F28B011B7AD850058F313 /* MedeaSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSharedData.cpp; sourceTree = "<group>"; };
+		370F28C711B7AF560058F313 /* MedeaTwoSunsAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaTwoSunsAgentObserver.h; sourceTree = "<group>"; };
+		370F28C811B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaTwoSunsPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		370F28C911B7AF560058F313 /* MedeaTwoSunsSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaTwoSunsSharedData.h; sourceTree = "<group>"; };
+		370F28CB11B7AF560058F313 /* MedeaTwoSunsWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaTwoSunsWorldObserver.h; sourceTree = "<group>"; };
+		370F28CD11B7AF560058F313 /* MedeaTwoSunsAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaTwoSunsAgentObserver.cpp; sourceTree = "<group>"; };
+		370F28CE11B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaTwoSunsPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		370F28CF11B7AF560058F313 /* MedeaTwoSunsSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaTwoSunsSharedData.cpp; sourceTree = "<group>"; };
+		370F28D111B7AF560058F313 /* MedeaTwoSunsWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaTwoSunsWorldObserver.cpp; sourceTree = "<group>"; };
+		370F28D711B7AF860058F313 /* MedeaTwoSunsConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaTwoSunsConfigurationLoader.cpp; sourceTree = "<group>"; };
+		370F28EF11B7B1A10058F313 /* MedeaAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAgentWorldModel.h; sourceTree = "<group>"; };
+		370F28F011B7B1B00058F313 /* MedeaAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAgentWorldModel.cpp; sourceTree = "<group>"; };
+		370F28F211B7B1D70058F313 /* MedeaTwoSunsAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaTwoSunsAgentWorldModel.h; sourceTree = "<group>"; };
+		370F28F311B7B1DC0058F313 /* MedeaTwoSunsAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaTwoSunsAgentWorldModel.cpp; sourceTree = "<group>"; };
+		370FF3CF11760287006697B2 /* BattleConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleConfigurationLoader.cpp; sourceTree = "<group>"; };
+		370FF3D3117602FD006697B2 /* BattleConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleConfigurationLoader.h; sourceTree = "<group>"; };
+		370FF3D5117602FD006697B2 /* OnePlusOneOnlineConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePlusOneOnlineConfigurationLoader.h; sourceTree = "<group>"; };
+		370FF3D9117602FD006697B2 /* StrongCausalityConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongCausalityConfigurationLoader.h; sourceTree = "<group>"; };
+		3720BCD40F7D149100D5FF81 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
+		3720BCD50F7D149100D5FF81 /* AgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentObserver.cpp; sourceTree = "<group>"; };
+		3720BCD60F7D149100D5FF81 /* BehaviorControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BehaviorControlArchitecture.cpp; sourceTree = "<group>"; };
+		3720BCD70F7D149100D5FF81 /* Observer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Observer.cpp; sourceTree = "<group>"; };
+		3720BCD80F7D149100D5FF81 /* InspectorAgent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InspectorAgent.cpp; sourceTree = "<group>"; };
+		3720BCD90F7D149100D5FF81 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3720BCDA0F7D149100D5FF81 /* Misc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Misc.cpp; sourceTree = "<group>"; };
+		3720BCDB0F7D149100D5FF81 /* roborobo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = roborobo.cpp; sourceTree = "<group>"; };
+		3720BCDC0F7D149100D5FF81 /* RobotAgent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RobotAgent.cpp; sourceTree = "<group>"; };
+		3720BCDD0F7D149100D5FF81 /* RobotAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RobotAgentWorldModel.cpp; sourceTree = "<group>"; };
+		3720BCDE0F7D149100D5FF81 /* SDL_gfxPrimitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_gfxPrimitives.c; sourceTree = "<group>"; };
+		3720BCDF0F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDL_gfxPrimitivesExtra.cpp; sourceTree = "<group>"; };
+		3720BCE00F7D149100D5FF81 /* SDL_gfxRoborobo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDL_gfxRoborobo.cpp; sourceTree = "<group>"; };
+		3720BCE10F7D149100D5FF81 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		3720BCE30F7D149100D5FF81 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		3720BCE40F7D149100D5FF81 /* WorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldObserver.cpp; sourceTree = "<group>"; };
+		3720BCE50F7D149100D5FF81 /* WorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldModel.cpp; sourceTree = "<group>"; };
+		3720BCE70F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvolvingRobotAgentWorldModel.cpp; sourceTree = "<group>"; };
+		3720BCE90F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronBehaviorControlArchitecture.cpp; sourceTree = "<group>"; };
+		3720BCED0F7D149100D5FF81 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		3720BCEE0F7D149100D5FF81 /* InspectorAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectorAgent.h; sourceTree = "<group>"; };
+		3720BCEF0F7D149100D5FF81 /* RobotAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotAgent.h; sourceTree = "<group>"; };
+		3720BCF10F7D149100D5FF81 /* BehaviorControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BehaviorControlArchitecture.h; sourceTree = "<group>"; };
+		3720BCF80F7D149100D5FF81 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		3720BCF90F7D149100D5FF81 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		3720BCFA0F7D149100D5FF81 /* roborobo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = roborobo.h; sourceTree = "<group>"; };
+		3720BCFD0F7D149100D5FF81 /* Misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Misc.h; sourceTree = "<group>"; };
+		3720BCFE0F7D149100D5FF81 /* SDL_gfxPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_gfxPrimitives.h; sourceTree = "<group>"; };
+		3720BCFF0F7D149100D5FF81 /* SDL_gfxPrimitives_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_gfxPrimitives_font.h; sourceTree = "<group>"; };
+		3720BD000F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_gfxPrimitivesExtra.h; sourceTree = "<group>"; };
+		3720BD010F7D149100D5FF81 /* SDL_gfxRoborobo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_gfxRoborobo.h; sourceTree = "<group>"; };
+		3720BD020F7D149100D5FF81 /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = "<group>"; };
+		3720BD030F7D149100D5FF81 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		3720BD050F7D149100D5FF81 /* RobotAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotAgentWorldModel.h; sourceTree = "<group>"; };
+		3720BD060F7D149100D5FF81 /* WorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldModel.h; sourceTree = "<group>"; };
+		3720BD090F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronBehaviorControlArchitecture.h; sourceTree = "<group>"; };
+		3720BD0D0F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvolvingRobotAgentWorldModel.h; sourceTree = "<group>"; };
+		372B8E22137B2F9500E7276B /* BasicProjectMedeaAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProjectMedeaAgentObserver.h; sourceTree = "<group>"; };
+		372B8E23137B2F9500E7276B /* BasicProjectMedeaAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProjectMedeaAgentWorldModel.h; sourceTree = "<group>"; };
+		372B8E24137B2F9500E7276B /* BasicProjectMedeaNNControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProjectMedeaNNControlArchitecture.h; sourceTree = "<group>"; };
+		372B8E25137B2F9500E7276B /* BasicProjectMedeaSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProjectMedeaSharedData.h; sourceTree = "<group>"; };
+		372B8E26137B2F9500E7276B /* BasicProjectMedeaWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProjectMedeaWorldObserver.h; sourceTree = "<group>"; };
+		372B8E28137B2F9500E7276B /* BasicProjectMedeaAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicProjectMedeaAgentObserver.cpp; sourceTree = "<group>"; };
+		372B8E29137B2F9500E7276B /* BasicProjectMedeaAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicProjectMedeaAgentWorldModel.cpp; sourceTree = "<group>"; };
+		372B8E2A137B2F9500E7276B /* BasicProjectMedeaNNControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicProjectMedeaNNControlArchitecture.cpp; sourceTree = "<group>"; };
+		372B8E2B137B2F9500E7276B /* BasicProjectMedeaSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicProjectMedeaSharedData.cpp; sourceTree = "<group>"; };
+		372B8E2C137B2F9500E7276B /* BasicProjectMedeaWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicProjectMedeaWorldObserver.cpp; sourceTree = "<group>"; };
+		372B8E4D137B303B00E7276B /* BasicProjectMedeaConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProjectMedeaConfigurationLoader.h; sourceTree = "<group>"; };
+		372B8E4E137B305900E7276B /* BasicProjectMedeaConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicProjectMedeaConfigurationLoader.cpp; sourceTree = "<group>"; };
+		374E0CF111AECDDC0003E446 /* BasicAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicAgentObserver.h; sourceTree = "<group>"; };
+		374E0CF211AECDDC0003E446 /* BasicControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicControlArchitecture.h; sourceTree = "<group>"; };
+		374E0CF411AECDDC0003E446 /* BasicWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicWorldObserver.h; sourceTree = "<group>"; };
+		374E0CF611AECDDC0003E446 /* BasicAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicAgentObserver.cpp; sourceTree = "<group>"; };
+		374E0CF711AECDDC0003E446 /* BasicControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicControlArchitecture.cpp; sourceTree = "<group>"; };
+		374E0CF911AECDDC0003E446 /* BasicWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicWorldObserver.cpp; sourceTree = "<group>"; };
+		374E0D1911AED0090003E446 /* BasicAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicAgentWorldModel.h; sourceTree = "<group>"; };
+		374E0D1A11AED0100003E446 /* BasicAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicAgentWorldModel.cpp; sourceTree = "<group>"; };
+		374E89F1117F0EA800DE0B7A /* ReplayConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReplayConfigurationLoader.cpp; sourceTree = "<group>"; };
+		374E89F8117F0ED000DE0B7A /* ReplayConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayConfigurationLoader.h; sourceTree = "<group>"; };
+		3754B7B00FD097C300EAC800 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = World.h; path = World/World.h; sourceTree = "<group>"; };
+		3754B7B10FD097C300EAC800 /* RobotAgentWorldInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RobotAgentWorldInterface.h; path = World/RobotAgentWorldInterface.h; sourceTree = "<group>"; };
+		3754B7B40FD097E800EAC800 /* RobotAgentWorldInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RobotAgentWorldInterface.cpp; sourceTree = "<group>"; };
+		37568CA612E64FA400780C8A /* MedeaOptimAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaOptimAgentWorldModel.h; sourceTree = "<group>"; };
+		37568CA712E64FA400780C8A /* MedeaOptimWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaOptimWorldObserver.h; sourceTree = "<group>"; };
+		37568CA812E64FA400780C8A /* MedeaOptimAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaOptimAgentObserver.h; sourceTree = "<group>"; };
+		37568CA912E64FA400780C8A /* MedeaOptimSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaOptimSharedData.h; sourceTree = "<group>"; };
+		37568CAA12E64FA400780C8A /* MedeaOptimPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaOptimPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		37568CAB12E64FAB00780C8A /* MedeaOptimSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaOptimSharedData.cpp; sourceTree = "<group>"; };
+		37568CAC12E64FAB00780C8A /* MedeaOptimWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaOptimWorldObserver.cpp; sourceTree = "<group>"; };
+		37568CAD12E64FAB00780C8A /* MedeaOptimPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaOptimPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		37568CAE12E64FAB00780C8A /* MedeaOptimAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaOptimAgentWorldModel.cpp; sourceTree = "<group>"; };
+		37568CAF12E64FAB00780C8A /* MedeaOptimAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaOptimAgentObserver.cpp; sourceTree = "<group>"; };
+		37568CB512E64FBF00780C8A /* MedeaOptimConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaOptimConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37568CB712E64FE100780C8A /* MedeaOptimConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaOptimConfigurationLoader.h; sourceTree = "<group>"; };
+		375B3FED10BA9FC30008A54B /* AgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentObserver.h; sourceTree = "<group>"; };
+		375B3FEE10BA9FC30008A54B /* Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Observer.h; sourceTree = "<group>"; };
+		375B3FEF10BA9FC30008A54B /* WorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldObserver.h; sourceTree = "<group>"; };
+		375FBD1B11AC13B200597CE9 /* LogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogManager.h; sourceTree = "<group>"; };
+		375FBD1F11AC145500597CE9 /* LogManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogManager.cpp; sourceTree = "<group>"; };
+		375FC01A11AD286300597CE9 /* EnergyPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnergyPoint.h; path = World/EnergyPoint.h; sourceTree = "<group>"; };
+		375FC01B11AD286E00597CE9 /* EnergyPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyPoint.cpp; sourceTree = "<group>"; };
+		376804FF129C1DB900C97859 /* BasicConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicConfigurationLoader.h; sourceTree = "<group>"; };
+		37680500129C1DC900C97859 /* BasicConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicConfigurationLoader.cpp; sourceTree = "<group>"; };
+		3778DD63132EC3650000F4E6 /* Properties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Properties.cpp; sourceTree = "<group>"; };
+		3778DD64132EC3650000F4E6 /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
+		377F21CB14DC295700BC00D1 /* EnergyPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		377F21CD14DC299F00BC00D1 /* MedeaCommConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaCommConfigurationLoader.cpp; sourceTree = "<group>"; };
+		377F21CF14DC29CC00BC00D1 /* EnergyPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		377F21D014DC2A0F00BC00D1 /* MedeaCommConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaCommConfigurationLoader.h; sourceTree = "<group>"; };
+		377F21D314DC2C3C00BC00D1 /* MedeaCommAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaCommAgentObserver.h; sourceTree = "<group>"; };
+		377F21D414DC2C3C00BC00D1 /* MedeaCommAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaCommAgentWorldModel.h; sourceTree = "<group>"; };
+		377F21D514DC2C3C00BC00D1 /* MedeaCommEnergyPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaCommEnergyPoint.h; sourceTree = "<group>"; };
+		377F21D614DC2C3C00BC00D1 /* MedeaCommPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaCommPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		377F21D714DC2C3C00BC00D1 /* MedeaCommSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaCommSharedData.h; sourceTree = "<group>"; };
+		377F21D814DC2C3C00BC00D1 /* MedeaCommWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaCommWorldObserver.h; sourceTree = "<group>"; };
+		377F21DA14DC2C3C00BC00D1 /* MedeaCommAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaCommAgentObserver.cpp; sourceTree = "<group>"; };
+		377F21DB14DC2C3C00BC00D1 /* MedeaCommAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaCommAgentWorldModel.cpp; sourceTree = "<group>"; };
+		377F21DC14DC2C3C00BC00D1 /* MedeaCommEnergyPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaCommEnergyPoint.cpp; sourceTree = "<group>"; };
+		377F21DD14DC2C3C00BC00D1 /* MedeaCommPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaCommPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		377F21DE14DC2C3C00BC00D1 /* MedeaCommSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaCommSharedData.cpp; sourceTree = "<group>"; };
+		377F21DF14DC2C3C00BC00D1 /* MedeaCommWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaCommWorldObserver.cpp; sourceTree = "<group>"; };
+		377F21E814DC2E8600BC00D1 /* roborobo-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "roborobo-icon.jpg"; sourceTree = "<group>"; };
+		377F220014DC4F2100BC00D1 /* battle.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = battle.properties; path = config/battle.properties; sourceTree = "<group>"; };
+		377F220114DC4F2100BC00D1 /* dangerzone.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dangerzone.properties; path = config/dangerzone.properties; sourceTree = "<group>"; };
+		377F220214DC4F2100BC00D1 /* default-mas.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "default-mas.properties"; path = "config/default-mas.properties"; sourceTree = "<group>"; };
+		377F220314DC4F2100BC00D1 /* default-medea.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "default-medea.properties"; path = "config/default-medea.properties"; sourceTree = "<group>"; };
+		377F220414DC4F2100BC00D1 /* default-mono.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "default-mono.properties"; path = "config/default-mono.properties"; sourceTree = "<group>"; };
+		377F220514DC4F2100BC00D1 /* default.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = default.properties; path = config/default.properties; sourceTree = "<group>"; };
+		377F220614DC4F2100BC00D1 /* medea-jm.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "medea-jm.properties"; path = "config/medea-jm.properties"; sourceTree = "<group>"; };
+		377F220714DC4F2100BC00D1 /* medea-ni.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "medea-ni.properties"; path = "config/medea-ni.properties"; sourceTree = "<group>"; };
+		377F220814DC4F2100BC00D1 /* medea-optim.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "medea-optim.properties"; path = "config/medea-optim.properties"; sourceTree = "<group>"; };
+		377F220914DC4F2100BC00D1 /* medea-sp.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "medea-sp.properties"; path = "config/medea-sp.properties"; sourceTree = "<group>"; };
+		377F220A14DC4F2100BC00D1 /* medea-specialize-0.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "medea-specialize-0.properties"; path = "config/medea-specialize-0.properties"; sourceTree = "<group>"; };
+		377F220B14DC4F2100BC00D1 /* medea-twosuns-bigrobots-ni.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "medea-twosuns-bigrobots-ni.properties"; path = "config/medea-twosuns-bigrobots-ni.properties"; sourceTree = "<group>"; };
+		377F220C14DC4F2100BC00D1 /* medea-twosuns-ni.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "medea-twosuns-ni.properties"; path = "config/medea-twosuns-ni.properties"; sourceTree = "<group>"; };
+		377F220D14DC4F2100BC00D1 /* MedeaAltruism.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruism.properties; path = config/MedeaAltruism.properties; sourceTree = "<group>"; };
+		377F220E14DC4F2100BC00D1 /* MedeaAltruismBig.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismBig.properties; path = config/MedeaAltruismBig.properties; sourceTree = "<group>"; };
+		377F220F14DC4F2100BC00D1 /* MedeaAltruismReEvo.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismReEvo.properties; path = config/MedeaAltruismReEvo.properties; sourceTree = "<group>"; };
+		377F221014DC4F2100BC00D1 /* MedeaAltruismReplay.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismReplay.properties; path = config/MedeaAltruismReplay.properties; sourceTree = "<group>"; };
+		377F221114DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvo.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismReplayPartialEvo.properties; path = config/MedeaAltruismReplayPartialEvo.properties; sourceTree = "<group>"; };
+		377F221214DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoBeginRun.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismReplayPartialEvoBeginRun.properties; path = config/MedeaAltruismReplayPartialEvoBeginRun.properties; sourceTree = "<group>"; };
+		377F221314DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoEndRun.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismReplayPartialEvoEndRun.properties; path = config/MedeaAltruismReplayPartialEvoEndRun.properties; sourceTree = "<group>"; };
+		377F221414DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoFirstsGeneration.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismReplayPartialEvoFirstsGeneration.properties; path = config/MedeaAltruismReplayPartialEvoFirstsGeneration.properties; sourceTree = "<group>"; };
+		377F221514DC4F2100BC00D1 /* MedeaAltruismSigma0.01.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltruismSigma0.01.properties; path = config/MedeaAltruismSigma0.01.properties; sourceTree = "<group>"; };
+		377F221614DC4F2100BC00D1 /* MedeaAltUtility.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaAltUtility.properties; path = config/MedeaAltUtility.properties; sourceTree = "<group>"; };
+		377F221714DC4F2100BC00D1 /* MedeaComm.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MedeaComm.properties; path = config/MedeaComm.properties; sourceTree = "<group>"; };
+		377F221814DC4F2100BC00D1 /* oneplusoneonline.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = oneplusoneonline.properties; path = config/oneplusoneonline.properties; sourceTree = "<group>"; };
+		377F221914DC4F2100BC00D1 /* Replay.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Replay.properties; path = config/Replay.properties; sourceTree = "<group>"; };
+		377F221A14DC4F2100BC00D1 /* SelfRep.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SelfRep.properties; path = config/SelfRep.properties; sourceTree = "<group>"; };
+		377F221B14DC4F2100BC00D1 /* spikeants-batch.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "spikeants-batch.properties"; path = "config/spikeants-batch.properties"; sourceTree = "<group>"; };
+		377F221C14DC4F2100BC00D1 /* spikeants.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = spikeants.properties; path = config/spikeants.properties; sourceTree = "<group>"; };
+		377F221D14DC4F2100BC00D1 /* strongcausality.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = strongcausality.properties; path = config/strongcausality.properties; sourceTree = "<group>"; };
+		378B2C4D0FE6AF4600B90B67 /* ExtendedProperties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExtendedProperties.cpp; sourceTree = "<group>"; };
+		378B2C4F0FE6AF6300B90B67 /* ExtendedProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedProperties.h; sourceTree = "<group>"; };
+		37907CBF143217A60036BF64 /* MedeaSpAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpAgentObserver.h; sourceTree = "<group>"; };
+		37907CC0143217A60036BF64 /* MedeaSpAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpAgentWorldModel.h; sourceTree = "<group>"; };
+		37907CC1143217A60036BF64 /* MedeaSpEnergyPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpEnergyPoint.h; sourceTree = "<group>"; };
+		37907CC2143217A60036BF64 /* MedeaSpNetworkGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpNetworkGenerator.h; sourceTree = "<group>"; };
+		37907CC3143217A60036BF64 /* MedeaSpPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		37907CC4143217A60036BF64 /* MedeaSpSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpSharedData.h; sourceTree = "<group>"; };
+		37907CC5143217A60036BF64 /* MedeaSpWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpWorldObserver.h; sourceTree = "<group>"; };
+		37907CCA143217A60036BF64 /* MedeaSpAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpAgentObserver.cpp; sourceTree = "<group>"; };
+		37907CCB143217A60036BF64 /* MedeaSpAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpAgentWorldModel.cpp; sourceTree = "<group>"; };
+		37907CCC143217A60036BF64 /* MedeaSpEnergyPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpEnergyPoint.cpp; sourceTree = "<group>"; };
+		37907CCD143217A60036BF64 /* MedeaSpNetworkGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpNetworkGenerator.cpp; sourceTree = "<group>"; };
+		37907CCE143217A60036BF64 /* MedeaSpPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		37907CCF143217A60036BF64 /* MedeaSpSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpSharedData.cpp; sourceTree = "<group>"; };
+		37907CD0143217A60036BF64 /* MedeaSpWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpWorldObserver.cpp; sourceTree = "<group>"; };
+		37907CF0143217F80036BF64 /* MedeaSpConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37907CF41432181A0036BF64 /* MedeaSpConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpConfigurationLoader.h; sourceTree = "<group>"; };
+		3792E2E8124A4A4200574CCB /* MedeaAltruismConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismConfigurationLoader.cpp; sourceTree = "<group>"; };
+		3792E2EA124A4A6A00574CCB /* MedeaAltruismConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismConfigurationLoader.h; sourceTree = "<group>"; };
+		3792E314124A4B8500574CCB /* MedeaAltruismAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismAgentObserver.h; sourceTree = "<group>"; };
+		3792E315124A4B8500574CCB /* MedeaAltruismAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismAgentWorldModel.h; sourceTree = "<group>"; };
+		3792E316124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismBattleAgentObserver.h; sourceTree = "<group>"; };
+		3792E317124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismBattleWorldObserver.h; sourceTree = "<group>"; };
+		3792E318124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		3792E319124A4B8500574CCB /* MedeaAltruismReplayAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReplayAgentObserver.h; sourceTree = "<group>"; };
+		3792E31A124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReplayWorldObserver.h; sourceTree = "<group>"; };
+		3792E31B124A4B8500574CCB /* MedeaAltruismSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismSharedData.h; sourceTree = "<group>"; };
+		3792E31C124A4B8500574CCB /* MedeaAltruismWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismWorldObserver.h; sourceTree = "<group>"; };
+		3792E31E124A4B8500574CCB /* MedeaAltruismAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismAgentObserver.cpp; sourceTree = "<group>"; };
+		3792E31F124A4B8500574CCB /* MedeaAltruismAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismAgentWorldModel.cpp; sourceTree = "<group>"; };
+		3792E320124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismBattleAgentObserver.cpp; sourceTree = "<group>"; };
+		3792E321124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismBattleWorldObserver.cpp; sourceTree = "<group>"; };
+		3792E322124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		3792E323124A4B8500574CCB /* MedeaAltruismReplayAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReplayAgentObserver.cpp; sourceTree = "<group>"; };
+		3792E324124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReplayWorldObserver.cpp; sourceTree = "<group>"; };
+		3792E325124A4B8500574CCB /* MedeaAltruismSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismSharedData.cpp; sourceTree = "<group>"; };
+		3792E326124A4B8500574CCB /* MedeaAltruismWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismWorldObserver.cpp; sourceTree = "<group>"; };
+		3794BE011240FB150098580F /* MedeaSpecializeAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpecializeAgentObserver.h; sourceTree = "<group>"; };
+		3794BE021240FB150098580F /* MedeaSpecializeAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpecializeAgentWorldModel.h; sourceTree = "<group>"; };
+		3794BE031240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpecializePerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		3794BE041240FB150098580F /* MedeaSpecializeSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpecializeSharedData.h; sourceTree = "<group>"; };
+		3794BE051240FB150098580F /* MedeaSpecializeWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpecializeWorldObserver.h; sourceTree = "<group>"; };
+		3794BE071240FB150098580F /* MedeaSpecializeAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpecializeAgentObserver.cpp; sourceTree = "<group>"; };
+		3794BE081240FB150098580F /* MedeaSpecializeAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpecializeAgentWorldModel.cpp; sourceTree = "<group>"; };
+		3794BE091240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpecializePerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		3794BE0A1240FB150098580F /* MedeaSpecializeSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpecializeSharedData.cpp; sourceTree = "<group>"; };
+		3794BE0B1240FB150098580F /* MedeaSpecializeWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpecializeWorldObserver.cpp; sourceTree = "<group>"; };
+		3794BE221240FC820098580F /* MedeaSpecializeConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaSpecializeConfigurationLoader.h; sourceTree = "<group>"; };
+		3794BE231240FC820098580F /* MedeaTwoSunsConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaTwoSunsConfigurationLoader.h; sourceTree = "<group>"; };
+		3794BE251240FCD30098580F /* MedeaSpecializeConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaSpecializeConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37A33D6E158D43BA00434B20 /* MedeaPheromonesAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaPheromonesAgentObserver.h; sourceTree = "<group>"; };
+		37A33D6F158D43BA00434B20 /* MedeaPheromonesAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaPheromonesAgentWorldModel.h; sourceTree = "<group>"; };
+		37A33D70158D43BA00434B20 /* MedeaPheromonesControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaPheromonesControlArchitecture.h; sourceTree = "<group>"; };
+		37A33D71158D43BA00434B20 /* MedeaPheromonesSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaPheromonesSharedData.h; sourceTree = "<group>"; };
+		37A33D72158D43BA00434B20 /* MedeaPheromonesWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaPheromonesWorldObserver.h; sourceTree = "<group>"; };
+		37A33D74158D43BA00434B20 /* MedeaPheromonesAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaPheromonesAgentObserver.cpp; sourceTree = "<group>"; };
+		37A33D75158D43BA00434B20 /* MedeaPheromonesAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaPheromonesAgentWorldModel.cpp; sourceTree = "<group>"; };
+		37A33D76158D43BA00434B20 /* MedeaPheromonesControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaPheromonesControlArchitecture.cpp; sourceTree = "<group>"; };
+		37A33D77158D43BA00434B20 /* MedeaPheromonesSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaPheromonesSharedData.cpp; sourceTree = "<group>"; };
+		37A33D78158D43BA00434B20 /* MedeaPheromonesWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaPheromonesWorldObserver.cpp; sourceTree = "<group>"; };
+		37A33D7E158D43D100434B20 /* MedeaPheromonesConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MedeaPheromonesConfigurationLoader.cpp; path = src/ext/MedeaPheromonesConfigurationLoader.cpp; sourceTree = SOURCE_ROOT; };
+		37A33D80158D43F300434B20 /* MedeaPheromonesConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaPheromonesConfigurationLoader.h; sourceTree = "<group>"; };
+		37AA972D1132E38E001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvolvingRobotAgentWorldModelDangerWorld.cpp; sourceTree = "<group>"; };
+		37AA974A1132E3A0001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvolvingRobotAgentWorldModelDangerWorld.h; sourceTree = "<group>"; };
+		37AF796A1296B11B00D7EAA3 /* MedeaAltruismReplayConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReplayConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37AF796C1296B13400D7EAA3 /* MedeaAltruismReplayConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReplayConfigurationLoader.h; sourceTree = "<group>"; };
+		37B8B2B9136709E600A9C660 /* MedeaAltruismReEvoConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReEvoConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37B8B2BB13670A0900A9C660 /* MedeaAltruismReEvoConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReEvoConfigurationLoader.h; sourceTree = "<group>"; };
+		37B8B2C613670A4800A9C660 /* MedeaAltruismReEvoWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReEvoWorldObserver.cpp; sourceTree = "<group>"; };
+		37B8B2C713670A4800A9C660 /* MedeaAltruismReEvoAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReEvoAgentObserver.cpp; sourceTree = "<group>"; };
+		37B8B2CA13670A5300A9C660 /* MedeaAltruismReEvoWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReEvoWorldObserver.h; sourceTree = "<group>"; };
+		37B8B2CB13670A5300A9C660 /* MedeaAltruismReEvoAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReEvoAgentObserver.h; sourceTree = "<group>"; };
+		37C234DB0F821A4400C977FE /* func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = func.h; sourceTree = "<group>"; };
+		37C234DC0F821A4400C977FE /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
+		37C234DD0F821A4400C977FE /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
+		37C234DE0F821A4400C977FE /* strip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strip.h; sourceTree = "<group>"; };
+		37DBAA56130EDD05008D312B /* MedeaAltUtilityAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityAgentObserver.h; sourceTree = "<group>"; };
+		37DBAA57130EDD05008D312B /* MedeaAltUtilityAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityAgentWorldModel.h; sourceTree = "<group>"; };
+		37DBAA58130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityBattleAgentObserver.h; sourceTree = "<group>"; };
+		37DBAA59130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityBattleWorldObserver.h; sourceTree = "<group>"; };
+		37DBAA5A130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityPerceptronControlArchitecture.h; sourceTree = "<group>"; };
+		37DBAA5B130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityReplayAgentObserver.h; sourceTree = "<group>"; };
+		37DBAA5C130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityReplayWorldObserver.h; sourceTree = "<group>"; };
+		37DBAA5D130EDD05008D312B /* MedeaAltUtilitySharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilitySharedData.h; sourceTree = "<group>"; };
+		37DBAA5E130EDD05008D312B /* MedeaAltUtilityWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityWorldObserver.h; sourceTree = "<group>"; };
+		37DBAA60130EDD05008D312B /* MedeaAltUtilityAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityAgentObserver.cpp; sourceTree = "<group>"; };
+		37DBAA61130EDD05008D312B /* MedeaAltUtilityAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityAgentWorldModel.cpp; sourceTree = "<group>"; };
+		37DBAA62130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityBattleAgentObserver.cpp; sourceTree = "<group>"; };
+		37DBAA63130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityBattleWorldObserver.cpp; sourceTree = "<group>"; };
+		37DBAA64130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityPerceptronControlArchitecture.cpp; sourceTree = "<group>"; };
+		37DBAA65130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityReplayAgentObserver.cpp; sourceTree = "<group>"; };
+		37DBAA66130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityReplayWorldObserver.cpp; sourceTree = "<group>"; };
+		37DBAA67130EDD05008D312B /* MedeaAltUtilitySharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilitySharedData.cpp; sourceTree = "<group>"; };
+		37DBAA68130EDD05008D312B /* MedeaAltUtilityWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityWorldObserver.cpp; sourceTree = "<group>"; };
+		37DBAA77130EDD51008D312B /* MedeaAltruismReplayPartialEvoConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReplayPartialEvoConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37DBAA79130EDD64008D312B /* MedeaAltruismReplayPartialEvoConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReplayPartialEvoConfigurationLoader.h; sourceTree = "<group>"; };
+		37DBAA7D130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReplayPartialEvoAgentObserver.cpp; sourceTree = "<group>"; };
+		37DBAA7E130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReplayPartialEvoAgentWorldModel.cpp; sourceTree = "<group>"; };
+		37DBAA7F130EDDA9008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltruismReplayPartialEvoWorldObserver.cpp; sourceTree = "<group>"; };
+		37DBAA83130EDDB5008D312B /* MedeaAltruismReplayPartialEvoAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReplayPartialEvoAgentObserver.h; sourceTree = "<group>"; };
+		37DBAA84130EDDB5008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReplayPartialEvoWorldObserver.h; sourceTree = "<group>"; };
+		37DBAA85130EDDB5008D312B /* MedeaAltruismReplayPartialEvoAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltruismReplayPartialEvoAgentWorldModel.h; sourceTree = "<group>"; };
+		37DBAA87130EDDDC008D312B /* MedeaAltUtilityConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaAltUtilityConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37DBAA89130EDDF0008D312B /* MedeaAltUtilityConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaAltUtilityConfigurationLoader.h; sourceTree = "<group>"; };
+		37E256D2158D34D6005021B0 /* MedeaEcologyAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaEcologyAgentObserver.h; sourceTree = "<group>"; };
+		37E256D3158D34D6005021B0 /* MedeaEcologyAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaEcologyAgentWorldModel.h; sourceTree = "<group>"; };
+		37E256D4158D34D6005021B0 /* MedeaEcologyControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaEcologyControlArchitecture.h; sourceTree = "<group>"; };
+		37E256D5158D34D6005021B0 /* MedeaEcologySharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaEcologySharedData.h; sourceTree = "<group>"; };
+		37E256D6158D34D6005021B0 /* MedeaEcologyWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaEcologyWorldObserver.h; sourceTree = "<group>"; };
+		37E256D8158D34D6005021B0 /* MedeaEcologyAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaEcologyAgentObserver.cpp; sourceTree = "<group>"; };
+		37E256D9158D34D6005021B0 /* MedeaEcologyAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaEcologyAgentWorldModel.cpp; sourceTree = "<group>"; };
+		37E256DA158D34D6005021B0 /* MedeaEcologyControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaEcologyControlArchitecture.cpp; sourceTree = "<group>"; };
+		37E256DB158D34D6005021B0 /* MedeaEcologySharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaEcologySharedData.cpp; sourceTree = "<group>"; };
+		37E256DC158D34D6005021B0 /* MedeaEcologyWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaEcologyWorldObserver.cpp; sourceTree = "<group>"; };
+		37E256E2158D3696005021B0 /* MedeaEcologyConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaEcologyConfigurationLoader.h; sourceTree = "<group>"; };
+		37E256E3158D36BA005021B0 /* MedeaEcologyConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaEcologyConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37E5B9020EF6D5E200C8A071 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = /Library/Frameworks/SDL_image.framework; sourceTree = "<absolute>"; };
+		37E6F8DE156FCE20005F3325 /* MedeaHGTConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaHGTConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37E6F8E0156FCE59005F3325 /* MedeaHGTConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaHGTConfigurationLoader.h; sourceTree = "<group>"; };
+		37E6F8E1156FCE95005F3325 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = Library/Frameworks/SDL.framework; sourceTree = SDKROOT; };
+		37E6F8E2156FCE95005F3325 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = Library/Frameworks/SDL_image.framework; sourceTree = SDKROOT; };
+		37E6F8E9156FD021005F3325 /* MedeaHGTAgentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaHGTAgentObserver.h; sourceTree = "<group>"; };
+		37E6F8EA156FD021005F3325 /* MedeaHGTAgentWorldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaHGTAgentWorldModel.h; sourceTree = "<group>"; };
+		37E6F8EB156FD021005F3325 /* MedeaHGTNNControlArchitecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaHGTNNControlArchitecture.h; sourceTree = "<group>"; };
+		37E6F8EC156FD021005F3325 /* MedeaHGTSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaHGTSharedData.h; sourceTree = "<group>"; };
+		37E6F8ED156FD021005F3325 /* MedeaHGTWorldObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedeaHGTWorldObserver.h; sourceTree = "<group>"; };
+		37E6F8EF156FD021005F3325 /* MedeaHGTAgentObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaHGTAgentObserver.cpp; sourceTree = "<group>"; };
+		37E6F8F0156FD021005F3325 /* MedeaHGTAgentWorldModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaHGTAgentWorldModel.cpp; sourceTree = "<group>"; };
+		37E6F8F1156FD021005F3325 /* MedeaHGTNNControlArchitecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaHGTNNControlArchitecture.cpp; sourceTree = "<group>"; };
+		37E6F8F2156FD021005F3325 /* MedeaHGTSharedData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaHGTSharedData.cpp; sourceTree = "<group>"; };
+		37E6F8F3156FD021005F3325 /* MedeaHGTWorldObserver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedeaHGTWorldObserver.cpp; sourceTree = "<group>"; };
+		37ECDD13136AF6200037E7CE /* InanimateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InanimateObject.h; path = World/InanimateObject.h; sourceTree = "<group>"; };
+		37ECDD16136AF6370037E7CE /* InanimateObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InanimateObject.cpp; sourceTree = "<group>"; };
+		37F6CF4E116A31F800ABAE5D /* GlobalConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConfigurationLoader.h; sourceTree = "<group>"; };
+		37F6CF4F116A31F800ABAE5D /* ConfigurationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationLoader.h; sourceTree = "<group>"; };
+		37F6CF5F116A32DB00ABAE5D /* ConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37F6CF6E116A331F00ABAE5D /* OnePlusOneOnlineConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnePlusOneOnlineConfigurationLoader.cpp; sourceTree = "<group>"; };
+		37F6CF79116A333800ABAE5D /* StrongCausalityConfigurationLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StrongCausalityConfigurationLoader.cpp; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* roborobo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = roborobo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37E6F8E3156FCE95005F3325 /* SDL.framework in Frameworks */,
+				37E6F8E4156FCE95005F3325 /* SDL_image.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				002F3A2B09D0888800EBEB88 /* SDLMain.h */,
+				002F3A2C09D0888800EBEB88 /* SDLMain.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				002F39F909D0881F00EBEB88 /* SDL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* roborobo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* roborobo */ = {
+			isa = PBXGroup;
+			children = (
+				37E6F8E1156FCE95005F3325 /* SDL.framework */,
+				37E6F8E2156FCE95005F3325 /* SDL_image.framework */,
+				377F21E814DC2E8600BC00D1 /* roborobo-icon.jpg */,
+				377F21FD14DC4EC100BC00D1 /* config */,
+				370BD53711AD82FC00C09541 /* prj */,
+				3720BCEA0F7D149100D5FF81 /* include */,
+				3720BCD20F7D149100D5FF81 /* src */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = roborobo;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* roborobo_Prefix.pch */,
+				37E5B9020EF6D5E200C8A071 /* SDL_image.framework */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3701DAA91382892400B12539 /* neuralnetworks */ = {
+			isa = PBXGroup;
+			children = (
+				3701DAAA1382892400B12539 /* Elman.cpp */,
+				3701DAAB1382892400B12539 /* LayeredNeuralNetwork.cpp */,
+				3701DAAC1382892400B12539 /* MLP.cpp */,
+				3701DAAD1382892400B12539 /* NeuralNetwork.cpp */,
+				3701DAAE1382892400B12539 /* NeuralNetworkException.cpp */,
+				3701DAAF1382892400B12539 /* Perceptron.cpp */,
+				3701DAB01382892400B12539 /* ReservoirNeuralNetwork.cpp */,
+			);
+			path = neuralnetworks;
+			sourceTree = "<group>";
+		};
+		3701DAB81382893200B12539 /* neuralnetworks */ = {
+			isa = PBXGroup;
+			children = (
+				3701DAB91382893200B12539 /* Elman.h */,
+				3701DABA1382893200B12539 /* LayeredNeuralNetwork.h */,
+				3701DABB1382893200B12539 /* MLP.h */,
+				3701DABC1382893200B12539 /* NeuralNetwork.h */,
+				3701DABD1382893200B12539 /* NeuralNetworkException.h */,
+				3701DABE1382893200B12539 /* Perceptron.h */,
+				3701DABF1382893200B12539 /* ReservoirNeuralNetwork.h */,
+			);
+			path = neuralnetworks;
+			sourceTree = "<group>";
+		};
+		370BD53711AD82FC00C09541 /* prj */ = {
+			isa = PBXGroup;
+			children = (
+				37A33D6C158D43BA00434B20 /* mEDEA-pheromones */,
+				37E256D0158D34D6005021B0 /* mEDEA-ecology */,
+				374E0CEF11AECDDC0003E446 /* BasicProject */,
+				372B8E20137B2F9500E7276B /* BasicProject-mEDEA */,
+				370F27D211B797AA0058F313 /* mEDEA */,
+				3792E312124A4B8500574CCB /* mEDEA-altruism */,
+				37DBAA54130EDD05008D312B /* mEDEA-altruism-utility */,
+				377F21D114DC2C3C00BC00D1 /* mEDEA-comm */,
+				37E6F8E7156FD021005F3325 /* mEDEA-HGT */,
+				37568C8512E64D8600780C8A /* mEDEA-optim */,
+				37907CBD143217A60036BF64 /* mEDEA-sp */,
+				3794BDFF1240FB150098580F /* mEDEA-specialize */,
+				370F28C511B7AF560058F313 /* mEDEA-twosuns */,
+				370BD54C11AD82FC00C09541 /* OnePlusOne-Online */,
+			);
+			path = prj;
+			sourceTree = "<group>";
+		};
+		370BD54C11AD82FC00C09541 /* OnePlusOne-Online */ = {
+			isa = PBXGroup;
+			children = (
+				370BD54D11AD82FC00C09541 /* include */,
+				370BD55011AD82FC00C09541 /* src */,
+			);
+			path = "OnePlusOne-Online";
+			sourceTree = "<group>";
+		};
+		370BD54D11AD82FC00C09541 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				370BD54E11AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.h */,
+				370BD54F11AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		370BD55011AD82FC00C09541 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				370BD55111AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.cpp */,
+				370BD55211AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		370E46510FD41B5B001E0985 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				375FC01A11AD286300597CE9 /* EnergyPoint.h */,
+				37ECDD13136AF6200037E7CE /* InanimateObject.h */,
+				370E46520FD41B66001E0985 /* RobotAgentWorldInterfaceDangerWorld.h */,
+			);
+			name = World;
+			sourceTree = "<group>";
+		};
+		370F27D211B797AA0058F313 /* mEDEA */ = {
+			isa = PBXGroup;
+			children = (
+				370F27D311B797AA0058F313 /* include */,
+				370F27DD11B797AA0058F313 /* src */,
+			);
+			path = mEDEA;
+			sourceTree = "<group>";
+		};
+		370F27D311B797AA0058F313 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				370F27D411B797AA0058F313 /* BattleAgentObserver.h */,
+				370F27D511B797AA0058F313 /* BattleWorldObserver.h */,
+				370F27D611B797AA0058F313 /* MedeaAgentObserver.h */,
+				370F28EF11B7B1A10058F313 /* MedeaAgentWorldModel.h */,
+				370F27D711B797AA0058F313 /* MedeaPerceptronControlArchitecture.h */,
+				370F28AB11B7AD330058F313 /* MedeaSharedData.h */,
+				370F27DA11B797AA0058F313 /* MedeaWorldObserver.h */,
+				370F27DB11B797AA0058F313 /* ReplayAgentObserver.h */,
+				370F27DC11B797AA0058F313 /* ReplayWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		370F27DD11B797AA0058F313 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				370F27DE11B797AA0058F313 /* BattleAgentObserver.cpp */,
+				370F27DF11B797AA0058F313 /* BattleWorldObserver.cpp */,
+				370F27E011B797AA0058F313 /* MedeaAgentObserver.cpp */,
+				370F28F011B7B1B00058F313 /* MedeaAgentWorldModel.cpp */,
+				370F27E111B797AA0058F313 /* MedeaPerceptronControlArchitecture.cpp */,
+				370F28B011B7AD850058F313 /* MedeaSharedData.cpp */,
+				370F27E311B797AA0058F313 /* MedeaWorldObserver.cpp */,
+				370F27E411B797AA0058F313 /* ReplayAgentObserver.cpp */,
+				370F27E511B797AA0058F313 /* ReplayWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		370F28C511B7AF560058F313 /* mEDEA-twosuns */ = {
+			isa = PBXGroup;
+			children = (
+				370F28C611B7AF560058F313 /* include */,
+				370F28CC11B7AF560058F313 /* src */,
+			);
+			path = "mEDEA-twosuns";
+			sourceTree = "<group>";
+		};
+		370F28C611B7AF560058F313 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				370F28C711B7AF560058F313 /* MedeaTwoSunsAgentObserver.h */,
+				370F28F211B7B1D70058F313 /* MedeaTwoSunsAgentWorldModel.h */,
+				370F28C811B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.h */,
+				370F28C911B7AF560058F313 /* MedeaTwoSunsSharedData.h */,
+				370F28CB11B7AF560058F313 /* MedeaTwoSunsWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		370F28CC11B7AF560058F313 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				370F28CD11B7AF560058F313 /* MedeaTwoSunsAgentObserver.cpp */,
+				370F28F311B7B1DC0058F313 /* MedeaTwoSunsAgentWorldModel.cpp */,
+				370F28CE11B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.cpp */,
+				370F28CF11B7AF560058F313 /* MedeaTwoSunsSharedData.cpp */,
+				370F28D111B7AF560058F313 /* MedeaTwoSunsWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		370FF3D2117602FD006697B2 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				376804FF129C1DB900C97859 /* BasicConfigurationLoader.h */,
+				372B8E4D137B303B00E7276B /* BasicProjectMedeaConfigurationLoader.h */,
+				370FF3D3117602FD006697B2 /* BattleConfigurationLoader.h */,
+				3792E2EA124A4A6A00574CCB /* MedeaAltruismConfigurationLoader.h */,
+				37B8B2BB13670A0900A9C660 /* MedeaAltruismReEvoConfigurationLoader.h */,
+				37AF796C1296B13400D7EAA3 /* MedeaAltruismReplayConfigurationLoader.h */,
+				37DBAA79130EDD64008D312B /* MedeaAltruismReplayPartialEvoConfigurationLoader.h */,
+				37DBAA89130EDDF0008D312B /* MedeaAltUtilityConfigurationLoader.h */,
+				377F21D014DC2A0F00BC00D1 /* MedeaCommConfigurationLoader.h */,
+				370BD64211AD895D00C09541 /* MedeaConfigurationLoader.h */,
+				37E256E2158D3696005021B0 /* MedeaEcologyConfigurationLoader.h */,
+				37E6F8E0156FCE59005F3325 /* MedeaHGTConfigurationLoader.h */,
+				37568CB712E64FE100780C8A /* MedeaOptimConfigurationLoader.h */,
+				37A33D80158D43F300434B20 /* MedeaPheromonesConfigurationLoader.h */,
+				37907CF41432181A0036BF64 /* MedeaSpConfigurationLoader.h */,
+				3794BE221240FC820098580F /* MedeaSpecializeConfigurationLoader.h */,
+				3794BE231240FC820098580F /* MedeaTwoSunsConfigurationLoader.h */,
+				370FF3D5117602FD006697B2 /* OnePlusOneOnlineConfigurationLoader.h */,
+				374E89F8117F0ED000DE0B7A /* ReplayConfigurationLoader.h */,
+				370FF3D9117602FD006697B2 /* StrongCausalityConfigurationLoader.h */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		3720BCD20F7D149100D5FF81 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3720BCD30F7D149100D5FF81 /* core */,
+				3720BCE60F7D149100D5FF81 /* ext */,
+				37C234DF0F821A5100C977FE /* contrib */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		3720BCD30F7D149100D5FF81 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				3720BCD40F7D149100D5FF81 /* Agent.cpp */,
+				3720BCD50F7D149100D5FF81 /* AgentObserver.cpp */,
+				3720BCD60F7D149100D5FF81 /* BehaviorControlArchitecture.cpp */,
+				37F6CF5F116A32DB00ABAE5D /* ConfigurationLoader.cpp */,
+				378B2C4D0FE6AF4600B90B67 /* ExtendedProperties.cpp */,
+				3720BCD80F7D149100D5FF81 /* InspectorAgent.cpp */,
+				375FBD1F11AC145500597CE9 /* LogManager.cpp */,
+				3720BCD90F7D149100D5FF81 /* main.cpp */,
+				3720BCDA0F7D149100D5FF81 /* Misc.cpp */,
+				3720BCD70F7D149100D5FF81 /* Observer.cpp */,
+				3720BCDB0F7D149100D5FF81 /* roborobo.cpp */,
+				3720BCDC0F7D149100D5FF81 /* RobotAgent.cpp */,
+				3754B7B40FD097E800EAC800 /* RobotAgentWorldInterface.cpp */,
+				3720BCDD0F7D149100D5FF81 /* RobotAgentWorldModel.cpp */,
+				3720BCDE0F7D149100D5FF81 /* SDL_gfxPrimitives.c */,
+				3720BCDF0F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.cpp */,
+				3720BCE00F7D149100D5FF81 /* SDL_gfxRoborobo.cpp */,
+				3720BCE10F7D149100D5FF81 /* Timer.cpp */,
+				3720BCE30F7D149100D5FF81 /* World.cpp */,
+				3720BCE50F7D149100D5FF81 /* WorldModel.cpp */,
+				3720BCE40F7D149100D5FF81 /* WorldObserver.cpp */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		3720BCE60F7D149100D5FF81 /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				37680500129C1DC900C97859 /* BasicConfigurationLoader.cpp */,
+				372B8E4E137B305900E7276B /* BasicProjectMedeaConfigurationLoader.cpp */,
+				370FF3CF11760287006697B2 /* BattleConfigurationLoader.cpp */,
+				377F21CB14DC295700BC00D1 /* EnergyPerceptronControlArchitecture.cpp */,
+				375FC01B11AD286E00597CE9 /* EnergyPoint.cpp */,
+				3720BCE70F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.cpp */,
+				37AA972D1132E38E001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.cpp */,
+				37ECDD16136AF6370037E7CE /* InanimateObject.cpp */,
+				3792E2E8124A4A4200574CCB /* MedeaAltruismConfigurationLoader.cpp */,
+				37B8B2B9136709E600A9C660 /* MedeaAltruismReEvoConfigurationLoader.cpp */,
+				37AF796A1296B11B00D7EAA3 /* MedeaAltruismReplayConfigurationLoader.cpp */,
+				37DBAA77130EDD51008D312B /* MedeaAltruismReplayPartialEvoConfigurationLoader.cpp */,
+				37DBAA87130EDDDC008D312B /* MedeaAltUtilityConfigurationLoader.cpp */,
+				377F21CD14DC299F00BC00D1 /* MedeaCommConfigurationLoader.cpp */,
+				370BD64411AD899100C09541 /* MedeaConfigurationLoader.cpp */,
+				37E256E3158D36BA005021B0 /* MedeaEcologyConfigurationLoader.cpp */,
+				37E6F8DE156FCE20005F3325 /* MedeaHGTConfigurationLoader.cpp */,
+				37568CB512E64FBF00780C8A /* MedeaOptimConfigurationLoader.cpp */,
+				37A33D7E158D43D100434B20 /* MedeaPheromonesConfigurationLoader.cpp */,
+				37907CF0143217F80036BF64 /* MedeaSpConfigurationLoader.cpp */,
+				3794BE251240FCD30098580F /* MedeaSpecializeConfigurationLoader.cpp */,
+				370F28D711B7AF860058F313 /* MedeaTwoSunsConfigurationLoader.cpp */,
+				37F6CF6E116A331F00ABAE5D /* OnePlusOneOnlineConfigurationLoader.cpp */,
+				3720BCE90F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.cpp */,
+				374E89F1117F0EA800DE0B7A /* ReplayConfigurationLoader.cpp */,
+				370E464F0FD41B20001E0985 /* RobotAgentWorldInterfaceDangerWorld.cpp */,
+				37F6CF79116A333800ABAE5D /* StrongCausalityConfigurationLoader.cpp */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		3720BCEA0F7D149100D5FF81 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3720BCEB0F7D149100D5FF81 /* core */,
+				3720BD070F7D149100D5FF81 /* ext */,
+				37C234D90F821A4400C977FE /* contrib */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		3720BCEB0F7D149100D5FF81 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				3720BCEC0F7D149100D5FF81 /* Agents */,
+				3720BCF00F7D149100D5FF81 /* BehaviorControlArchitectures */,
+				37BB804A10B8BF6B00F458FC /* Config */,
+				375B3FEC10BA9FC30008A54B /* Observers */,
+				3720BCF70F7D149100D5FF81 /* RoboroboMain */,
+				3720BCFC0F7D149100D5FF81 /* Utilities */,
+				3754B7AD0FD097A900EAC800 /* World */,
+				3720BD040F7D149100D5FF81 /* WorldModels */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		3720BCEC0F7D149100D5FF81 /* Agents */ = {
+			isa = PBXGroup;
+			children = (
+				3720BCED0F7D149100D5FF81 /* Agent.h */,
+				3720BCEE0F7D149100D5FF81 /* InspectorAgent.h */,
+				3720BCEF0F7D149100D5FF81 /* RobotAgent.h */,
+			);
+			path = Agents;
+			sourceTree = "<group>";
+		};
+		3720BCF00F7D149100D5FF81 /* BehaviorControlArchitectures */ = {
+			isa = PBXGroup;
+			children = (
+				3720BCF10F7D149100D5FF81 /* BehaviorControlArchitecture.h */,
+			);
+			path = BehaviorControlArchitectures;
+			sourceTree = "<group>";
+		};
+		3720BCF70F7D149100D5FF81 /* RoboroboMain */ = {
+			isa = PBXGroup;
+			children = (
+				3720BCF80F7D149100D5FF81 /* common.h */,
+				3720BCF90F7D149100D5FF81 /* main.h */,
+				3720BCFA0F7D149100D5FF81 /* roborobo.h */,
+			);
+			path = RoboroboMain;
+			sourceTree = "<group>";
+		};
+		3720BCFC0F7D149100D5FF81 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				378B2C4F0FE6AF6300B90B67 /* ExtendedProperties.h */,
+				375FBD1B11AC13B200597CE9 /* LogManager.h */,
+				3720BCFD0F7D149100D5FF81 /* Misc.h */,
+				3720BCFE0F7D149100D5FF81 /* SDL_gfxPrimitives.h */,
+				3720BCFF0F7D149100D5FF81 /* SDL_gfxPrimitives_font.h */,
+				3720BD000F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.h */,
+				3720BD010F7D149100D5FF81 /* SDL_gfxRoborobo.h */,
+				3720BD020F7D149100D5FF81 /* SDLMain.h */,
+				3720BD030F7D149100D5FF81 /* Timer.h */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3720BD040F7D149100D5FF81 /* WorldModels */ = {
+			isa = PBXGroup;
+			children = (
+				3720BD050F7D149100D5FF81 /* RobotAgentWorldModel.h */,
+				3720BD060F7D149100D5FF81 /* WorldModel.h */,
+			);
+			path = WorldModels;
+			sourceTree = "<group>";
+		};
+		3720BD070F7D149100D5FF81 /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				3720BD080F7D149100D5FF81 /* BehaviorControlArchitectures */,
+				370FF3D2117602FD006697B2 /* Config */,
+				375B3FE610BA9FBB0008A54B /* Observers */,
+				370E46510FD41B5B001E0985 /* World */,
+				3720BD0C0F7D149100D5FF81 /* WorldModels */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		3720BD080F7D149100D5FF81 /* BehaviorControlArchitectures */ = {
+			isa = PBXGroup;
+			children = (
+				377F21CF14DC29CC00BC00D1 /* EnergyPerceptronControlArchitecture.h */,
+				3720BD090F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.h */,
+			);
+			path = BehaviorControlArchitectures;
+			sourceTree = "<group>";
+		};
+		3720BD0C0F7D149100D5FF81 /* WorldModels */ = {
+			isa = PBXGroup;
+			children = (
+				3720BD0D0F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.h */,
+				37AA974A1132E3A0001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.h */,
+			);
+			path = WorldModels;
+			sourceTree = "<group>";
+		};
+		372B8E20137B2F9500E7276B /* BasicProject-mEDEA */ = {
+			isa = PBXGroup;
+			children = (
+				372B8E21137B2F9500E7276B /* include */,
+				372B8E27137B2F9500E7276B /* src */,
+			);
+			path = "BasicProject-mEDEA";
+			sourceTree = "<group>";
+		};
+		372B8E21137B2F9500E7276B /* include */ = {
+			isa = PBXGroup;
+			children = (
+				372B8E22137B2F9500E7276B /* BasicProjectMedeaAgentObserver.h */,
+				372B8E23137B2F9500E7276B /* BasicProjectMedeaAgentWorldModel.h */,
+				372B8E24137B2F9500E7276B /* BasicProjectMedeaNNControlArchitecture.h */,
+				372B8E25137B2F9500E7276B /* BasicProjectMedeaSharedData.h */,
+				372B8E26137B2F9500E7276B /* BasicProjectMedeaWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		372B8E27137B2F9500E7276B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				372B8E28137B2F9500E7276B /* BasicProjectMedeaAgentObserver.cpp */,
+				372B8E29137B2F9500E7276B /* BasicProjectMedeaAgentWorldModel.cpp */,
+				372B8E2A137B2F9500E7276B /* BasicProjectMedeaNNControlArchitecture.cpp */,
+				372B8E2B137B2F9500E7276B /* BasicProjectMedeaSharedData.cpp */,
+				372B8E2C137B2F9500E7276B /* BasicProjectMedeaWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		374E0CEF11AECDDC0003E446 /* BasicProject */ = {
+			isa = PBXGroup;
+			children = (
+				374E0CF011AECDDC0003E446 /* include */,
+				374E0CF511AECDDC0003E446 /* src */,
+			);
+			path = BasicProject;
+			sourceTree = "<group>";
+		};
+		374E0CF011AECDDC0003E446 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				374E0CF111AECDDC0003E446 /* BasicAgentObserver.h */,
+				374E0D1911AED0090003E446 /* BasicAgentWorldModel.h */,
+				374E0CF211AECDDC0003E446 /* BasicControlArchitecture.h */,
+				374E0CF411AECDDC0003E446 /* BasicWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		374E0CF511AECDDC0003E446 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				374E0CF611AECDDC0003E446 /* BasicAgentObserver.cpp */,
+				374E0D1A11AED0100003E446 /* BasicAgentWorldModel.cpp */,
+				374E0CF711AECDDC0003E446 /* BasicControlArchitecture.cpp */,
+				374E0CF911AECDDC0003E446 /* BasicWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		3754B7AD0FD097A900EAC800 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				3754B7B00FD097C300EAC800 /* World.h */,
+				3754B7B10FD097C300EAC800 /* RobotAgentWorldInterface.h */,
+			);
+			name = World;
+			sourceTree = "<group>";
+		};
+		37568C8512E64D8600780C8A /* mEDEA-optim */ = {
+			isa = PBXGroup;
+			children = (
+				37568C8612E64D8600780C8A /* include */,
+				37568C9012E64D8600780C8A /* src */,
+			);
+			path = "mEDEA-optim";
+			sourceTree = "<group>";
+		};
+		37568C8612E64D8600780C8A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				37568CA612E64FA400780C8A /* MedeaOptimAgentWorldModel.h */,
+				37568CA712E64FA400780C8A /* MedeaOptimWorldObserver.h */,
+				37568CA812E64FA400780C8A /* MedeaOptimAgentObserver.h */,
+				37568CA912E64FA400780C8A /* MedeaOptimSharedData.h */,
+				37568CAA12E64FA400780C8A /* MedeaOptimPerceptronControlArchitecture.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		37568C9012E64D8600780C8A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				37568CAB12E64FAB00780C8A /* MedeaOptimSharedData.cpp */,
+				37568CAC12E64FAB00780C8A /* MedeaOptimWorldObserver.cpp */,
+				37568CAD12E64FAB00780C8A /* MedeaOptimPerceptronControlArchitecture.cpp */,
+				37568CAE12E64FAB00780C8A /* MedeaOptimAgentWorldModel.cpp */,
+				37568CAF12E64FAB00780C8A /* MedeaOptimAgentObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		375B3FE610BA9FBB0008A54B /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Observers;
+			sourceTree = "<group>";
+		};
+		375B3FEC10BA9FC30008A54B /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				375B3FED10BA9FC30008A54B /* AgentObserver.h */,
+				375B3FEE10BA9FC30008A54B /* Observer.h */,
+				375B3FEF10BA9FC30008A54B /* WorldObserver.h */,
+			);
+			path = Observers;
+			sourceTree = "<group>";
+		};
+		3778DD62132EC3650000F4E6 /* zsu */ = {
+			isa = PBXGroup;
+			children = (
+				3778DD63132EC3650000F4E6 /* Properties.cpp */,
+				3778DD64132EC3650000F4E6 /* StringUtils.cpp */,
+			);
+			path = zsu;
+			sourceTree = "<group>";
+		};
+		377F21D114DC2C3C00BC00D1 /* mEDEA-comm */ = {
+			isa = PBXGroup;
+			children = (
+				377F21D214DC2C3C00BC00D1 /* include */,
+				377F21D914DC2C3C00BC00D1 /* src */,
+			);
+			path = "mEDEA-comm";
+			sourceTree = "<group>";
+		};
+		377F21D214DC2C3C00BC00D1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				377F21D314DC2C3C00BC00D1 /* MedeaCommAgentObserver.h */,
+				377F21D414DC2C3C00BC00D1 /* MedeaCommAgentWorldModel.h */,
+				377F21D514DC2C3C00BC00D1 /* MedeaCommEnergyPoint.h */,
+				377F21D614DC2C3C00BC00D1 /* MedeaCommPerceptronControlArchitecture.h */,
+				377F21D714DC2C3C00BC00D1 /* MedeaCommSharedData.h */,
+				377F21D814DC2C3C00BC00D1 /* MedeaCommWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		377F21D914DC2C3C00BC00D1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				377F21DA14DC2C3C00BC00D1 /* MedeaCommAgentObserver.cpp */,
+				377F21DB14DC2C3C00BC00D1 /* MedeaCommAgentWorldModel.cpp */,
+				377F21DC14DC2C3C00BC00D1 /* MedeaCommEnergyPoint.cpp */,
+				377F21DD14DC2C3C00BC00D1 /* MedeaCommPerceptronControlArchitecture.cpp */,
+				377F21DE14DC2C3C00BC00D1 /* MedeaCommSharedData.cpp */,
+				377F21DF14DC2C3C00BC00D1 /* MedeaCommWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		377F21FD14DC4EC100BC00D1 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				377F220014DC4F2100BC00D1 /* battle.properties */,
+				377F220114DC4F2100BC00D1 /* dangerzone.properties */,
+				377F220214DC4F2100BC00D1 /* default-mas.properties */,
+				377F220314DC4F2100BC00D1 /* default-medea.properties */,
+				377F220414DC4F2100BC00D1 /* default-mono.properties */,
+				377F220514DC4F2100BC00D1 /* default.properties */,
+				377F220614DC4F2100BC00D1 /* medea-jm.properties */,
+				377F220714DC4F2100BC00D1 /* medea-ni.properties */,
+				377F220814DC4F2100BC00D1 /* medea-optim.properties */,
+				377F220914DC4F2100BC00D1 /* medea-sp.properties */,
+				377F220A14DC4F2100BC00D1 /* medea-specialize-0.properties */,
+				377F220B14DC4F2100BC00D1 /* medea-twosuns-bigrobots-ni.properties */,
+				377F220C14DC4F2100BC00D1 /* medea-twosuns-ni.properties */,
+				377F220D14DC4F2100BC00D1 /* MedeaAltruism.properties */,
+				377F220E14DC4F2100BC00D1 /* MedeaAltruismBig.properties */,
+				377F220F14DC4F2100BC00D1 /* MedeaAltruismReEvo.properties */,
+				377F221014DC4F2100BC00D1 /* MedeaAltruismReplay.properties */,
+				377F221114DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvo.properties */,
+				377F221214DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoBeginRun.properties */,
+				377F221314DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoEndRun.properties */,
+				377F221414DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoFirstsGeneration.properties */,
+				377F221514DC4F2100BC00D1 /* MedeaAltruismSigma0.01.properties */,
+				377F221614DC4F2100BC00D1 /* MedeaAltUtility.properties */,
+				377F221714DC4F2100BC00D1 /* MedeaComm.properties */,
+				377F221814DC4F2100BC00D1 /* oneplusoneonline.properties */,
+				377F221914DC4F2100BC00D1 /* Replay.properties */,
+				377F221A14DC4F2100BC00D1 /* SelfRep.properties */,
+				377F221B14DC4F2100BC00D1 /* spikeants-batch.properties */,
+				377F221C14DC4F2100BC00D1 /* spikeants.properties */,
+				377F221D14DC4F2100BC00D1 /* strongcausality.properties */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		37907CBD143217A60036BF64 /* mEDEA-sp */ = {
+			isa = PBXGroup;
+			children = (
+				37907CBE143217A60036BF64 /* include */,
+				37907CC9143217A60036BF64 /* src */,
+			);
+			path = "mEDEA-sp";
+			sourceTree = "<group>";
+		};
+		37907CBE143217A60036BF64 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				37907CBF143217A60036BF64 /* MedeaSpAgentObserver.h */,
+				37907CC0143217A60036BF64 /* MedeaSpAgentWorldModel.h */,
+				37907CC1143217A60036BF64 /* MedeaSpEnergyPoint.h */,
+				37907CC2143217A60036BF64 /* MedeaSpNetworkGenerator.h */,
+				37907CC3143217A60036BF64 /* MedeaSpPerceptronControlArchitecture.h */,
+				37907CC4143217A60036BF64 /* MedeaSpSharedData.h */,
+				37907CC5143217A60036BF64 /* MedeaSpWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		37907CC9143217A60036BF64 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				37907CCA143217A60036BF64 /* MedeaSpAgentObserver.cpp */,
+				37907CCB143217A60036BF64 /* MedeaSpAgentWorldModel.cpp */,
+				37907CCC143217A60036BF64 /* MedeaSpEnergyPoint.cpp */,
+				37907CCD143217A60036BF64 /* MedeaSpNetworkGenerator.cpp */,
+				37907CCE143217A60036BF64 /* MedeaSpPerceptronControlArchitecture.cpp */,
+				37907CCF143217A60036BF64 /* MedeaSpSharedData.cpp */,
+				37907CD0143217A60036BF64 /* MedeaSpWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		3792E312124A4B8500574CCB /* mEDEA-altruism */ = {
+			isa = PBXGroup;
+			children = (
+				3792E313124A4B8500574CCB /* include */,
+				3792E31D124A4B8500574CCB /* src */,
+			);
+			path = "mEDEA-altruism";
+			sourceTree = "<group>";
+		};
+		3792E313124A4B8500574CCB /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3792E314124A4B8500574CCB /* MedeaAltruismAgentObserver.h */,
+				3792E315124A4B8500574CCB /* MedeaAltruismAgentWorldModel.h */,
+				3792E316124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.h */,
+				3792E317124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.h */,
+				3792E318124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.h */,
+				37B8B2CA13670A5300A9C660 /* MedeaAltruismReEvoWorldObserver.h */,
+				37B8B2CB13670A5300A9C660 /* MedeaAltruismReEvoAgentObserver.h */,
+				3792E319124A4B8500574CCB /* MedeaAltruismReplayAgentObserver.h */,
+				3792E31A124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.h */,
+				37DBAA83130EDDB5008D312B /* MedeaAltruismReplayPartialEvoAgentObserver.h */,
+				37DBAA84130EDDB5008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.h */,
+				37DBAA85130EDDB5008D312B /* MedeaAltruismReplayPartialEvoAgentWorldModel.h */,
+				3792E31B124A4B8500574CCB /* MedeaAltruismSharedData.h */,
+				3792E31C124A4B8500574CCB /* MedeaAltruismWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		3792E31D124A4B8500574CCB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3792E31E124A4B8500574CCB /* MedeaAltruismAgentObserver.cpp */,
+				3792E31F124A4B8500574CCB /* MedeaAltruismAgentWorldModel.cpp */,
+				3792E320124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.cpp */,
+				3792E321124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.cpp */,
+				3792E322124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.cpp */,
+				37B8B2C613670A4800A9C660 /* MedeaAltruismReEvoWorldObserver.cpp */,
+				37B8B2C713670A4800A9C660 /* MedeaAltruismReEvoAgentObserver.cpp */,
+				3792E323124A4B8500574CCB /* MedeaAltruismReplayAgentObserver.cpp */,
+				3792E324124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.cpp */,
+				37DBAA7D130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentObserver.cpp */,
+				37DBAA7E130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentWorldModel.cpp */,
+				37DBAA7F130EDDA9008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.cpp */,
+				3792E325124A4B8500574CCB /* MedeaAltruismSharedData.cpp */,
+				3792E326124A4B8500574CCB /* MedeaAltruismWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		3794BDFF1240FB150098580F /* mEDEA-specialize */ = {
+			isa = PBXGroup;
+			children = (
+				3794BE001240FB150098580F /* include */,
+				3794BE061240FB150098580F /* src */,
+			);
+			path = "mEDEA-specialize";
+			sourceTree = "<group>";
+		};
+		3794BE001240FB150098580F /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3794BE011240FB150098580F /* MedeaSpecializeAgentObserver.h */,
+				3794BE021240FB150098580F /* MedeaSpecializeAgentWorldModel.h */,
+				3794BE031240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.h */,
+				3794BE041240FB150098580F /* MedeaSpecializeSharedData.h */,
+				3794BE051240FB150098580F /* MedeaSpecializeWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		3794BE061240FB150098580F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3794BE071240FB150098580F /* MedeaSpecializeAgentObserver.cpp */,
+				3794BE081240FB150098580F /* MedeaSpecializeAgentWorldModel.cpp */,
+				3794BE091240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.cpp */,
+				3794BE0A1240FB150098580F /* MedeaSpecializeSharedData.cpp */,
+				3794BE0B1240FB150098580F /* MedeaSpecializeWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		37A33D6C158D43BA00434B20 /* mEDEA-pheromones */ = {
+			isa = PBXGroup;
+			children = (
+				37A33D6D158D43BA00434B20 /* include */,
+				37A33D73158D43BA00434B20 /* src */,
+			);
+			path = "mEDEA-pheromones";
+			sourceTree = "<group>";
+		};
+		37A33D6D158D43BA00434B20 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				37A33D6E158D43BA00434B20 /* MedeaPheromonesAgentObserver.h */,
+				37A33D6F158D43BA00434B20 /* MedeaPheromonesAgentWorldModel.h */,
+				37A33D70158D43BA00434B20 /* MedeaPheromonesControlArchitecture.h */,
+				37A33D71158D43BA00434B20 /* MedeaPheromonesSharedData.h */,
+				37A33D72158D43BA00434B20 /* MedeaPheromonesWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		37A33D73158D43BA00434B20 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				37A33D74158D43BA00434B20 /* MedeaPheromonesAgentObserver.cpp */,
+				37A33D75158D43BA00434B20 /* MedeaPheromonesAgentWorldModel.cpp */,
+				37A33D76158D43BA00434B20 /* MedeaPheromonesControlArchitecture.cpp */,
+				37A33D77158D43BA00434B20 /* MedeaPheromonesSharedData.cpp */,
+				37A33D78158D43BA00434B20 /* MedeaPheromonesWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		37BB804A10B8BF6B00F458FC /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				37F6CF4E116A31F800ABAE5D /* GlobalConfigurationLoader.h */,
+				37F6CF4F116A31F800ABAE5D /* ConfigurationLoader.h */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		37C234D90F821A4400C977FE /* contrib */ = {
+			isa = PBXGroup;
+			children = (
+				3701DAB81382893200B12539 /* neuralnetworks */,
+				37C234DA0F821A4400C977FE /* zsu */,
+			);
+			path = contrib;
+			sourceTree = "<group>";
+		};
+		37C234DA0F821A4400C977FE /* zsu */ = {
+			isa = PBXGroup;
+			children = (
+				37C234DB0F821A4400C977FE /* func.h */,
+				37C234DC0F821A4400C977FE /* Properties.h */,
+				37C234DD0F821A4400C977FE /* StringUtils.h */,
+				37C234DE0F821A4400C977FE /* strip.h */,
+			);
+			path = zsu;
+			sourceTree = "<group>";
+		};
+		37C234DF0F821A5100C977FE /* contrib */ = {
+			isa = PBXGroup;
+			children = (
+				3701DAA91382892400B12539 /* neuralnetworks */,
+				3778DD62132EC3650000F4E6 /* zsu */,
+			);
+			path = contrib;
+			sourceTree = "<group>";
+		};
+		37DBAA54130EDD05008D312B /* mEDEA-altruism-utility */ = {
+			isa = PBXGroup;
+			children = (
+				37DBAA55130EDD05008D312B /* include */,
+				37DBAA5F130EDD05008D312B /* src */,
+			);
+			path = "mEDEA-altruism-utility";
+			sourceTree = "<group>";
+		};
+		37DBAA55130EDD05008D312B /* include */ = {
+			isa = PBXGroup;
+			children = (
+				37DBAA56130EDD05008D312B /* MedeaAltUtilityAgentObserver.h */,
+				37DBAA57130EDD05008D312B /* MedeaAltUtilityAgentWorldModel.h */,
+				37DBAA58130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.h */,
+				37DBAA59130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.h */,
+				37DBAA5A130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.h */,
+				37DBAA5B130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.h */,
+				37DBAA5C130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.h */,
+				37DBAA5D130EDD05008D312B /* MedeaAltUtilitySharedData.h */,
+				37DBAA5E130EDD05008D312B /* MedeaAltUtilityWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		37DBAA5F130EDD05008D312B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				37DBAA60130EDD05008D312B /* MedeaAltUtilityAgentObserver.cpp */,
+				37DBAA61130EDD05008D312B /* MedeaAltUtilityAgentWorldModel.cpp */,
+				37DBAA62130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.cpp */,
+				37DBAA63130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.cpp */,
+				37DBAA64130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.cpp */,
+				37DBAA65130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.cpp */,
+				37DBAA66130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.cpp */,
+				37DBAA67130EDD05008D312B /* MedeaAltUtilitySharedData.cpp */,
+				37DBAA68130EDD05008D312B /* MedeaAltUtilityWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		37E256D0158D34D6005021B0 /* mEDEA-ecology */ = {
+			isa = PBXGroup;
+			children = (
+				37E256D1158D34D6005021B0 /* include */,
+				37E256D7158D34D6005021B0 /* src */,
+			);
+			path = "mEDEA-ecology";
+			sourceTree = "<group>";
+		};
+		37E256D1158D34D6005021B0 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				37E256D2158D34D6005021B0 /* MedeaEcologyAgentObserver.h */,
+				37E256D3158D34D6005021B0 /* MedeaEcologyAgentWorldModel.h */,
+				37E256D4158D34D6005021B0 /* MedeaEcologyControlArchitecture.h */,
+				37E256D5158D34D6005021B0 /* MedeaEcologySharedData.h */,
+				37E256D6158D34D6005021B0 /* MedeaEcologyWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		37E256D7158D34D6005021B0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				37E256D8158D34D6005021B0 /* MedeaEcologyAgentObserver.cpp */,
+				37E256D9158D34D6005021B0 /* MedeaEcologyAgentWorldModel.cpp */,
+				37E256DA158D34D6005021B0 /* MedeaEcologyControlArchitecture.cpp */,
+				37E256DB158D34D6005021B0 /* MedeaEcologySharedData.cpp */,
+				37E256DC158D34D6005021B0 /* MedeaEcologyWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		37E6F8E7156FD021005F3325 /* mEDEA-HGT */ = {
+			isa = PBXGroup;
+			children = (
+				37E6F8E8156FD021005F3325 /* include */,
+				37E6F8EE156FD021005F3325 /* src */,
+			);
+			path = "mEDEA-HGT";
+			sourceTree = "<group>";
+		};
+		37E6F8E8156FD021005F3325 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				37E6F8E9156FD021005F3325 /* MedeaHGTAgentObserver.h */,
+				37E6F8EA156FD021005F3325 /* MedeaHGTAgentWorldModel.h */,
+				37E6F8EB156FD021005F3325 /* MedeaHGTNNControlArchitecture.h */,
+				37E6F8EC156FD021005F3325 /* MedeaHGTSharedData.h */,
+				37E6F8ED156FD021005F3325 /* MedeaHGTWorldObserver.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		37E6F8EE156FD021005F3325 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				37E6F8EF156FD021005F3325 /* MedeaHGTAgentObserver.cpp */,
+				37E6F8F0156FD021005F3325 /* MedeaHGTAgentWorldModel.cpp */,
+				37E6F8F1156FD021005F3325 /* MedeaHGTNNControlArchitecture.cpp */,
+				37E6F8F2156FD021005F3325 /* MedeaHGTSharedData.cpp */,
+				37E6F8F3156FD021005F3325 /* MedeaHGTWorldObserver.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* roborobo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "roborobo" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				002F39FD09D0883400EBEB88 /* Copy Frameworks into .app bundle */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = roborobo;
+			productInstallPath = "$(HOME)/Applications";
+			productName = roborobo;
+			productReference = 8D1107320486CEB800E47090 /* roborobo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "roborobo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* roborobo */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* roborobo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				377F21E914DC2E8600BC00D1 /* roborobo-icon.jpg in Resources */,
+				377F221E14DC4F2100BC00D1 /* battle.properties in Resources */,
+				377F221F14DC4F2100BC00D1 /* dangerzone.properties in Resources */,
+				377F222014DC4F2100BC00D1 /* default-mas.properties in Resources */,
+				377F222114DC4F2100BC00D1 /* default-medea.properties in Resources */,
+				377F222214DC4F2100BC00D1 /* default-mono.properties in Resources */,
+				377F222314DC4F2100BC00D1 /* default.properties in Resources */,
+				377F222414DC4F2100BC00D1 /* medea-jm.properties in Resources */,
+				377F222514DC4F2100BC00D1 /* medea-ni.properties in Resources */,
+				377F222614DC4F2100BC00D1 /* medea-optim.properties in Resources */,
+				377F222714DC4F2100BC00D1 /* medea-sp.properties in Resources */,
+				377F222814DC4F2100BC00D1 /* medea-specialize-0.properties in Resources */,
+				377F222914DC4F2100BC00D1 /* medea-twosuns-bigrobots-ni.properties in Resources */,
+				377F222A14DC4F2100BC00D1 /* medea-twosuns-ni.properties in Resources */,
+				377F222B14DC4F2100BC00D1 /* MedeaAltruism.properties in Resources */,
+				377F222C14DC4F2100BC00D1 /* MedeaAltruismBig.properties in Resources */,
+				377F222D14DC4F2100BC00D1 /* MedeaAltruismReEvo.properties in Resources */,
+				377F222E14DC4F2100BC00D1 /* MedeaAltruismReplay.properties in Resources */,
+				377F222F14DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvo.properties in Resources */,
+				377F223014DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoBeginRun.properties in Resources */,
+				377F223114DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoEndRun.properties in Resources */,
+				377F223214DC4F2100BC00D1 /* MedeaAltruismReplayPartialEvoFirstsGeneration.properties in Resources */,
+				377F223314DC4F2100BC00D1 /* MedeaAltruismSigma0.01.properties in Resources */,
+				377F223414DC4F2100BC00D1 /* MedeaAltUtility.properties in Resources */,
+				377F223514DC4F2100BC00D1 /* MedeaComm.properties in Resources */,
+				377F223614DC4F2100BC00D1 /* oneplusoneonline.properties in Resources */,
+				377F223714DC4F2100BC00D1 /* Replay.properties in Resources */,
+				377F223814DC4F2100BC00D1 /* SelfRep.properties in Resources */,
+				377F223914DC4F2100BC00D1 /* spikeants-batch.properties in Resources */,
+				377F223A14DC4F2100BC00D1 /* spikeants.properties in Resources */,
+				377F223B14DC4F2100BC00D1 /* strongcausality.properties in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				002F3A2E09D0888800EBEB88 /* SDLMain.m in Sources */,
+				3720BD0E0F7D149100D5FF81 /* Agent.cpp in Sources */,
+				3720BD0F0F7D149100D5FF81 /* AgentObserver.cpp in Sources */,
+				3720BD100F7D149100D5FF81 /* BehaviorControlArchitecture.cpp in Sources */,
+				3720BD110F7D149100D5FF81 /* Observer.cpp in Sources */,
+				3720BD120F7D149100D5FF81 /* InspectorAgent.cpp in Sources */,
+				3720BD130F7D149100D5FF81 /* main.cpp in Sources */,
+				3720BD140F7D149100D5FF81 /* Misc.cpp in Sources */,
+				3720BD150F7D149100D5FF81 /* roborobo.cpp in Sources */,
+				3720BD160F7D149100D5FF81 /* RobotAgent.cpp in Sources */,
+				3720BD170F7D149100D5FF81 /* RobotAgentWorldModel.cpp in Sources */,
+				3720BD180F7D149100D5FF81 /* SDL_gfxPrimitives.c in Sources */,
+				3720BD190F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.cpp in Sources */,
+				3720BD1A0F7D149100D5FF81 /* SDL_gfxRoborobo.cpp in Sources */,
+				3720BD1B0F7D149100D5FF81 /* Timer.cpp in Sources */,
+				3720BD1D0F7D149100D5FF81 /* World.cpp in Sources */,
+				3720BD1E0F7D149100D5FF81 /* WorldObserver.cpp in Sources */,
+				3720BD1F0F7D149100D5FF81 /* WorldModel.cpp in Sources */,
+				3720BD200F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.cpp in Sources */,
+				3720BD220F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.cpp in Sources */,
+				3754B7B50FD097E800EAC800 /* RobotAgentWorldInterface.cpp in Sources */,
+				370E46500FD41B20001E0985 /* RobotAgentWorldInterfaceDangerWorld.cpp in Sources */,
+				378B2C4E0FE6AF4600B90B67 /* ExtendedProperties.cpp in Sources */,
+				37AA972E1132E38E001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.cpp in Sources */,
+				37F6CF61116A32DB00ABAE5D /* ConfigurationLoader.cpp in Sources */,
+				37F6CF71116A331F00ABAE5D /* OnePlusOneOnlineConfigurationLoader.cpp in Sources */,
+				37F6CF81116A333800ABAE5D /* StrongCausalityConfigurationLoader.cpp in Sources */,
+				370FF3D111760287006697B2 /* BattleConfigurationLoader.cpp in Sources */,
+				374E89F4117F0EA800DE0B7A /* ReplayConfigurationLoader.cpp in Sources */,
+				375FBD2011AC145500597CE9 /* LogManager.cpp in Sources */,
+				375FC01C11AD286E00597CE9 /* EnergyPoint.cpp in Sources */,
+				370BD56611AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.cpp in Sources */,
+				370BD56711AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.cpp in Sources */,
+				370BD64511AD899100C09541 /* MedeaConfigurationLoader.cpp in Sources */,
+				374E0CFA11AECDDC0003E446 /* BasicAgentObserver.cpp in Sources */,
+				374E0CFB11AECDDC0003E446 /* BasicControlArchitecture.cpp in Sources */,
+				374E0CFD11AECDDC0003E446 /* BasicWorldObserver.cpp in Sources */,
+				374E0D1B11AED0100003E446 /* BasicAgentWorldModel.cpp in Sources */,
+				370F27EA11B797AA0058F313 /* BattleAgentObserver.cpp in Sources */,
+				370F27EB11B797AA0058F313 /* BattleWorldObserver.cpp in Sources */,
+				370F27EC11B797AA0058F313 /* MedeaAgentObserver.cpp in Sources */,
+				370F27ED11B797AA0058F313 /* MedeaPerceptronControlArchitecture.cpp in Sources */,
+				370F27EF11B797AA0058F313 /* MedeaWorldObserver.cpp in Sources */,
+				370F27F011B797AA0058F313 /* ReplayAgentObserver.cpp in Sources */,
+				370F27F111B797AA0058F313 /* ReplayWorldObserver.cpp in Sources */,
+				370F28B111B7AD850058F313 /* MedeaSharedData.cpp in Sources */,
+				370F28D211B7AF560058F313 /* MedeaTwoSunsAgentObserver.cpp in Sources */,
+				370F28D311B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.cpp in Sources */,
+				370F28D411B7AF560058F313 /* MedeaTwoSunsSharedData.cpp in Sources */,
+				370F28D611B7AF560058F313 /* MedeaTwoSunsWorldObserver.cpp in Sources */,
+				370F28D811B7AF860058F313 /* MedeaTwoSunsConfigurationLoader.cpp in Sources */,
+				370F28F111B7B1B00058F313 /* MedeaAgentWorldModel.cpp in Sources */,
+				370F28F411B7B1DC0058F313 /* MedeaTwoSunsAgentWorldModel.cpp in Sources */,
+				3794BE0C1240FB150098580F /* MedeaSpecializeAgentObserver.cpp in Sources */,
+				3794BE0D1240FB150098580F /* MedeaSpecializeAgentWorldModel.cpp in Sources */,
+				3794BE0E1240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.cpp in Sources */,
+				3794BE0F1240FB150098580F /* MedeaSpecializeSharedData.cpp in Sources */,
+				3794BE101240FB150098580F /* MedeaSpecializeWorldObserver.cpp in Sources */,
+				3794BE261240FCD30098580F /* MedeaSpecializeConfigurationLoader.cpp in Sources */,
+				3792E2E9124A4A4200574CCB /* MedeaAltruismConfigurationLoader.cpp in Sources */,
+				3792E327124A4B8500574CCB /* MedeaAltruismAgentObserver.cpp in Sources */,
+				3792E328124A4B8500574CCB /* MedeaAltruismAgentWorldModel.cpp in Sources */,
+				3792E329124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.cpp in Sources */,
+				3792E32A124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.cpp in Sources */,
+				3792E32B124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.cpp in Sources */,
+				3792E32C124A4B8500574CCB /* MedeaAltruismReplayAgentObserver.cpp in Sources */,
+				3792E32D124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.cpp in Sources */,
+				3792E32E124A4B8500574CCB /* MedeaAltruismSharedData.cpp in Sources */,
+				3792E32F124A4B8500574CCB /* MedeaAltruismWorldObserver.cpp in Sources */,
+				37AF796B1296B11B00D7EAA3 /* MedeaAltruismReplayConfigurationLoader.cpp in Sources */,
+				37680501129C1DC900C97859 /* BasicConfigurationLoader.cpp in Sources */,
+				37568CB012E64FAB00780C8A /* MedeaOptimSharedData.cpp in Sources */,
+				37568CB112E64FAB00780C8A /* MedeaOptimWorldObserver.cpp in Sources */,
+				37568CB212E64FAB00780C8A /* MedeaOptimPerceptronControlArchitecture.cpp in Sources */,
+				37568CB312E64FAB00780C8A /* MedeaOptimAgentWorldModel.cpp in Sources */,
+				37568CB412E64FAB00780C8A /* MedeaOptimAgentObserver.cpp in Sources */,
+				37568CB612E64FBF00780C8A /* MedeaOptimConfigurationLoader.cpp in Sources */,
+				37DBAA69130EDD05008D312B /* MedeaAltUtilityAgentObserver.cpp in Sources */,
+				37DBAA6A130EDD05008D312B /* MedeaAltUtilityAgentWorldModel.cpp in Sources */,
+				37DBAA6B130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.cpp in Sources */,
+				37DBAA6C130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.cpp in Sources */,
+				37DBAA6D130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.cpp in Sources */,
+				37DBAA6E130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.cpp in Sources */,
+				37DBAA6F130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.cpp in Sources */,
+				37DBAA70130EDD05008D312B /* MedeaAltUtilitySharedData.cpp in Sources */,
+				37DBAA71130EDD05008D312B /* MedeaAltUtilityWorldObserver.cpp in Sources */,
+				37DBAA78130EDD51008D312B /* MedeaAltruismReplayPartialEvoConfigurationLoader.cpp in Sources */,
+				37DBAA80130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentObserver.cpp in Sources */,
+				37DBAA81130EDDA9008D312B /* MedeaAltruismReplayPartialEvoAgentWorldModel.cpp in Sources */,
+				37DBAA82130EDDA9008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.cpp in Sources */,
+				37DBAA88130EDDDC008D312B /* MedeaAltUtilityConfigurationLoader.cpp in Sources */,
+				3778DD65132EC3650000F4E6 /* Properties.cpp in Sources */,
+				3778DD66132EC3650000F4E6 /* StringUtils.cpp in Sources */,
+				37B8B2BA136709E600A9C660 /* MedeaAltruismReEvoConfigurationLoader.cpp in Sources */,
+				37B8B2C813670A4800A9C660 /* MedeaAltruismReEvoWorldObserver.cpp in Sources */,
+				37B8B2C913670A4800A9C660 /* MedeaAltruismReEvoAgentObserver.cpp in Sources */,
+				37ECDD17136AF6370037E7CE /* InanimateObject.cpp in Sources */,
+				372B8E2D137B2F9500E7276B /* BasicProjectMedeaAgentObserver.cpp in Sources */,
+				372B8E2E137B2F9500E7276B /* BasicProjectMedeaAgentWorldModel.cpp in Sources */,
+				372B8E2F137B2F9500E7276B /* BasicProjectMedeaNNControlArchitecture.cpp in Sources */,
+				372B8E30137B2F9500E7276B /* BasicProjectMedeaSharedData.cpp in Sources */,
+				372B8E31137B2F9500E7276B /* BasicProjectMedeaWorldObserver.cpp in Sources */,
+				372B8E4F137B305900E7276B /* BasicProjectMedeaConfigurationLoader.cpp in Sources */,
+				3701DAB11382892400B12539 /* Elman.cpp in Sources */,
+				3701DAB21382892400B12539 /* LayeredNeuralNetwork.cpp in Sources */,
+				3701DAB31382892400B12539 /* MLP.cpp in Sources */,
+				3701DAB41382892400B12539 /* NeuralNetwork.cpp in Sources */,
+				3701DAB51382892400B12539 /* NeuralNetworkException.cpp in Sources */,
+				3701DAB61382892400B12539 /* Perceptron.cpp in Sources */,
+				3701DAB71382892400B12539 /* ReservoirNeuralNetwork.cpp in Sources */,
+				37907CD3143217A60036BF64 /* MedeaSpAgentObserver.cpp in Sources */,
+				37907CD4143217A60036BF64 /* MedeaSpAgentWorldModel.cpp in Sources */,
+				37907CD5143217A60036BF64 /* MedeaSpEnergyPoint.cpp in Sources */,
+				37907CD6143217A60036BF64 /* MedeaSpNetworkGenerator.cpp in Sources */,
+				37907CD7143217A60036BF64 /* MedeaSpPerceptronControlArchitecture.cpp in Sources */,
+				37907CD8143217A60036BF64 /* MedeaSpSharedData.cpp in Sources */,
+				37907CD9143217A60036BF64 /* MedeaSpWorldObserver.cpp in Sources */,
+				37907CF2143217F80036BF64 /* MedeaSpConfigurationLoader.cpp in Sources */,
+				377F21CC14DC295700BC00D1 /* EnergyPerceptronControlArchitecture.cpp in Sources */,
+				377F21CE14DC299F00BC00D1 /* MedeaCommConfigurationLoader.cpp in Sources */,
+				377F21E014DC2C3C00BC00D1 /* MedeaCommAgentObserver.cpp in Sources */,
+				377F21E114DC2C3C00BC00D1 /* MedeaCommAgentWorldModel.cpp in Sources */,
+				377F21E214DC2C3C00BC00D1 /* MedeaCommEnergyPoint.cpp in Sources */,
+				377F21E314DC2C3C00BC00D1 /* MedeaCommPerceptronControlArchitecture.cpp in Sources */,
+				377F21E414DC2C3C00BC00D1 /* MedeaCommSharedData.cpp in Sources */,
+				377F21E514DC2C3C00BC00D1 /* MedeaCommWorldObserver.cpp in Sources */,
+				37E6F8DF156FCE20005F3325 /* MedeaHGTConfigurationLoader.cpp in Sources */,
+				37E6F8F4156FD021005F3325 /* MedeaHGTAgentObserver.cpp in Sources */,
+				37E6F8F5156FD021005F3325 /* MedeaHGTAgentWorldModel.cpp in Sources */,
+				37E6F8F6156FD021005F3325 /* MedeaHGTNNControlArchitecture.cpp in Sources */,
+				37E6F8F7156FD021005F3325 /* MedeaHGTSharedData.cpp in Sources */,
+				37E6F8F8156FD021005F3325 /* MedeaHGTWorldObserver.cpp in Sources */,
+				37E256DD158D34D6005021B0 /* MedeaEcologyAgentObserver.cpp in Sources */,
+				37E256DE158D34D6005021B0 /* MedeaEcologyAgentWorldModel.cpp in Sources */,
+				37E256DF158D34D6005021B0 /* MedeaEcologyControlArchitecture.cpp in Sources */,
+				37E256E0158D34D6005021B0 /* MedeaEcologySharedData.cpp in Sources */,
+				37E256E1158D34D6005021B0 /* MedeaEcologyWorldObserver.cpp in Sources */,
+				37E256E4158D36BA005021B0 /* MedeaEcologyConfigurationLoader.cpp in Sources */,
+				37A33D79158D43BA00434B20 /* MedeaPheromonesAgentObserver.cpp in Sources */,
+				37A33D7A158D43BA00434B20 /* MedeaPheromonesAgentWorldModel.cpp in Sources */,
+				37A33D7B158D43BA00434B20 /* MedeaPheromonesControlArchitecture.cpp in Sources */,
+				37A33D7C158D43BA00434B20 /* MedeaPheromonesSharedData.cpp in Sources */,
+				37A33D7D158D43BA00434B20 /* MedeaPheromonesWorldObserver.cpp in Sources */,
+				37A33D7F158D43D100434B20 /* MedeaPheromonesConfigurationLoader.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					prj,
+					include/ext,
+					include/core,
+					include/contrib,
+					/Library/Frameworks/SDL.framework/Headers,
+				);
+				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = roborobo;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					prj,
+					include/ext,
+					include/core,
+					include/contrib,
+					/Library/Frameworks/SDL.framework/Headers,
+				);
+				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = roborobo;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(HOME)/Library/Frameworks",
+					/Library/Frameworks,
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					prj/,
+					include/contrib,
+					include/core,
+					include/ext,
+					/Library/Frameworks/SDL.framework/Headers,
+				);
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "";
+				OTHER_LDFLAGS = "";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(HOME)/Library/Frameworks",
+					/Library/Frameworks,
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					prj/,
+					include/contrib,
+					include/core,
+					include/ext,
+					/Library/Frameworks/SDL.framework/Headers,
+				);
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "";
+				OTHER_LDFLAGS = "";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "roborobo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "roborobo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

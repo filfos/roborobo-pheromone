@@ -1,0 +1,1523 @@
+// !$*UTF8*$!
+{
+	002F3A2C09D0888800EBEB88 /* SDLMain.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {845, 5572}}";
+			sepNavSelRange = "{1087, 2}";
+			sepNavVisRange = "{346, 995}";
+			sepNavWindowFrame = "{{15, 119}, {862, 878}}";
+		};
+	};
+	002F3A3E09D088BA00EBEB88 /* roborobo.cpp */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = roborobo.cpp;
+		path = "/Users/nicolas/Developpement/evorob/Roborobo-online/roborobo.cpp";
+		sourceTree = "<absolute>";
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 37E5B8DA0EF6D4ED00C8A071 /* roborobo */;
+		activeTarget = 8D1107260486CEB800E47090 /* roborobo */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* roborobo */,
+		);
+		breakpoints = (
+			3738FC740F19FD5C00F6F8B1 /* roborobo.cpp:619 */,
+			3738FC7A0F19FD7500F6F8B1 /* roborobo.cpp:619 */,
+			3738FC7C0F19FD7A00F6F8B1 /* roborobo.cpp:619 */,
+			370033EE0F76FAA5005B0E01 /* World.cpp:39 */,
+			3727054C0FA9EA72004B63C7 /* RobotAgent.cpp:768 */,
+			375A6B8E11CBD050001D8425 /* RobotAgent.cpp:481 */,
+			37F4A0A812402CFE001E9780 /* RobotAgent.cpp:461 */,
+		);
+		codeSenseManager = 37E5B8ED0EF6D4F100C8A071 /* Code sense */;
+		executables = (
+			37E5B8DA0EF6D4ED00C8A071 /* roborobo */,
+		);
+		perUserDictionary = {
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA1AED706398EBD00589147" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					198,
+					20,
+					99,
+					99,
+					29,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_IgnoreCountID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					131,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					238,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					203,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 328110576;
+			PBXWorkspaceStateSaveDate = 328110576;
+		};
+		sourceControlManager = 37E5B8EC0EF6D4F100C8A071 /* Source Control */;
+		userBookmarkGroup = 3720BABE0F7CE7A200D5FF81 /* PBXBookmarkGroup */;
+		userBuildSettings = {
+		};
+	};
+	32CA4F630368D1EE00C91783 /* roborobo_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 245}}";
+			sepNavSelRange = "{105, 4}";
+			sepNavVisRange = "{0, 165}";
+		};
+	};
+	370033EE0F76FAA5005B0E01 /* World.cpp:39 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 3751E0B00F208D4900A72C6D /* World.cpp */;
+		functionName = "World::initWorld()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 39;
+		location = roborobo;
+		modificationTime = 317100136.726181;
+		state = 2;
+	};
+	370BD55111AD82FC00C09541 /* OnePlusOneOnlineGeneticsEngineAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {950, 4466}}";
+			sepNavSelRange = "{2086, 3}";
+			sepNavVisRange = "{1702, 1000}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	370BD55211AD82FC00C09541 /* StrongCausalityExperimentAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 16324}}";
+			sepNavSelRange = "{21820, 0}";
+			sepNavVisRange = "{21605, 372}";
+			sepNavWindowFrame = "{{15, 1}, {1056, 772}}";
+		};
+	};
+	370BD64211AD895D00C09541 /* MedeaConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 644}}";
+			sepNavSelRange = "{113, 0}";
+			sepNavVisRange = "{0, 772}";
+			sepNavWindowFrame = "{{15, 1}, {1056, 772}}";
+		};
+	};
+	370BD64411AD899100C09541 /* MedeaConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 644}}";
+			sepNavSelRange = "{358, 0}";
+			sepNavVisRange = "{0, 1238}";
+			sepNavWindowFrame = "{{485, 6}, {1056, 772}}";
+		};
+	};
+	370E464F0FD41B20001E0985 /* RobotAgentWorldInterfaceDangerWorld.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1266, 1400}}";
+			sepNavSelRange = "{781, 39}";
+			sepNavVisRange = "{540, 1170}";
+			sepNavWindowFrame = "{{249, 4}, {1089, 774}}";
+		};
+	};
+	370E46520FD41B66001E0985 /* RobotAgentWorldInterfaceDangerWorld.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {704, 490}}";
+			sepNavSelRange = "{829, 6}";
+			sepNavVisRange = "{311, 589}";
+			sepNavWindowFrame = "{{189, 4}, {1089, 774}}";
+		};
+	};
+	370F27D411B797AA0058F313 /* BattleAgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 868}}";
+			sepNavSelRange = "{1128, 3}";
+			sepNavVisRange = "{870, 269}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F27D611B797AA0058F313 /* MedeaAgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 602}}";
+			sepNavSelRange = "{368, 12}";
+			sepNavVisRange = "{187, 375}";
+		};
+	};
+	370F27D711B797AA0058F313 /* MedeaPerceptronControlArchitecture.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 630}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{170, 552}";
+		};
+	};
+	370F27DA11B797AA0058F313 /* MedeaWorldObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 602}}";
+			sepNavSelRange = "{319, 20}";
+			sepNavVisRange = "{219, 445}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F27DE11B797AA0058F313 /* BattleAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 6622}}";
+			sepNavSelRange = "{4974, 13}";
+			sepNavVisRange = "{4566, 951}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F27DF11B797AA0058F313 /* BattleWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1568}}";
+			sepNavSelRange = "{2006, 13}";
+			sepNavVisRange = "{1547, 579}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F27E011B797AA0058F313 /* MedeaAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 4060}}";
+			sepNavSelRange = "{1159, 0}";
+			sepNavVisRange = "{745, 1487}";
+			sepNavWindowFrame = "{{254, 32}, {1056, 746}}";
+		};
+	};
+	370F27E111B797AA0058F313 /* MedeaPerceptronControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3808}}";
+			sepNavSelRange = "{2993, 13}";
+			sepNavVisRange = "{2462, 751}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F27E311B797AA0058F313 /* MedeaWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 6118}}";
+			sepNavSelRange = "{11382, 13}";
+			sepNavVisRange = "{10930, 1156}";
+			sepNavWindowFrame = "{{254, 32}, {1056, 746}}";
+		};
+	};
+	370F27E411B797AA0058F313 /* ReplayAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3808}}";
+			sepNavSelRange = "{3239, 13}";
+			sepNavVisRange = "{0, 491}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F27E511B797AA0058F313 /* ReplayWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1344}}";
+			sepNavSelRange = "{1110, 13}";
+			sepNavVisRange = "{696, 534}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F28AB11B7AD330058F313 /* MedeaSharedData.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1934, 910}}";
+			sepNavSelRange = "{142, 0}";
+			sepNavVisRange = "{0, 2954}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F28B011B7AD850058F313 /* MedeaSharedData.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1292, 966}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1784}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F28C711B7AF560058F313 /* MedeaTwoSunsAgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{604, 0}";
+			sepNavVisRange = "{0, 830}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F28C811B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 658}}";
+			sepNavSelRange = "{598, 0}";
+			sepNavVisRange = "{295, 603}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F28C911B7AF560058F313 /* MedeaTwoSunsSharedData.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1938, 896}}";
+			sepNavSelRange = "{196, 0}";
+			sepNavVisRange = "{124, 3431}";
+			sepNavWindowFrame = "{{26, -1}, {1056, 774}}";
+		};
+	};
+	370F28CB11B7AF560058F313 /* MedeaTwoSunsWorldObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 616}}";
+			sepNavSelRange = "{418, 0}";
+			sepNavVisRange = "{218, 481}";
+			sepNavWindowFrame = "{{26, -1}, {1056, 774}}";
+		};
+	};
+	370F28CD11B7AF560058F313 /* MedeaTwoSunsAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1364, 3962}}";
+			sepNavSelRange = "{5150, 0}";
+			sepNavVisRange = "{4331, 1401}";
+			sepNavWindowFrame = "{{50, 4}, {1056, 774}}";
+		};
+	};
+	370F28CE11B7AF560058F313 /* MedeaTwoSunsPerceptronControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1358, 3584}}";
+			sepNavSelRange = "{2961, 13}";
+			sepNavVisRange = "{161, 1576}";
+			sepNavWindowFrame = "{{55, 4}, {1056, 774}}";
+		};
+	};
+	370F28CF11B7AF560058F313 /* MedeaTwoSunsSharedData.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1334, 966}}";
+			sepNavSelRange = "{694, 0}";
+			sepNavVisRange = "{0, 2168}";
+			sepNavWindowFrame = "{{26, -1}, {1056, 774}}";
+		};
+	};
+	370F28D111B7AF560058F313 /* MedeaTwoSunsWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1346, 7518}}";
+			sepNavSelRange = "{5213, 0}";
+			sepNavVisRange = "{4911, 1211}";
+			sepNavWindowFrame = "{{47, 4}, {1130, 774}}";
+		};
+	};
+	370F28D711B7AF860058F313 /* MedeaTwoSunsConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{634, 0}";
+			sepNavVisRange = "{0, 1396}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	370F28EF11B7B1A10058F313 /* MedeaAgentWorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 1162}}";
+			sepNavSelRange = "{386, 0}";
+			sepNavVisRange = "{0, 1050}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	370F28F011B7B1B00058F313 /* MedeaAgentWorldModel.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 1568}}";
+			sepNavSelRange = "{452, 0}";
+			sepNavVisRange = "{0, 893}";
+			sepNavWindowFrame = "{{15, 27}, {1072, 746}}";
+		};
+	};
+	370F28F211B7B1D70058F313 /* MedeaTwoSunsAgentWorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 1218}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{991, 921}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	370F28F311B7B1DC0058F313 /* MedeaTwoSunsAgentWorldModel.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 1484}}";
+			sepNavSelRange = "{2203, 6}";
+			sepNavVisRange = "{1243, 1205}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	370FF3CF11760287006697B2 /* BattleConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 616}}";
+			sepNavSelRange = "{128, 0}";
+			sepNavVisRange = "{0, 488}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	370FF3D3117602FD006697B2 /* BattleConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{720, 0}";
+			sepNavVisRange = "{0, 729}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	370FF3D5117602FD006697B2 /* OnePlusOneOnlineConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{653, 0}";
+			sepNavVisRange = "{0, 916}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	370FF3D9117602FD006697B2 /* StrongCausalityConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{529, 0}";
+			sepNavVisRange = "{0, 921}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	3720BABE0F7CE7A200D5FF81 /* PBXBookmarkGroup */ = {
+		isa = PBXBookmarkGroup;
+		children = (
+			3720BB680F7CF43400D5FF81 /* PBXTextBookmark */,
+		);
+		name = Root;
+	};
+	3720BB680F7CF43400D5FF81 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 375FC5B00F77B70B000AE605 /* RobotAgent.cpp */;
+		name = isAlive;
+		rLen = 4;
+		rLoc = 15850;
+		rType = 0;
+		vrLen = 2513;
+		vrLoc = 14628;
+	};
+	3720BCD40F7D149100D5FF81 /* Agent.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {987, 3136}}";
+			sepNavSelRange = "{240, 0}";
+			sepNavVisRange = "{1778, 1509}";
+			sepNavWindowFrame = "{{38, 4}, {1046, 774}}";
+		};
+	};
+	3720BCD50F7D149100D5FF81 /* AgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{227, 0}";
+			sepNavVisRange = "{0, 495}";
+			sepNavWindowFrame = "{{87, 4}, {1056, 774}}";
+		};
+	};
+	3720BCD60F7D149100D5FF81 /* BehaviorControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{236, 62}";
+			sepNavVisRange = "{0, 513}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	3720BCD70F7D149100D5FF81 /* Observer.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 650}}";
+			sepNavSelRange = "{202, 0}";
+			sepNavVisRange = "{0, 364}";
+			sepNavWindowFrame = "{{38, 100}, {1056, 778}}";
+		};
+	};
+	3720BCD80F7D149100D5FF81 /* InspectorAgent.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {938, 2352}}";
+			sepNavSelRange = "{3231, 0}";
+			sepNavVisRange = "{2878, 1338}";
+			sepNavWindowFrame = "{{280, 4}, {997, 774}}";
+		};
+	};
+	3720BCD90F7D149100D5FF81 /* main.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {900, 1414}}";
+			sepNavSelRange = "{2338, 0}";
+			sepNavVisRange = "{1775, 863}";
+			sepNavWindowFrame = "{{15, 4}, {997, 774}}";
+		};
+	};
+	3720BCDA0F7D149100D5FF81 /* Misc.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 1792}}";
+			sepNavSelRange = "{1825, 0}";
+			sepNavVisRange = "{1512, 1113}";
+			sepNavWindowFrame = "{{89, 4}, {1089, 774}}";
+		};
+	};
+	3720BCDB0F7D149100D5FF81 /* roborobo.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 20692}}";
+			sepNavSelRange = "{5193, 10}";
+			sepNavVisRange = "{4858, 852}";
+			sepNavWindowFrame = "{{341, 4}, {1039, 774}}";
+		};
+	};
+	3720BCDC0F7D149100D5FF81 /* RobotAgent.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 11662}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 352}";
+			sepNavWindowFrame = "{{211, 4}, {1072, 774}}";
+		};
+	};
+	3720BCDD0F7D149100D5FF81 /* RobotAgentWorldModel.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 1386}}";
+			sepNavSelRange = "{1466, 0}";
+			sepNavVisRange = "{410, 909}";
+			sepNavWindowFrame = "{{15, 4}, {1072, 774}}";
+		};
+	};
+	3720BCDE0F7D149100D5FF81 /* SDL_gfxPrimitives.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1056, 63840}}";
+			sepNavSelRange = "{50982, 0}";
+			sepNavVisRange = "{50927, 1047}";
+			sepNavWindowFrame = "{{61, 4}, {1056, 774}}";
+		};
+	};
+	3720BCDF0F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 2296}}";
+			sepNavSelRange = "{556, 4}";
+			sepNavVisRange = "{202, 481}";
+			sepNavWindowFrame = "{{79, -80}, {1072, 981}}";
+		};
+	};
+	3720BCE00F7D149100D5FF81 /* SDL_gfxRoborobo.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 2898}}";
+			sepNavSelRange = "{3879, 0}";
+			sepNavVisRange = "{3640, 992}";
+			sepNavWindowFrame = "{{178, -25}, {1089, 774}}";
+		};
+	};
+	3720BCE10F7D149100D5FF81 /* Timer.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 1428}}";
+			sepNavSelRange = "{1692, 0}";
+			sepNavVisRange = "{0, 655}";
+			sepNavWindowFrame = "{{38, 198}, {1056, 778}}";
+		};
+	};
+	3720BCE30F7D149100D5FF81 /* World.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 6664}}";
+			sepNavSelRange = "{12920, 10}";
+			sepNavVisRange = "{12695, 384}";
+			sepNavWindowFrame = "{{74, 104}, {963, 774}}";
+		};
+	};
+	3720BCE40F7D149100D5FF81 /* WorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 623}}";
+			sepNavSelRange = "{176, 0}";
+			sepNavVisRange = "{0, 448}";
+			sepNavWindowFrame = "{{15, 4}, {1072, 774}}";
+		};
+	};
+	3720BCE50F7D149100D5FF81 /* WorldModel.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 623}}";
+			sepNavSelRange = "{240, 0}";
+			sepNavVisRange = "{0, 246}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 774}}";
+		};
+	};
+	3720BCE70F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 646}}";
+			sepNavSelRange = "{926, 0}";
+			sepNavVisRange = "{0, 926}";
+			sepNavWindowFrame = "{{15, 4}, {1072, 774}}";
+		};
+	};
+	3720BCE90F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 1358}}";
+			sepNavSelRange = "{840, 0}";
+			sepNavVisRange = "{683, 467}";
+			sepNavWindowFrame = "{{243, 4}, {1089, 874}}";
+		};
+	};
+	3720BCED0F7D149100D5FF81 /* Agent.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {938, 1134}}";
+			sepNavSelRange = "{286, 0}";
+			sepNavVisRange = "{0, 1058}";
+			sepNavWindowFrame = "{{15, 4}, {997, 774}}";
+		};
+	};
+	3720BCEE0F7D149100D5FF81 /* InspectorAgent.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 910}}";
+			sepNavSelRange = "{548, 12}";
+			sepNavVisRange = "{497, 260}";
+			sepNavWindowFrame = "{{107, 4}, {1056, 774}}";
+		};
+	};
+	3720BCEF0F7D149100D5FF81 /* RobotAgent.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 2044}}";
+			sepNavSelRange = "{784, 39}";
+			sepNavVisRange = "{435, 764}";
+			sepNavWindowFrame = "{{227, 4}, {1072, 774}}";
+		};
+	};
+	3720BCF10F7D149100D5FF81 /* BehaviorControlArchitecture.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 646}}";
+			sepNavSelRange = "{472, 0}";
+			sepNavVisRange = "{0, 718}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 774}}";
+		};
+	};
+	3720BCF80F7D149100D5FF81 /* common.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 658}}";
+			sepNavSelRange = "{677, 0}";
+			sepNavVisRange = "{0, 865}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 774}}";
+		};
+	};
+	3720BCF90F7D149100D5FF81 /* main.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 646}}";
+			sepNavSelRange = "{217, 0}";
+			sepNavVisRange = "{0, 219}";
+			sepNavWindowFrame = "{{15, 4}, {1072, 774}}";
+		};
+	};
+	3720BCFA0F7D149100D5FF81 /* roborobo.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1932, 2730}}";
+			sepNavSelRange = "{284, 0}";
+			sepNavVisRange = "{0, 1237}";
+			sepNavWindowFrame = "{{83, 4}, {1046, 774}}";
+		};
+	};
+	3720BCFD0F7D149100D5FF81 /* Misc.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1428}}";
+			sepNavSelRange = "{407, 6}";
+			sepNavVisRange = "{240, 390}";
+			sepNavWindowFrame = "{{134, 4}, {1089, 774}}";
+		};
+	};
+	3720BCFE0F7D149100D5FF81 /* SDL_gfxPrimitives.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 3136}}";
+			sepNavSelRange = "{316, 4}";
+			sepNavVisRange = "{164, 309}";
+			sepNavWindowFrame = "{{176, 72}, {1056, 778}}";
+		};
+	};
+	3720BCFF0F7D149100D5FF81 /* SDL_gfxPrimitives_font.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 43302}}";
+			sepNavSelRange = "{64860, 0}";
+			sepNavVisRange = "{63907, 953}";
+			sepNavWindowFrame = "{{199, 51}, {1056, 778}}";
+		};
+	};
+	3720BD000F7D149100D5FF81 /* SDL_gfxPrimitivesExtra.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 830}}";
+			sepNavSelRange = "{582, 0}";
+			sepNavVisRange = "{0, 582}";
+			sepNavWindowFrame = "{{15, 16}, {1072, 981}}";
+		};
+	};
+	3720BD010F7D149100D5FF81 /* SDL_gfxRoborobo.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 518}}";
+			sepNavSelRange = "{938, 0}";
+			sepNavVisRange = "{296, 777}";
+			sepNavWindowFrame = "{{15, 4}, {1072, 774}}";
+		};
+	};
+	3720BD020F7D149100D5FF81 /* SDLMain.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 650}}";
+			sepNavSelRange = "{308, 0}";
+			sepNavVisRange = "{0, 308}";
+			sepNavWindowFrame = "{{84, 100}, {1056, 778}}";
+		};
+	};
+	3720BD030F7D149100D5FF81 /* Timer.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {845, 714}}";
+			sepNavSelRange = "{191, 0}";
+			sepNavVisRange = "{0, 469}";
+			sepNavWindowFrame = "{{61, 177}, {1056, 778}}";
+		};
+	};
+	3720BD050F7D149100D5FF81 /* RobotAgentWorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1076, 1442}}";
+			sepNavSelRange = "{1262, 17}";
+			sepNavVisRange = "{290, 1722}";
+			sepNavWindowFrame = "{{184, 4}, {1072, 774}}";
+		};
+	};
+	3720BD060F7D149100D5FF81 /* WorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 623}}";
+			sepNavSelRange = "{349, 0}";
+			sepNavVisRange = "{0, 364}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 774}}";
+		};
+	};
+	3720BD090F7D149100D5FF81 /* PerceptronBehaviorControlArchitecture.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 746}}";
+			sepNavSelRange = "{599, 0}";
+			sepNavVisRange = "{0, 958}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 874}}";
+		};
+	};
+	3720BD0D0F7D149100D5FF81 /* EvolvingRobotAgentWorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 646}}";
+			sepNavSelRange = "{377, 65}";
+			sepNavVisRange = "{0, 796}";
+			sepNavWindowFrame = "{{7, 4}, {1072, 774}}";
+		};
+	};
+	3727054C0FA9EA72004B63C7 /* RobotAgent.cpp:768 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 3720BCDC0F7D149100D5FF81 /* RobotAgent.cpp */;
+		functionName = "RobotAgent::getGenetics()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 768;
+		location = roborobo;
+		modificationTime = 317100136.726188;
+		state = 2;
+	};
+	3738FC740F19FD5C00F6F8B1 /* roborobo.cpp:619 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 002F3A3E09D088BA00EBEB88 /* roborobo.cpp */;
+		functionName = "main( int argc, char* args[] )";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 619;
+		location = roborobo;
+		modificationTime = 317100136.726145;
+		state = 2;
+	};
+	3738FC7A0F19FD7500F6F8B1 /* roborobo.cpp:619 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 002F3A3E09D088BA00EBEB88 /* roborobo.cpp */;
+		functionName = "main( int argc, char* args[] )";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 619;
+		modificationTime = 317100136.726167;
+		state = 2;
+	};
+	3738FC7C0F19FD7A00F6F8B1 /* roborobo.cpp:619 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 002F3A3E09D088BA00EBEB88 /* roborobo.cpp */;
+		functionName = "main( int argc, char* args[] )";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 619;
+		modificationTime = 317100136.7261739;
+		state = 2;
+	};
+	374E0CF111AECDDC0003E446 /* BasicAgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{420, 0}";
+			sepNavVisRange = "{0, 605}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	374E0CF411AECDDC0003E446 /* BasicWorldObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{276, 0}";
+			sepNavVisRange = "{0, 467}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	374E0CF611AECDDC0003E446 /* BasicAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 490}}";
+			sepNavSelRange = "{200, 69}";
+			sepNavVisRange = "{50, 257}";
+		};
+	};
+	374E0CF911AECDDC0003E446 /* BasicWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 448}}";
+			sepNavSelRange = "{177, 0}";
+			sepNavVisRange = "{92, 259}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	374E0D1911AED0090003E446 /* BasicAgentWorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 490}}";
+			sepNavSelRange = "{273, 0}";
+			sepNavVisRange = "{129, 338}";
+		};
+	};
+	374E89F1117F0EA800DE0B7A /* ReplayConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 658}}";
+			sepNavSelRange = "{780, 0}";
+			sepNavVisRange = "{0, 1222}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	3751E0B00F208D4900A72C6D /* World.cpp */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = World.cpp;
+		path = "/Users/nicolas/Developpement/evorob/Roborobo-online/World.cpp";
+		sourceTree = "<absolute>";
+	};
+	3754B7B00FD097C300EAC800 /* World.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 1064}}";
+			sepNavSelRange = "{1591, 0}";
+			sepNavVisRange = "{584, 1130}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 774}}";
+		};
+	};
+	3754B7B10FD097C300EAC800 /* RobotAgentWorldInterface.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 646}}";
+			sepNavSelRange = "{630, 31}";
+			sepNavVisRange = "{0, 746}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 774}}";
+		};
+	};
+	3754B7B40FD097E800EAC800 /* RobotAgentWorldInterface.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 812}}";
+			sepNavSelRange = "{1193, 0}";
+			sepNavVisRange = "{156, 1722}";
+			sepNavWindowFrame = "{{16, 4}, {1089, 774}}";
+		};
+	};
+	37568CA612E64FA400780C8A /* MedeaOptimAgentWorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 1288}}";
+			sepNavSelRange = "{82, 0}";
+			sepNavVisRange = "{0, 1036}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	37568CA712E64FA400780C8A /* MedeaOptimWorldObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 672}}";
+			sepNavSelRange = "{694, 0}";
+			sepNavVisRange = "{36, 889}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	37568CA812E64FA400780C8A /* MedeaOptimAgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 630}}";
+			sepNavSelRange = "{946, 0}";
+			sepNavVisRange = "{0, 954}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	37568CA912E64FA400780C8A /* MedeaOptimSharedData.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1934, 868}}";
+			sepNavSelRange = "{3557, 0}";
+			sepNavVisRange = "{193, 3404}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	37568CAA12E64FA400780C8A /* MedeaOptimPerceptronControlArchitecture.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 630}}";
+			sepNavSelRange = "{620, 0}";
+			sepNavVisRange = "{0, 1079}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	37568CAB12E64FAB00780C8A /* MedeaOptimSharedData.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1322, 924}}";
+			sepNavSelRange = "{2375, 53}";
+			sepNavVisRange = "{521, 2185}";
+			sepNavWindowFrame = "{{30, 30}, {1193, 748}}";
+		};
+	};
+	37568CAC12E64FAB00780C8A /* MedeaOptimWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 5292}}";
+			sepNavSelRange = "{9787, 13}";
+			sepNavVisRange = "{9282, 848}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	37568CAD12E64FAB00780C8A /* MedeaOptimPerceptronControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3290}}";
+			sepNavSelRange = "{2888, 13}";
+			sepNavVisRange = "{2536, 796}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	37568CAE12E64FAB00780C8A /* MedeaOptimAgentWorldModel.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1708}}";
+			sepNavSelRange = "{2853, 0}";
+			sepNavVisRange = "{2326, 530}";
+			sepNavWindowFrame = "{{51, 4}, {1193, 774}}";
+		};
+	};
+	37568CAF12E64FAB00780C8A /* MedeaOptimAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1340, 6328}}";
+			sepNavSelRange = "{4730, 0}";
+			sepNavVisRange = "{3991, 1391}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	37568CB512E64FBF00780C8A /* MedeaOptimConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 620}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1352}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	37568CB712E64FE100780C8A /* MedeaOptimConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 620}}";
+			sepNavSelRange = "{345, 0}";
+			sepNavVisRange = "{0, 762}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	375A6B8E11CBD050001D8425 /* RobotAgent.cpp:481 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 3720BCDC0F7D149100D5FF81 /* RobotAgent.cpp */;
+		functionName = "RobotAgent::move( int __recursiveIt )";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 481;
+		location = roborobo;
+		modificationTime = 317100136.72639;
+		state = 2;
+	};
+	375B3FED10BA9FC30008A54B /* AgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {999, 650}}";
+			sepNavSelRange = "{0, 583}";
+			sepNavVisRange = "{0, 628}";
+			sepNavWindowFrame = "{{15, 95}, {1058, 778}}";
+		};
+	};
+	375B3FEE10BA9FC30008A54B /* Observer.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 448}}";
+			sepNavSelRange = "{342, 0}";
+			sepNavVisRange = "{254, 152}";
+			sepNavWindowFrame = "{{38, 74}, {1058, 778}}";
+		};
+	};
+	375B3FEF10BA9FC30008A54B /* WorldObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 560}}";
+			sepNavSelRange = "{439, 35}";
+			sepNavVisRange = "{354, 183}";
+			sepNavWindowFrame = "{{61, 4}, {1058, 774}}";
+		};
+	};
+	375FBD1B11AC13B200597CE9 /* LogManager.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 672}}";
+			sepNavSelRange = "{805, 3}";
+			sepNavVisRange = "{0, 262}";
+		};
+	};
+	375FBD1F11AC145500597CE9 /* LogManager.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 532}}";
+			sepNavSelRange = "{103, 0}";
+			sepNavVisRange = "{0, 319}";
+		};
+	};
+	375FC01A11AD286300597CE9 /* EnergyPoint.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 1092}}";
+			sepNavSelRange = "{339, 0}";
+			sepNavVisRange = "{137, 1280}";
+			sepNavWindowFrame = "{{177, 32}, {1056, 746}}";
+		};
+	};
+	375FC01B11AD286E00597CE9 /* EnergyPoint.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 4340}}";
+			sepNavSelRange = "{3283, 0}";
+			sepNavVisRange = "{3211, 893}";
+			sepNavWindowFrame = "{{320, 113}, {1056, 746}}";
+		};
+	};
+	375FC5B00F77B70B000AE605 /* RobotAgent.cpp */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = RobotAgent.cpp;
+		path = "/Users/nicolas/Developpement/evorob/Roborobo-online/src/RobotAgent.cpp";
+		sourceTree = "<absolute>";
+	};
+	376804FF129C1DB900C97859 /* BasicConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 620}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1019}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	37680500129C1DC900C97859 /* BasicConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 658}}";
+			sepNavSelRange = "{539, 0}";
+			sepNavVisRange = "{46, 1150}";
+			sepNavWindowFrame = "{{38, 4}, {1193, 748}}";
+		};
+	};
+	378B2C4D0FE6AF4600B90B67 /* ExtendedProperties.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {818, 1022}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 526}";
+			sepNavWindowFrame = "{{15, 4}, {1058, 774}}";
+		};
+	};
+	378B2C4F0FE6AF6300B90B67 /* ExtendedProperties.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 623}}";
+			sepNavSelRange = "{382, 0}";
+			sepNavVisRange = "{0, 654}";
+			sepNavWindowFrame = "{{15, 4}, {1089, 774}}";
+		};
+	};
+	3792E2E8124A4A4200574CCB /* MedeaAltruismConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 616}}";
+			sepNavSelRange = "{340, 35}";
+			sepNavVisRange = "{0, 749}";
+			sepNavWindowFrame = "{{253, 32}, {1072, 746}}";
+		};
+	};
+	3792E314124A4B8500574CCB /* MedeaAltruismAgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 618}}";
+			sepNavSelRange = "{459, 0}";
+			sepNavVisRange = "{0, 904}";
+			sepNavWindowFrame = "{{253, 32}, {1072, 746}}";
+		};
+	};
+	3792E31B124A4B8500574CCB /* MedeaAltruismSharedData.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1934, 952}}";
+			sepNavSelRange = "{2649, 11}";
+			sepNavVisRange = "{2018, 1336}";
+		};
+	};
+	3792E320124A4B8500574CCB /* MedeaAltruismBattleAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 4732}}";
+			sepNavSelRange = "{3852, 13}";
+			sepNavVisRange = "{3472, 951}";
+		};
+	};
+	3792E321124A4B8500574CCB /* MedeaAltruismBattleWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1568}}";
+			sepNavSelRange = "{2311, 13}";
+			sepNavVisRange = "{1800, 603}";
+		};
+	};
+	3792E322124A4B8500574CCB /* MedeaAltruismPerceptronControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3612}}";
+			sepNavSelRange = "{3058, 13}";
+			sepNavVisRange = "{2529, 679}";
+			sepNavWindowFrame = "{{15, 25}, {1193, 748}}";
+		};
+	};
+	3792E324124A4B8500574CCB /* MedeaAltruismReplayWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3822}}";
+			sepNavSelRange = "{8079, 13}";
+			sepNavVisRange = "{7590, 1183}";
+		};
+	};
+	3792E326124A4B8500574CCB /* MedeaAltruismWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3990}}";
+			sepNavSelRange = "{7475, 13}";
+			sepNavVisRange = "{6986, 1331}";
+		};
+	};
+	3794BE011240FB150098580F /* MedeaSpecializeAgentObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{79, 0}";
+			sepNavVisRange = "{0, 835}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE021240FB150098580F /* MedeaSpecializeAgentWorldModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 1120}}";
+			sepNavSelRange = "{98, 0}";
+			sepNavVisRange = "{0, 1151}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE031240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 644}}";
+			sepNavSelRange = "{776, 24}";
+			sepNavVisRange = "{638, 504}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE041240FB150098580F /* MedeaSpecializeSharedData.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1934, 910}}";
+			sepNavSelRange = "{92, 0}";
+			sepNavVisRange = "{0, 3030}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE051240FB150098580F /* MedeaSpecializeWorldObserver.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 672}}";
+			sepNavSelRange = "{22, 0}";
+			sepNavVisRange = "{0, 976}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE071240FB150098580F /* MedeaSpecializeAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 4158}}";
+			sepNavSelRange = "{90, 0}";
+			sepNavVisRange = "{0, 980}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE081240FB150098580F /* MedeaSpecializeAgentWorldModel.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 1540}}";
+			sepNavSelRange = "{100, 0}";
+			sepNavVisRange = "{0, 993}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE091240FB150098580F /* MedeaSpecializePerceptronControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3598}}";
+			sepNavSelRange = "{2979, 13}";
+			sepNavVisRange = "{2611, 876}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE0A1240FB150098580F /* MedeaSpecializeSharedData.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1352, 966}}";
+			sepNavSelRange = "{87, 0}";
+			sepNavVisRange = "{0, 2252}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE0B1240FB150098580F /* MedeaSpecializeWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1338, 8484}}";
+			sepNavSelRange = "{17269, 13}";
+			sepNavVisRange = "{16811, 1166}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE221240FC820098580F /* MedeaSpecializeConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{343, 0}";
+			sepNavVisRange = "{0, 779}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	3794BE251240FCD30098580F /* MedeaSpecializeConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1462}";
+			sepNavWindowFrame = "{{15, -1}, {1056, 774}}";
+		};
+	};
+	37AA972D1132E38E001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 462}}";
+			sepNavSelRange = "{394, 0}";
+			sepNavVisRange = "{0, 988}";
+			sepNavWindowFrame = "{{15, 195}, {1193, 578}}";
+		};
+	};
+	37AA974A1132E3A0001FD20B /* EvolvingRobotAgentWorldModelDangerWorld.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 546}}";
+			sepNavSelRange = "{184, 39}";
+			sepNavVisRange = "{417, 406}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	37B8B2C613670A4800A9C660 /* MedeaAltruismReEvoWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 4900}}";
+			sepNavSelRange = "{10162, 13}";
+			sepNavVisRange = "{9674, 1331}";
+		};
+	};
+	37C234DB0F821A4400C977FE /* func.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 1022}}";
+			sepNavSelRange = "{2258, 0}";
+			sepNavVisRange = "{562, 1696}";
+			sepNavWindowFrame = "{{15, 20}, {1089, 977}}";
+		};
+	};
+	37C234DC0F821A4400C977FE /* Properties.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 4494}}";
+			sepNavSelRange = "{3069, 11}";
+			sepNavVisRange = "{2777, 728}";
+			sepNavWindowFrame = "{{15, 20}, {1089, 977}}";
+		};
+	};
+	37C234DD0F821A4400C977FE /* StringUtils.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 6972}}";
+			sepNavSelRange = "{16819, 0}";
+			sepNavVisRange = "{15150, 1669}";
+			sepNavWindowFrame = "{{245, 25}, {1089, 977}}";
+		};
+	};
+	37C234DE0F821A4400C977FE /* strip.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1030, 1190}}";
+			sepNavSelRange = "{2835, 0}";
+			sepNavVisRange = "{1150, 1685}";
+			sepNavWindowFrame = "{{15, 20}, {1089, 977}}";
+		};
+	};
+	37DBAA62130EDD05008D312B /* MedeaAltUtilityBattleAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 6664}}";
+			sepNavSelRange = "{5474, 13}";
+			sepNavVisRange = "{5027, 961}";
+		};
+	};
+	37DBAA63130EDD05008D312B /* MedeaAltUtilityBattleWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1554}}";
+			sepNavSelRange = "{2369, 13}";
+			sepNavVisRange = "{1976, 640}";
+		};
+	};
+	37DBAA64130EDD05008D312B /* MedeaAltUtilityPerceptronControlArchitecture.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 4032}}";
+			sepNavSelRange = "{3304, 13}";
+			sepNavVisRange = "{2691, 767}";
+		};
+	};
+	37DBAA65130EDD05008D312B /* MedeaAltUtilityReplayAgentObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1176}}";
+			sepNavSelRange = "{1334, 11}";
+			sepNavVisRange = "{978, 582}";
+		};
+	};
+	37DBAA66130EDD05008D312B /* MedeaAltUtilityReplayWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1338, 5544}}";
+			sepNavSelRange = "{12410, 13}";
+			sepNavVisRange = "{11837, 1285}";
+		};
+	};
+	37DBAA68130EDD05008D312B /* MedeaAltUtilityWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1338, 6762}}";
+			sepNavSelRange = "{13386, 13}";
+			sepNavVisRange = "{12895, 1204}";
+		};
+	};
+	37DBAA7F130EDDA9008D312B /* MedeaAltruismReplayPartialEvoWorldObserver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 4886}}";
+			sepNavSelRange = "{10389, 13}";
+			sepNavVisRange = "{9900, 1183}";
+		};
+	};
+	37E5B8DA0EF6D4ED00C8A071 /* roborobo */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+			NO,
+			NO,
+			NO,
+			NO,
+			NO,
+			NO,
+			NO,
+			NO,
+			YES,
+		);
+		argumentStrings = (
+			batchmode,
+			"-l config/medea-ni.properties",
+			"-l config/default-mas.properties",
+			"-l config/medea-twosuns-ni.properties",
+			"-l config/PPSN-ni-SUBMITTED.properties",
+			"-l config/default-mono.properties",
+			"-l config/medea-specialize-0.properties",
+			"-l config/spikeants.properties",
+			"-l config/medea-optim.properties",
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = roborobo;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+			$cs = 1;
+			$ds = 1;
+			$eax = 1;
+			$ebp = 1;
+			$ebx = 1;
+			$ecx = 1;
+			$edi = 1;
+			$edx = 1;
+			$eflags = 1;
+			$eip = 1;
+			$es = 1;
+			$esi = 1;
+			$esp = 1;
+			$gs = 1;
+			$ss = 1;
+		};
+	};
+	37E5B8EC0EF6D4F100C8A071 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	37E5B8ED0EF6D4F100C8A071 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	37ECDD13136AF6200037E7CE /* InanimateObject.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1382, 742}}";
+			sepNavSelRange = "{509, 0}";
+			sepNavVisRange = "{0, 885}";
+			sepNavWindowFrame = "{{588, 4}, {1130, 774}}";
+		};
+	};
+	37ECDD16136AF6370037E7CE /* InanimateObject.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1154, 882}}";
+			sepNavSelRange = "{581, 0}";
+			sepNavVisRange = "{346, 838}";
+			sepNavWindowFrame = "{{15, 4}, {1130, 774}}";
+		};
+	};
+	37F4A0A812402CFE001E9780 /* RobotAgent.cpp:461 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 3720BCDC0F7D149100D5FF81 /* RobotAgent.cpp */;
+		functionName = "RobotAgent::move( int __recursiveIt )";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 461;
+		location = roborobo;
+		modificationTime = 317100136.726516;
+		state = 2;
+	};
+	37F6CF4E116A31F800ABAE5D /* GlobalConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 646}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 172}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	37F6CF4F116A31F800ABAE5D /* ConfigurationLoader.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1076, 646}}";
+			sepNavSelRange = "{466, 0}";
+			sepNavVisRange = "{0, 1298}";
+			sepNavWindowFrame = "{{26, 4}, {1056, 774}}";
+		};
+	};
+	37F6CF5F116A32DB00ABAE5D /* ConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 1848}}";
+			sepNavSelRange = "{1207, 0}";
+			sepNavVisRange = "{274, 1487}";
+			sepNavWindowFrame = "{{414, 132}, {1056, 746}}";
+		};
+	};
+	37F6CF6E116A331F00ABAE5D /* OnePlusOneOnlineConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {752, 616}}";
+			sepNavSelRange = "{158, 17}";
+			sepNavVisRange = "{0, 646}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	37F6CF79116A333800ABAE5D /* StrongCausalityConfigurationLoader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {997, 630}}";
+			sepNavSelRange = "{183, 0}";
+			sepNavVisRange = "{0, 1359}";
+			sepNavWindowFrame = "{{15, 4}, {1056, 774}}";
+		};
+	};
+	8D1107260486CEB800E47090 /* roborobo */ = {
+		activeExec = 0;
+		executables = (
+			37E5B8DA0EF6D4ED00C8A071 /* roborobo */,
+		);
+	};
+	8D1107310486CEB800E47090 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {941, 378}}";
+			sepNavSelRange = "{234, 0}";
+			sepNavVisRange = "{0, 510}";
+			sepNavWindowFrame = "{{38, 98}, {862, 878}}";
+		};
+	};
+}

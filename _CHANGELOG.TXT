@@ -1,0 +1,80 @@
+[20120606::r3000]
+- enabled command-line parameters
+- optimized collision detection (gain: from x1.09 (using miniagent-mask-edgesOnly.png) to x2.26 (using agent-mask-edgesOnly.png))
+- added trajectory tracking methods (create an image in ./logs) - see FAQ.
+
+[20110429::r1905]
+- rename changelog.txt to _CHANGELOG.TXT
+- added InanimateObject.cpp/h
+- removed EnergyPerceptronControlArchitecture.cpp/h (unused)
+- ''makefile-manager -r'' now activate BasicProject by default
+
+[20110426::r1876]
+- added the modular Makefile method and  makefile-manager script (and modifications)
+- added a 'perso' directory
+- added a _FAQ.TXT, revision of _INSTALL.TXT, update of _README.TXT (quick start section)
+
+[20110314::r1731]
+- src/contrib files moved to src/contrib/zsu
+- src/contrib now allows subdirectories (one level restricted)
+- Makefile and Xcode project are updated
+
+[20100915::r???]
+- added milliseconds in automatic log file numbering.
+- max translational speed is now limited wrt. agent size (+ added a safe-check)
+- user-controlled robot does not provoke segmentation fault if collision (bug corrected)
+- proximity sensor are now displayed optionaly in render mode (hot-key for visualization)
+- in inspector mode for user-control: selected agent is now easy to spot.
+
+[20100527::r1016]
+- Major refactoring, including introducing PRJ directories
+
+[20090604::r155]
+- RobotAgentWorldInterfaceDangerWorld.cpp/h: danger zone parameters are loaded from properties files.
+- Misc.cpp/h: created functions getEuclidianDistance(...) and getSquaredEuclidianDistance(...)
+- dangerzone.properties: added danger-zone specific parameters
+- switch from using Properties class to ExtendedProperties class
+- created ExtendedProperties.cpp/h
+
+[20090603::r154]
+- **TODO item**: in RobotAgentWorldInterfaceDangerWorld, hard-coded parameter for velocity penalization in danger zone
+- RobotAgentWorldModel: created... 
+   _robotNeighborhoodCounter (class private field)
+   method getWorld()
+   methods setRobotNeighborhoodCounter, incRobotNeighborhoodCounter and getRobotNeighborhoodCounter
+   methods getXReal() and getYReal()
+- RobotAgent: created method getWorldModel()
+- roborobo.cpp: the main World instance turns global scope (gWorld)
+
+[20090602::r153]
+- include/core/World/World.h: add prototype declaration "class RobotAgent;"
+- RobotAgentWorldInterfaceDangerWorld.h: minor corrections (pre-processor name was wrong, Xcode was tolerant, not make/linux)
+- Makefile: added RobotAgentWorldInterfaceDangerWorld.o in OBJS
+
+[20090601::r151]
+- RobotAgentWorldInterfaceDangerWorld.cpp: implement danger zone
+- added RobotAgentWorldInterfaceDangerWorld class as a friend in RobotAgentWorldModel.h
+- created RobotAgentWorldInterfaceDangerWorld.cpp/h
+- created include/ext/World/
+
+[20090529::r148]
+- roborobo.cpp/h and RobotAgent.cpp: added gMaxTranslationDeltaValue (parameter value set in properties file)
+- RobotAgent.cpp: rename updateDeltaPosition() to applyDynamics()
+- src/core/SDL_gfxRoborobo.cpp, l.19: explicit cast to (char*) (remove cast warning)
+- created include/core/World directory
+- World.h: move from include/core/RoboroboMain to include/core/World
+- RobotAgentWorldInterface.h: created in include/core/World
+
+[20090528::r135]
+- RobotAgentWorldModel.cpp: refactor translation/rotational desired and actual variable names
+- robotAgent.cpp: change _wm->_actualTranslationalValue update (= _wm->_agentAbsoluteLinearSpeed instead of  _wm->_desiredTranslationalValue, as the desired value may not be reachable due to physical limitations)
+- RobotAgent::updateDeltaPosition(): rewrite.
+
+[20090123::r???]
+- release candidate #2
+- Heavy refactoring. basic entry points for starting developping evolution.
+
+[20090113::r???]
+- release candidate #1
+- first stable release of the simulator. batch and ui mode.
+

@@ -1,0 +1,109 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+=-=-=-=-=-=-=-=-=-=-=-= ROBOROBO! =-=-=-=-=-=-=-=
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+=- 2008-2012 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+-=-=-=-= nicolas.bredeche(at)gmail.com -=-=-=-=-=
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+Short introduction: Roborobo is coded in C++, and rely on a simple philosophy: "Keep it simple". Therefore, its external dependencies are currently limited to the SDL library (for fast 2D Graphics). It can be compiled with a simple Makefile. And new projects can be introduced quickly and easily.
+
+How to make it run, in a nutshell:
+- STEP 1: install dependencies (i.e. SDL library)
+- STEP 2: choose your compiling method, and run.
+
+
+=-=-=-=
+=-=-=-= STEP 1 : COMPILING AND RUNNING ROBOROBO
+=-=-=-=
+
+
+**General Comments**
+- The only (not-really-)tricky thing is to link with SDL (http://www.libsdl.org/ -- available for all platforms). Otw the code mostly follow a classic C/C++ sub-directory structure.
+- SDL include templates may vary from one target to another (MACosX and Linux targets imply different include scheme). Hence, the target OS is set in "include/core/RoboroboMain/common.h". This should be set automatically.
+
+**MacOS X**
+- install SDL and extensions (example of location: http://www.libsdl.org/ and http://www.libsdl.org/projects/)
+	- SDL main library (e.g.: SDL-1.2.13.dmg for MacosX)
+	- SDL Image (e.g.: SDL_image-1.2.7.dmg for MacosX)
+	- SDL Mixer  (e.g.: SDL_mixer-1.2.8.dmg for MacosX)
+	- SDL ttf  (e.g.: SDL_ttf-2.0.9.dmg for MacosX)
+- create symbolic links for config/, data/ and logs/ in the directory where the binary is created.
+	- in Xcode version 3 and below, e.g.: <roborobo_root_directory>/build/Debug for MacosX with the included Xcode project), create/update the './build/Debug' directory, enter the following command in the console:
+		ln -s ../../config config
+		ln -s ../../data data
+		ln -s ../../logs logs
+    - in Xcode version 4, check _FAQ.txt
+- use Xcode project
+- compile and go.
+
+**Linux**
+- install SDL and extensions (using apt-get, synaptic, or any package installation manager), example with apt-get:
+	sudo apt-get install libsdl1.2	(or libsdl1.2debian-all)
+	Ubuntu : sudo apt-get install libsdl1.2debian-alsa
+	sudo apt-get install libsdl1.2-dev
+	sudo apt-get install libsdl-image1.2
+	sudo apt-get install libsdl-image1.2-dev
+	sudo apt-get install libsdl-ttf2.0-0
+	sudo apt-get install libsdl-ttf2.0-dev
+	sudo apt-get install libsdl-mixer1.2
+	sudo apt-get install libsdl-mixer1.2-dev	
+- compile and link: type "make" (a new binary is created at the roborobo root called "roborobo.exe")
+- launch: "./roborobo"
+- note: if it fails to compile, check the Makefile file for up-to-date OBJS list.
+
+**Windows**
+- install SDL and extensions (DLL may also be put directly in the same directory that of the binary file)
+- use MinGW or Cygwin to compile using linux GNU compiler/linker.
+	- not tested, but probably work: type "make".
+- launch: double-click in explorer, or launch with command line.
+- note that we are not actually using Windows, eventhough this was tested at some point.
+
+
+=-=-=-=
+=-=-=-= STEP 2 : COMPILING AND RUNNING ROBOROBO
+=-=-=-=
+
+*** LINUX (or WINDOWS, with Cygwin or MinGW) ***
+
+The MODULAR way: Makefile.modular    [the default, more powerful, preferred method]
+- howto:
+  in the console, enter the following commands (set-up makefile, compile, and execute)
+    $ ./makefile-manager -r
+    $ ./makefile-manager -a BasicProject
+    $ make  
+    $ ./roborobo
+- pros: you choose which projects to compile. I.e. independant from other on-going projects
+- cons: you have to set it up.
+- note: in the list of commands above, a default project is activated (BasicProject) for you to test roborobo. You may activate other (or all) projects.
+=> check section MANAGING MODULAR MAKEFILE for details in _README.TXT
+
+The SIMPLE, BACK-UP way: Makefile.basic [the back-up method. use only if the previous did not work, which it should...]
+- howto: 
+  in the console, enter the following commands (set-up makefile, compile, and execute)
+    $ cp Makefile.basic Makefile
+    $ make
+    $ ./roborobo
+- pros: the simplest way to get roborobo running, so basic it should run everywhere.
+- cons: all projects (in prj/) MUST compile without error
+- note: in the list of commands above, ALL projects will be compiled, which can be a problem if you are working with others, as any possible problems with other projects may prevent compilation success. The modular makefile method is an answer to this problem. Use it.
+
+Then, you just have to type 'make' to compile from now on.
+
+
+*** MAC OSX ***
+
+Use the Xcode project.
+
+
+=-=-=-=
+=-=-=-= STEP 3 : the next step
+=-=-=-=
+
+Where to go from here? If you want to start implementing your own code, chech the _README.TXT file. In particular, the 'DEVELOPPER'S QUICK START' section should be helpful. A quick start to development can be found in the sub-section 'QUICK START : SETTING UP YOUR PROJECT SPACE'. Good Luck.
+
+Check _README.TXT for further informations.
+Check _FAQ.TXT for trouble shooting.

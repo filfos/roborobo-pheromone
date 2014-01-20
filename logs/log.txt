@@ -1,0 +1,12 @@
+# =-=-=-=-=-=-=-=-=-=-=
+# LOG DATA 
+# =-=-=-=-=-=-=-=-=-=-=
+#
+# =-= Roborobo! 
+# =-= Official version tag    : 20120605
+# =-= Current build name      : Amsterdam build
+# =-= Compilation version tag : Jan 20 2014 - 15:17:44
+#
+# Loaded time stamp           : 20140120-15h53m30s965747us
+#
+# random seed             : 1390229610

@@ -17,6 +17,10 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	stepCounter = 0;
 	score = 0;
 	
+	
+	tempForeground = IMG_Load("data/pheromone/rand1.png");
+	
+	
 // 	Environment 1 1300x700
 // 	createFood(100, 105, 20);
 // 	createFood(120, 535, 20);
@@ -27,13 +31,15 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 // 	createFood(1130, 620, 20);
 	
 // 	Environment 1 1500x900
-	createFood(120, 120, 30);
-	createFood(620, 114, 30);
-	createFood(1390, 94, 30);
-	createFood(704, 452, 30);
-	createFood(148, 678, 30);
-	createFood(828, 834, 30);
-	createFood(1414, 810, 30);
+// 	createFood(120, 120, 30);
+// 	createFood(620, 114, 30);
+// 	createFood(1390, 94, 30);
+// 	createFood(704, 452, 30);
+// 	createFood(148, 678, 30);
+// 	createFood(828, 834, 30);
+// 	createFood(1414, 810, 30);
+	randomizeFood(1500, 900, 10, 30);
+	
 	
 	
 	
@@ -314,6 +320,229 @@ void BasicPheromoneWorldObserver::stepAllFoods()
     }
   }
 }
+
+
+
+
+void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius)
+{
+  int count = 0;
+  std::vector<std::vector<int> > coords(2, std::vector<int>(noofFood));  
+  
+  srand(time(0));
+  
+  for (int i = 0; i != noofFood; i++)
+  {
+    int x = (rand() % imageWidth) + 1;
+    int y = (rand() % imageHeight) + 1;
+    
+//     std::cout << " x " << x << std::endl;
+//     std::cout << " y " << y << std::endl;
+    
+    if ( !foodNearby(x, y, thresholdRadius, coords))
+    {
+      
+      bool obstacleOverlap = true;
+      while(obstacleOverlap)
+      {
+	std::vector<int> loc(2);
+	loc = insideObstacle(x, y, 20);
+	x += loc[0];
+	y += loc[1];
+	
+	obstacleOverlap = loc[0] != 0 && loc[1] != 0;
+	
+      }
+       coords[0].push_back(x);
+       coords[1].push_back(y);
+       createFood(x, y, 20);      
+       std::cout << "x : " << x << "  y  " << y << std::endl;
+    }
+    else
+    {
+      ++count;
+      --i;
+      std::cout << "Food number " << i << " retrying" << std::endl;
+    }
+    
+    if (count > 100)
+    {
+      std::cout << "ABANDON SHIP" << std::endl;
+      return;
+    }
+
+  }
+  
+  std::cout << " ------- FOOD LOCATIONS ------" << std::endl;
+  for (Uint8 i = 0; i < coords[0].size(); i++)
+    std::cout << " x:  " << coords[0][i] << "    y:  " << coords[1][i] << std::endl;
+}
+
+bool BasicPheromoneWorldObserver::foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood)
+{
+  for (Uint8 i = 0; i != otherFood.size(); i++)
+  {
+    if (pow((double)(x - otherFood[0][i]) , 2.0) + pow((double)(y - otherFood[1][i]) , 2.0)  <= pow((double)radius, 2.0))
+      return true;
+  }
+  return false;
+}
+
+std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int radius)
+{
+  std::vector<int> black(8);
+  Uint8 r, g, b;
+  
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x, y-i ); 
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    if (r == 255 && b == 255 && g == 255)
+      black[0] += 1;      
+    else
+      break;
+  }
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x+i, y-i );
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    
+    if (r == 255 && b == 255 && g == 255)
+      black[1] += 1;      
+    else
+      break;
+  }
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x+i, y );
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    
+    if (r == 255 && b == 255 && g == 255)
+      black[2] += 1;      
+    else
+      break;
+  } 
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x+i, y+i );
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    
+    if (r == 255 && b == 255 && g == 255)
+      black[3] += 1;      
+    else
+      break;
+  }
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x, y+i );
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    
+    if (r == 255 && b == 255 && g == 255)
+      black[4] += 1;      
+    else
+      break;
+  }
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x-i, y+i );
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    
+    if (r == 255 && b == 255 && g == 255)
+      black[5] += 1;      
+    else
+      break;
+  }
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x-i, y );
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    
+    if (r == 255 && b == 255 && g == 255)
+      black[6] += 1;      
+    else
+      break;
+  } 
+  
+  for (int i = 0; i < radius; i++)
+  {
+    Uint32 pixel = getPixel32(tempForeground, x-i, y-i );
+    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    
+    if (r == 255 && b == 255 && g == 255)
+      black[7] += 1;      
+    else
+      break;
+  }
+  
+  
+  std::vector<int> temp(2);
+  temp[0] = 0;
+  temp[1] = 0;
+  for (Uint8 i = 0; i < black.size(); i++)
+  {
+    if (black[i] > temp[1])
+    {
+      temp[0] = i;
+      temp[1] = black[i];
+    }
+  }
+  
+  
+  int _x = 0;
+  int _y = 0;
+  
+  switch (temp[0])
+  {
+    case 0:
+//       _x = 0;
+      _y -= temp[1];
+      break;
+    case 1:
+      _x += temp[1];
+      _y -=temp[1];
+      break;
+    case 2:
+      _x += temp[1]; 
+//       _y = 0;
+    break;
+    case 3:
+      _x += temp[1];
+      _y += temp[1];
+      break;
+    case 4:
+//       _x = 0;
+      _y += temp[1];
+      break;
+    case 5:
+      _x -= temp[1];
+      _y -= temp[1];
+      break;
+    case 6:
+      _x -= temp[1];
+//       _y = 0;
+      break;
+    case 7:
+      _x -= temp[1];
+      _y += temp[1];
+      break;
+  }
+  
+  
+//   std::cout << "x " << _x << "  y " << _y << std::endl;
+  std::vector<int> newLoc(2);
+  newLoc[0] = _x;
+  newLoc[1] = _y;  
+      
+  return newLoc;    
+}
+
 
 
 

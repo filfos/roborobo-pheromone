@@ -51,7 +51,7 @@ void BasicPheromoneControlArchitecture::step()
 	//  _pheromoneCounter = 5;
 	}
 	
-	std::cout << "Distance:  " << _pSensor->distanceToPheromone(FRONT) << std::endl;
+	//std::cout << "Distance:  " << _pSensor->distanceToPheromone(FRONT) << std::endl;
 	
 	pheromoneReaction();
 

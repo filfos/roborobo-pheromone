@@ -18,6 +18,9 @@
 
 #include <vector>
 #include <deque>
+#include <cstdlib>
+#include <time.h>
+#include <math.h>
 #include "BasicPheromone/include/Pheromone.h"
 #include "BasicPheromone/include/Food.h"
 
@@ -42,7 +45,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		int noofPheromoneTimesteps;
 		Uint8 noofFoodFound;
 		int score;
-
+		
+		SDL_Surface* tempForeground;
 		
 		int stepCounter;
 		
@@ -58,6 +62,12 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int defaultInterval = 20;
 		static const int defaultLifetime = 300;		
 		static const int defaultMaxDiffusion = 70;
+		
+		void randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius);
+		bool foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood);
+
+		std::vector<int> insideObstacle(int x, int y, int radius);
+
 		
 		void stepAllPheromones();
 		void stepAllFoods();

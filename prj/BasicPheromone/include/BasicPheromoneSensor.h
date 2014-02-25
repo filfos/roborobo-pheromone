@@ -59,7 +59,10 @@ class BasicPheromoneSensor
     
     const static double pi = 3.141592;
 
-    const static double lengthLight = 20.0;
+    const static double lengthLight = 30.0;
+    
+    const static int x_offset = 15;
+    const static int y_offset = 15;
     
     int x_center;
     int y_center;

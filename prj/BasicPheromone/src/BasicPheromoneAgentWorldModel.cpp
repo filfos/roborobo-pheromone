@@ -13,10 +13,20 @@
 BasicPheromoneAgentWorldModel::BasicPheromoneAgentWorldModel()
 {
 	_sensors = NULL;
+	std::cout<<  "HELLO WORLD" << std::endl;
+	intensities[1][1] = 2;
 }
 
 BasicPheromoneAgentWorldModel::~BasicPheromoneAgentWorldModel()
 {
 	if ( _sensors != NULL )
 		delete[] _sensors;
+}
+
+
+void BasicPheromoneAgentWorldModel::testFoo()
+{
+  std::cout << "THIS IS A TEST " << std::endl;
+  std::cout << intensities[1][1]++ << std::endl;
+  
 }

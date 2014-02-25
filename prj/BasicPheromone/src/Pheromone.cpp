@@ -10,6 +10,7 @@ Pheromone::Pheromone(World *__world, int __robotId)
 {
   _robotId = __robotId;
   _world = __world;
+  //_wo = _world->getWorldObserver();
   
   Pheromone::init();
 }
@@ -32,12 +33,15 @@ Pheromone::~Pheromone()
 
 void Pheromone::init()
 {
-  _stepCounter = -20;
+  _stepCounter = -50;
   a = 255;
   _radius = 0;
   RobotAgent *robot = _world->getAgent(_robotId);  
   robot -> getCoord(_x, _y);
+  _x += x_offset;
+  _y += y_offset;
   filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
+ 
 }
 
 void Pheromone::diffuse()
@@ -52,10 +56,11 @@ void Pheromone::diffuse()
     
     //_radius+=3;
     
-    
-    
-    filledCircleRGBA(gBackgroundImage, _x, _y, _radius, 255, 255, 255, 255);
-    filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
+       
+  //  filledCircleRGBA(gBackgroundImage, _x, _y, _radius, 255, 255, 255, 255);
+  //  filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
+//     std::cout << _wo->getIntensityAt(1,1) << std::endl;
+    drawPixels(_radius);
   }
   
 }
@@ -90,7 +95,91 @@ int Pheromone::getIntensity()
   return a;
 }
 
+// NB: Squared answer.
+int Pheromone::distanceFromCenter(int x, int y)
+{
+  int dx = x - _x;
+  int dy = y - _y;
+  
+  dx *= dx;
+  dy *= dy;
+  
+  return dx + dy;
+}
 
+void Pheromone::drawPixels(int radius)
+{
+  int sqrdRadius = radius*radius;
+  
+  for (int x = _x-radius; x < _x+radius || x >= 1500; x++)
+  {
+    if (x < 0) continue;
+    for (int y = _y-radius; y < _y+radius || y >= 900; y++)
+    {
+      if (y < 0) continue;
+      
+      if (distanceFromCenter(x, y) < sqrdRadius)
+      {
+	Uint8 alpha = getAlpha(x, y);
+	alpha = alpha + a > 255 ? 255 : alpha + a;
+	//TEST If overflow
+	pixelRGBA(gBackgroundImage, x, y, r, g, b, a);
+      }
+    }
+  }
+  
+}
+
+
+Uint8 Pheromone::getAlpha(int x, int y)
+{
+    Uint8 r, g, b;
+    Uint32 pixel = getPixel32(gBackgroundImage, x, y ); 
+    SDL_GetRGB(pixel, gBackgroundImage->format, &r, &g, &b);
+    
+    //Simulate alpha channel
+    return 255-g;
+}
+
+
+//TODO Revert
+/*
+void Pheromomone::drawCircle()
+{
+  int x0;
+  int y0;
+  
+  int radius;
+  int maxRadius;
+  
+  int x = radius;
+  int y = 0;
+  
+  int radiusError =  1-x;
+  
+  while (x >= y)
+  {
+    DrawPixel(x + x0, y + y0);
+    DrawPixel(y + x0, x + y0);
+    DrawPixel(-x + x0, y + y0);
+    DrawPixel(-y + x0, x + y0);
+    DrawPixel(-x + x0, -y + y0);
+    DrawPixel(-y + x0, -x + y0);
+    DrawPixel(x + x0, -y + y0);
+    (y + x0, -x + y0);
+    
+    y++;
+    
+    if (radiusError < 0)
+      radiusError += 2*y + 1;
+    else
+    {
+      x--;
+      radiusError += 2*(y - x + 1);
+    }
+  } 
+}
+*/
 
   /*
   radius++;

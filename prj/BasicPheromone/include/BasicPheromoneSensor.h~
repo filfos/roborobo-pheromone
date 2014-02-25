@@ -45,7 +45,7 @@ class BasicPheromoneSensor
      */
     double _sensor[8][6];
     
-    double distanceToPheromone(int sensorId);
+    int distanceToPheromone(int sensorId);
     double getPheromoneIntensity(int sensorId, double distance);
     
     const static int sensorRange = 100;
@@ -59,7 +59,10 @@ class BasicPheromoneSensor
     
     const static double pi = 3.141592;
 
-    const static double lengthLight = 20.0;
+    const static double lengthLight = 30.0;
+    
+    const static int x_offset = 15;
+    const static int y_offset = 15;
     
     int x_center;
     int y_center;

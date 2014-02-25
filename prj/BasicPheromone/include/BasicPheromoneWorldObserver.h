@@ -23,6 +23,7 @@
 #include <math.h>
 #include "BasicPheromone/include/Pheromone.h"
 #include "BasicPheromone/include/Food.h"
+#include "BasicPheromone/include/BasicPheromoneAgentWorldModel.h"
 
 
 
@@ -63,6 +64,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int defaultLifetime = 300;		
 		static const int defaultMaxDiffusion = 70;
 		
+		Uint8 intensities[1500][900];
+		
 		void randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius);
 		bool foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood);
 
@@ -87,6 +90,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void reset();
 		void step();
 		
+		Uint8 getIntensityAt(int x, int y);
+		void setIntensityAt(int x, int y, Uint8 value);
 		
 		
 };

@@ -17,8 +17,12 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	stepCounter = 0;
 	score = 0;
 	
+	intensities[0][0] = 0;
 	
 	tempForeground = IMG_Load("data/pheromone/rand1.png");
+	
+	
+
 	
 	
 // 	Environment 1 1300x700
@@ -93,6 +97,52 @@ void BasicPheromoneWorldObserver::step()
 {
   WorldObserver::step();
   
+//   aalineRGBA(gBackgroundImage, 100, 100, 250, 250, 255, 0, 0, 150);
+//   aalineRGBA(gBackgroundImage, 250, 250, 800, 800, 255, 0, 0, 150);
+//   
+//   
+//   int x0 = 500;
+//   int y0 = 500;
+//   
+//   int radius = 0;
+//   int maxRadius = 100;
+//   
+//   while (radius <= maxRadius)
+//   {
+//     ++radius;
+//     int x = radius;
+//     int y = 0;
+//     
+//     int radiusError =  1-x;
+//     
+//     while (x >= y)
+//     {
+//       pixelRGBA(gBackgroundImage, x + x0, y + y0, 255, 0, 0, 200);
+//       pixelRGBA(gBackgroundImage,y + x0, x + y0, 255, 0, 0, 200);
+//       pixelRGBA(gBackgroundImage,-x + x0, y + y0, 255, 0, 0, 200);
+//       pixelRGBA(gBackgroundImage,-y + x0, x + y0, 255, 0, 0, 200);
+//       pixelRGBA(gBackgroundImage,-x + x0, -y + y0, 255, 0, 0, 200);
+//       pixelRGBA(gBackgroundImage,-y + x0, -x + y0, 255, 0, 0, 200);
+//       pixelRGBA(gBackgroundImage,x + x0, -y + y0, 255, 0, 0, 200);
+//       pixelRGBA(gBackgroundImage,y + x0, -x + y0, 255, 0, 0, 200);
+//       
+//       y++;
+//       
+//       if (radiusError < 0)
+// 	radiusError += 2*y + 1;
+//       else
+//       {
+// 	x--;
+// 	radiusError += 2*(y - x + 1);
+//       }
+//     } 
+//   }	
+  
+  
+  BasicPheromoneAgentWorldModel* tt;
+  tt = (BasicPheromoneAgentWorldModel*)_world->getAgent(0)->getWorldModel();
+  tt->testFoo();
+  
   if (noofFoodFound == foodList.size())
   {
     for (Uint8 i = 0; i < foodList.size(); i++)
@@ -163,52 +213,7 @@ void BasicPheromoneWorldObserver::stepAllPheromones()
     
 }
 
-/*
-void BasicPheromoneWorldObserver::stepAllPheromones()
-{
-    std::deque<Pheromone*>::iterator ph;
-    for (ph = pheromoneQueue.begin(); ph != pheromoneQueue.end(); )
-    {
-      if ((*ph)->getIntensity() == 0)
-      {
-	std::cout << "queue size " << pheromoneQueue.size() << std::endl;
-// 	if (pheromoneQueue.size() == 1)
-// 	{
-// 	  pheromoneQueue.clear();
-// 	  break;
-// 	}
-	pheromoneQueue.erase(ph);
-      }
-      else
-      {
-	std::cout << "step" << std::endl;
-	(*ph)->step();
-	++ph;
-      }
-    }
-    
-//     std::vector<int> deleteIndices;
-//     for (int i = 0; i < pheromoneQueue; i++)
-//     {
-//       if (pheromoneQueue.at(i)->getIntensity() == 0)
-// 	deleteIndices.push_back();
-//       else
-// 	pheromoneQueue.at(i)->step();
-//     }
 
-}
-*/
-
-/*
-void BasicPheromoneWorldObserver::secretePheromones()
-{
-  for (int i = 0; i != gAgentCounter; i++)
-  {					// Interval, lifetime, maxradius	
-    Pheromone *p = new Pheromone(_world, i, 25, 300, 50);
-    pheromoneQueue.push_back(p);
-  }
-}
-*/
 void BasicPheromoneWorldObserver::secretePheromones(int interval, int lifetime, int maxDiffusion)
 {
   for (int i = 0; i != gAgentCounter; i++)
@@ -253,7 +258,7 @@ void BasicPheromoneWorldObserver::secretePheromones()
 	_world->getAgent(i)->getWorldModel()->setRobotLED_colorValues(0,0,0);
       }
     }
-    if (useDefaultPheromones)
+    if (_world->getAgent(i)->getWorldModel()->getRobotLED_greenValue() == 255 && useDefaultPheromones)
     {
       if (pheromoneTimer.at(i) > 0)
       {
@@ -291,9 +296,15 @@ void BasicPheromoneWorldObserver::checkForFood()
     {
       int x, y;
       _world->getAgent(i)->getCoord(x, y);
+      x += 15;
+      y += 15;
       for (Uint8 j = 0; j < foodList.size(); j++)
       {
 	int id = foodList.at(j)->getId(x, y);
+	//correct error in Roborobo's coordinates:
+	
+	filledCircleRGBA(gBackgroundImage, x, y, 50, 0, 255, 255, 255);
+	
 	//std::cout << "id: " << id << std::endl;
 	if (id != 0 && foundFood.at(id-1) == 0)
 	{
@@ -346,7 +357,7 @@ void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight,
       while(obstacleOverlap)
       {
 	std::vector<int> loc(2);
-	loc = insideObstacle(x, y, 20);
+	loc = insideObstacle(x, y, 30);
 	x += loc[0];
 	y += loc[1];
 	
@@ -543,7 +554,13 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   return newLoc;    
 }
 
+Uint8 BasicPheromoneWorldObserver::getIntensityAt(int x, int y)
+{
+  return intensities[x][y];
+}
 
-
-
+void BasicPheromoneWorldObserver::setIntensityAt(int x, int y, Uint8 value)
+{
+  intensities[x][y] = value;
+}
 

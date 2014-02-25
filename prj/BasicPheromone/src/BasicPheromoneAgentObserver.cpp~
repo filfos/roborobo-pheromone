@@ -6,7 +6,7 @@
  *
  */
 
-#include "BasicPheromone/src/BasicPheromoneAgentObserver.h"
+#include "BasicPheromone/include/BasicPheromoneAgentObserver.h"
 
 
 
@@ -17,6 +17,7 @@ BasicPheromoneAgentObserver::BasicPheromoneAgentObserver( )
 BasicPheromoneAgentObserver::BasicPheromoneAgentObserver( RobotAgentWorldModel *__wm )
 {
 	_wm = (BasicPheromoneAgentWorldModel*)__wm;
+	_wm->testFoo();
 }
 
 BasicPheromoneAgentObserver::~BasicPheromoneAgentObserver()

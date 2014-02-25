@@ -14,6 +14,9 @@
 #include "RoboroboMain/roborobo.h"
 
 #include "WorldModels/RobotAgentWorldModel.h"
+#include "Pheromone.h"
+
+#include <vector>
 
 class World;
 
@@ -21,6 +24,14 @@ class BasicPheromoneAgentWorldModel : public RobotAgentWorldModel
 {	
 	private: 
 		int _robotNeighborhoodCounter; // count the number of other robots within a given radius.
+		
+		
+	protected:
+	  
+		std::vector<Pheromone*> pheromones;
+		double intensities[1500][900];
+		
+  
 	
 	public:
 
@@ -28,6 +39,8 @@ class BasicPheromoneAgentWorldModel : public RobotAgentWorldModel
 		
 		BasicPheromoneAgentWorldModel();
 		virtual ~BasicPheromoneAgentWorldModel();
+		
+		void testFoo();
 };
 
 

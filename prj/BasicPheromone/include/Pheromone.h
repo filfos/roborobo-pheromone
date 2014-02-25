@@ -7,6 +7,7 @@
 #define PHEROMONE_H
 #include <World/EnergyPoint.h>
 #include <Agents/RobotAgent.h>
+//#include "BasicPheromone/include/BasicPheromoneWorldObserver.h"
 
 #include <cstdio>
 
@@ -21,11 +22,16 @@ class Pheromone
       
       int getIntensity();
       
+      
+      
     protected :
 	int _x;
 	int _y;
 	int _radius;
 	Uint16 _stepCounter;
+	
+	const static int x_offset = 15;
+	const static int y_offset = 15;
 	
 	
 	//Number of time steps before complete evaporation
@@ -42,9 +48,16 @@ class Pheromone
 	
 	void diffuse();
 	void evaporate();
+	
+	
+	int distanceFromCenter(int x, int y);
+	void drawPixels(int radius);
+	Uint8 getAlpha(int x, int y);
   
 	int _robotId;
 	World *_world;
+	//BasicPheromoneWorldObserver* _wo;
+	
 };
 
 #endif // PHEROMONE_H

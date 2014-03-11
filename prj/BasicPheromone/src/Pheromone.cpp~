@@ -10,7 +10,7 @@ Pheromone::Pheromone(World *__world, int __robotId)
 {
   _robotId = __robotId;
   _world = __world;
-  _wo = _world->getWorldObserver();
+  //_wo = _world->getWorldObserver();
   
   Pheromone::init();
 }
@@ -22,9 +22,24 @@ Pheromone::Pheromone(World *__world, int __robotId, int __interval, int __lifeti
   _interval = __interval;
   _lifetime = __lifetime;
   _maxDiffusion = __maxDiffusion;
+  _initialIntensity = 255;
+  _evaporated = 0;
   
   Pheromone::init();
 }
+
+Pheromone::Pheromone(World *__world, int __robotId, int __interval, int __lifetime, int __maxDiffusion, Uint8 __initialIntensity)
+{
+  _robotId = __robotId;
+  _world = __world;
+  _interval = __interval;
+  _lifetime = __lifetime;
+  _maxDiffusion = __maxDiffusion;
+  _initialIntensity = __initialIntensity;
+  _evaporated = 0;
+  Pheromone::init();
+}
+
 
 Pheromone::~Pheromone()
 {
@@ -34,52 +49,50 @@ Pheromone::~Pheromone()
 void Pheromone::init()
 {
   _stepCounter = -50;
-  a = 255;
+  a = _initialIntensity; //FIXME Only seems to work when this is 255
   _radius = 0;
+  _isUpdated = false;
   RobotAgent *robot = _world->getAgent(_robotId);  
   robot -> getCoord(_x, _y);
   _x += x_offset;
   _y += y_offset;
   filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
+  
  
 }
 
 void Pheromone::diffuse()
 {
-   // std::cout << _stepCounter << std::endl;
   if (_stepCounter == _interval)
   {
-  //  SDL_FillRect(gBackgroundImage, NULL, 0xffffffff);
     _stepCounter = 0;
-    
+    _isUpdated = true;    
     evaporate();
-    
-    //_radius+=3;
-    
-       
-  //  filledCircleRGBA(gBackgroundImage, _x, _y, _radius, 255, 255, 255, 255);
-  //  filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
-    std::cout << _wo->getIntensityAt(1,1) << std::endl;
-    drawPixels(_radius);
+  }
+  else
+  {
+    _isUpdated = false;
   }
   
 }
 
 void Pheromone::evaporate()
-{
- // std::cout << "alpha " << a << std::endl;
+{ 
+   _evaporated = a; //was +=
  
- 
-   double norm_a = (double)a / 255.0d;
+   double norm_a = (double)a / 255.0;
    norm_a = norm_a *  exp((log(0.5)/_lifetime )*_interval);
    a = norm_a*255;
-  //a -=15;
+   
+   _evaporated -= a;
+   _oldRadius = _radius;
+   
+   double radiusFactor = 1 - ((double)a / (double)_initialIntensity);
+   
    _radius = ceil((1-norm_a)*_maxDiffusion);
   if (a == 0)
   {
     a=0;
-   // filledCircleRGBA(gBackgroundImage, _x, _y, _radius, 255, 255, 255, 255);
-
   }
 }
 
@@ -95,6 +108,22 @@ int Pheromone::getIntensity()
   return a;
 }
 
+bool Pheromone::isActive()
+{
+  return a != 0 ? true : false;
+}
+
+void Pheromone::getCenter(int &x, int &y)
+{
+  x = _x;
+  y = _y;
+}
+
+void Pheromone::getCurrentRadius(int &radius)
+{
+  radius = _radius;
+}
+
 // NB: Squared answer.
 int Pheromone::distanceFromCenter(int x, int y)
 {
@@ -107,14 +136,40 @@ int Pheromone::distanceFromCenter(int x, int y)
   return dx + dy;
 }
 
+Uint8 Pheromone::getAlpha(int x, int y)
+{
+    Uint8 r, g, b;
+    Uint32 pixel = getPixel32(gBackgroundImage, x, y ); 
+    SDL_GetRGB(pixel, gBackgroundImage->format, &r, &g, &b);
+    
+    //Simulate alpha channel
+    return 255-g;
+}
+
+Uint8 Pheromone::getEvaporated()
+{
+  return _evaporated;
+}
+
+int Pheromone::getOldRadius()
+{
+  return _oldRadius;
+}
+
+bool Pheromone::isUpdated()
+{
+  return _isUpdated;
+}
+
+/*
 void Pheromone::drawPixels(int radius)
 {
   int sqrdRadius = radius*radius;
   
-  for (int x = _x-radius; x < _x+radius || x >= 1500; x++)
+  for (int x = _x-radius; x < _x+radius || x >= gScreenWidth; x++)
   {
     if (x < 0) continue;
-    for (int y = _y-radius; y < _y+radius || y >= 900; y++)
+    for (int y = _y-radius; y < _y+radius || y >= gScreenHeight; y++)
     {
       if (y < 0) continue;
       
@@ -128,19 +183,7 @@ void Pheromone::drawPixels(int radius)
     }
   }
   
-}
-
-
-Uint8 Pheromone::getAlpha(int x, int y)
-{
-    Uint8 r, g, b;
-    Uint32 pixel = getPixel32(gBackgroundImage, x, y ); 
-    SDL_GetRGB(pixel, gBackgroundImage->format, &r, &g, &b);
-    
-    //Simulate alpha channel
-    return 255-g;
-}
-
+}*/
 
 //TODO Revert
 /*

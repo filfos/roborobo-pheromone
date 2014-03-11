@@ -21,8 +21,7 @@
 BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgentWorldModel *__wm ) : BehaviorControlArchitecture ( __wm )
 {
     _wm = (BasicPheromoneAgentWorldModel*)__wm;
-
-    _wm->testFoo();
+    
     _pSensor = new BasicPheromoneSensor(__wm);
     stepCounter = 0;
     stagnationRotation = 0;
@@ -35,7 +34,7 @@ BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgent
     green = 0;
     blue = 0;
     
-    ignorePheromones = true;
+    ignorePheromones = false;
     releasePheromones = true;
     
     mStatus = DEFAULT;
@@ -61,7 +60,7 @@ void BasicPheromoneControlArchitecture::step()
 	
 	blue = _pSensor->foodFound() == 1 ? 255 : 0;
 	
-	green = releasePheromones ? 255 : 0;
+	green = releasePheromones ? 100 : 0;
 	
 	_wm->setRobotLED_colorValues(red, green, blue);
 	
@@ -163,7 +162,7 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 	//is used reduce the importance of side sensors (right/east and left/west).
 		rot += (( (double)gSensorRange - _wm->_sensors[NW][5] ) / (double)gSensorRange);
 		rot += (( (double)gSensorRange - (_wm->_sensors[W][5]))/ (double)gSensorRange);
-		std::cout << "WEST "<< rot <<std::endl;
+// 		std::cout << "WEST "<< rot <<std::endl;
 		_wm->_desiredRotationalVelocity = rot;
 	}	
 	else
@@ -172,7 +171,7 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 		{
 		  rot += (( (double)gSensorRange - _wm->_sensors[NE][5]) / (double)gSensorRange);
 		  rot += (( (double)gSensorRange - (_wm->_sensors[E][5]))/ (double)gSensorRange);
-		  std::cout << "EAST " << rot << std::endl;
+// 		  std::cout << "EAST " << rot << std::endl;
 		  _wm->_desiredRotationalVelocity = -rot;
 		}
 		else
@@ -268,9 +267,7 @@ void BasicPheromoneControlArchitecture::wallStagnation()
 	temp += _wm->_sensors[(i+7)%8][5];
 	temp += _wm->_sensors[i][5];
 	temp += _wm->_sensors[(i+9)%8][5];
-	
-	std::cout << "temp "<< (int)i << "  " << temp << std::endl;
-	
+		
 	
 	if (temp > val)
 	{

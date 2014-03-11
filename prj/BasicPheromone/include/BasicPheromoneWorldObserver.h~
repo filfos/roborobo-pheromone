@@ -64,7 +64,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int defaultLifetime = 300;		
 		static const int defaultMaxDiffusion = 70;
 		
-		Uint8 intensities[1500][900];
+// 		Uint8 intensities[1500][900];
+		std::vector< std::vector<int> > intensities;
 		
 		void randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius);
 		bool foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood);
@@ -80,6 +81,9 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		
 		void createFood(Sint16 x_center, Sint16 y_center, Sint16 radius);
 		void checkForFood();
+		void drawIntensities();
+		
+		bool deleteMe;
 		
 		
 		
@@ -90,8 +94,20 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void reset();
 		void step();
 		
+		/* Return intensity at (x, y) converted to unsigned 8 bit integer */
 		Uint8 getIntensityAt(int x, int y);
-		void setIntensityAt(int x, int y);
+		
+		/* Returns the unmodified intensity value at (x, y) */
+		int getActualIntensityAt(int x, int y);
+		
+		void setIntensityAt(int x, int y, Uint8 value);
+		
+		void setActualIntensityAt(int x, int y, int value);
+		
+		/* Increases intensity at (x,y) with value. Overflow will result in 255 */
+		void increaseIntensityAt(int x, int y, Uint8 value);
+		/* Reduces intensity at (x,y) with value. Overflow will result in 0 */
+		void reduceIntensityAt(int x, int y, Uint8 value);
 		
 		
 };

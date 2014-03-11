@@ -31,6 +31,9 @@ class BasicPheromoneAgentWorldModel : public RobotAgentWorldModel
 		std::vector<Pheromone*> pheromones;
 		double intensities[1500][900];
 		
+		void stepPheromones();
+				
+		
   
 	
 	public:
@@ -40,7 +43,12 @@ class BasicPheromoneAgentWorldModel : public RobotAgentWorldModel
 		BasicPheromoneAgentWorldModel();
 		virtual ~BasicPheromoneAgentWorldModel();
 		
-		void testFoo();
+		void secretePheromone(int interval, int lifetime, int maxDiffusion, Uint8 initialIntensity);
+		Pheromone* getPheromone(int index);
+		int getPheromoneQueueSize();
+		
+		World* getWorld();
+		
 };
 
 

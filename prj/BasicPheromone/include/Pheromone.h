@@ -16,12 +16,23 @@ class Pheromone
     public :
       Pheromone(World *__world, int __robotId);
       Pheromone(World *__world, int __robotId, int __interval, int __lifetime, int __maxDiffusion);
+      Pheromone(World *__world, int __robotId, int __interval, int __lifetime, int __maxDiffusion, Uint8 __initialIntensity);
       ~Pheromone();
       void init();
       void step();   
       
       int getIntensity();
+      int distanceFromCenter(int x, int y);
+      bool isActive();
+      void getCenter(int &x, int &y);
+      void getCurrentRadius(int &radius);
       
+      /* Returns reduction in intensity since previous step */
+      Uint8 getEvaporated();
+      int getOldRadius();
+      
+      bool isUpdated();
+
       
       
     protected :
@@ -30,8 +41,15 @@ class Pheromone
 	int _radius;
 	Uint16 _stepCounter;
 	
+	Uint8 _initialIntensity;
+	
+	Uint8 _evaporated;
+	int _oldRadius;
+	
 	const static int x_offset = 15;
 	const static int y_offset = 15;
+	
+	bool _isUpdated;
 	
 	
 	//Number of time steps before complete evaporation
@@ -50,8 +68,7 @@ class Pheromone
 	void evaporate();
 	
 	
-	int distanceFromCenter(int x, int y);
-	void drawPixels(int radius);
+// 	void drawPixels(int radius);
 	Uint8 getAlpha(int x, int y);
   
 	int _robotId;

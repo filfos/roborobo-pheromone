@@ -13,8 +13,7 @@
 BasicPheromoneAgentWorldModel::BasicPheromoneAgentWorldModel()
 {
 	_sensors = NULL;
-	std::cout<<  "HELLO WORLD" << std::endl;
-	intensities[1][1] = 2;
+	_world = gWorld;
 }
 
 BasicPheromoneAgentWorldModel::~BasicPheromoneAgentWorldModel()
@@ -24,9 +23,31 @@ BasicPheromoneAgentWorldModel::~BasicPheromoneAgentWorldModel()
 }
 
 
-void BasicPheromoneAgentWorldModel::testFoo()
+
+void BasicPheromoneAgentWorldModel::secretePheromone(int interval, int lifetime, int maxDiffusion, Uint8 initialIntensity)
 {
-  std::cout << "THIS IS A TEST " << std::endl;
-  std::cout << intensities[1][1]++ << std::endl;
+  Pheromone *p = new Pheromone(_world, _agentId, interval, lifetime, maxDiffusion, initialIntensity);
+  pheromones.push_back(p);
+}
+
+
+void BasicPheromoneAgentWorldModel::stepPheromones()
+{
   
+}
+
+
+Pheromone* BasicPheromoneAgentWorldModel::getPheromone(int index)
+{
+  return pheromones.at(index);
+}
+
+int BasicPheromoneAgentWorldModel::getPheromoneQueueSize()
+{
+  return pheromones.size();
+}
+
+World* BasicPheromoneAgentWorldModel::getWorld()
+{
+  return _world;
 }

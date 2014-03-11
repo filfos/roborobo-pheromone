@@ -17,11 +17,15 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	stepCounter = 0;
 	score = 0;
 	
-	intensities = 0
-	
+	intensities.resize(gScreenWidth);
+	for (int i = 0; i < gScreenWidth; i++)
+	{
+	  intensities[i].resize(gScreenHeight);
+	}
+		
 	tempForeground = IMG_Load("data/pheromone/rand1.png");
 	
-	
+	deleteMe = false;
 
 	
 	
@@ -42,7 +46,7 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 // 	createFood(148, 678, 30);
 // 	createFood(828, 834, 30);
 // 	createFood(1414, 810, 30);
-	randomizeFood(1500, 900, 10, 30);
+	randomizeFood(gScreenWidth, gScreenHeight, 10, 30);
 	
 	
 	
@@ -96,52 +100,11 @@ void BasicPheromoneWorldObserver::reset()
 void BasicPheromoneWorldObserver::step()
 {
   WorldObserver::step();
+    
+//   BasicPheromoneAgentWorldModel* tt;
+//   tt = (BasicPheromoneAgentWorldModel*)_world->getAgent(0)->getWorldModel();
   
-//   aalineRGBA(gBackgroundImage, 100, 100, 250, 250, 255, 0, 0, 150);
-//   aalineRGBA(gBackgroundImage, 250, 250, 800, 800, 255, 0, 0, 150);
-//   
-//   
-//   int x0 = 500;
-//   int y0 = 500;
-//   
-//   int radius = 0;
-//   int maxRadius = 100;
-//   
-//   while (radius <= maxRadius)
-//   {
-//     ++radius;
-//     int x = radius;
-//     int y = 0;
-//     
-//     int radiusError =  1-x;
-//     
-//     while (x >= y)
-//     {
-//       pixelRGBA(gBackgroundImage, x + x0, y + y0, 255, 0, 0, 200);
-//       pixelRGBA(gBackgroundImage,y + x0, x + y0, 255, 0, 0, 200);
-//       pixelRGBA(gBackgroundImage,-x + x0, y + y0, 255, 0, 0, 200);
-//       pixelRGBA(gBackgroundImage,-y + x0, x + y0, 255, 0, 0, 200);
-//       pixelRGBA(gBackgroundImage,-x + x0, -y + y0, 255, 0, 0, 200);
-//       pixelRGBA(gBackgroundImage,-y + x0, -x + y0, 255, 0, 0, 200);
-//       pixelRGBA(gBackgroundImage,x + x0, -y + y0, 255, 0, 0, 200);
-//       pixelRGBA(gBackgroundImage,y + x0, -x + y0, 255, 0, 0, 200);
-//       
-//       y++;
-//       
-//       if (radiusError < 0)
-// 	radiusError += 2*y + 1;
-//       else
-//       {
-// 	x--;
-// 	radiusError += 2*(y - x + 1);
-//       }
-//     } 
-//   }	
-  
-  
-  BasicPheromoneAgentWorldModel* tt;
-  tt = (BasicPheromoneAgentWorldModel*)_world->getAgent(0)->getWorldModel();
-  tt->testFoo();
+  //filledCircleColor(gBackgroundImage, 500, 500, 50);
   
   if (noofFoodFound == foodList.size())
   {
@@ -167,10 +130,13 @@ void BasicPheromoneWorldObserver::step()
   if (stepCounter == 10)
   {
     stepCounter = 0;
-    secretePheromones();
+  //  secretePheromones();
+    
+    drawIntensities();
+    
   // secretePheromones(50, 1000, 100); //interval, total time, max radius
   }
-  stepAllPheromones();
+//  stepAllPheromones();
   checkForFood();
   stepAllFoods();
 
@@ -296,22 +262,18 @@ void BasicPheromoneWorldObserver::checkForFood()
     {
       int x, y;
       _world->getAgent(i)->getCoord(x, y);
+      //correct error in Roborobo's coordinates:
       x += 15;
       y += 15;
       for (Uint8 j = 0; j < foodList.size(); j++)
       {
 	int id = foodList.at(j)->getId(x, y);
-	//correct error in Roborobo's coordinates:
 	
-	filledCircleRGBA(gBackgroundImage, x, y, 50, 0, 255, 255, 255);
-	
-	//std::cout << "id: " << id << std::endl;
 	if (id != 0 && foundFood.at(id-1) == 0)
 	{
 	  foodList.at(id-1)->hide();
 	  foundFood.at(id-1) = 1;
 	  noofFoodFound++;
-	 // std::cout << noofFoodFound << std::endl;
 	  foodFoundTimestamps.at(noofFoodFound-1) = score;
 	  foodIdTimestamps.at(id-1) = score;
 	}
@@ -333,6 +295,25 @@ void BasicPheromoneWorldObserver::stepAllFoods()
 }
 
 
+void BasicPheromoneWorldObserver::drawIntensities()
+{ 
+  SDL_LockSurface(gBackgroundImage);
+  for (Uint32 x = 0; x < intensities.size(); x++)
+  {
+    for (Uint32 y = 0; y < intensities[0].size(); y++)
+    {        
+	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255 - getIntensityAt(x, y), 255 - getIntensityAt(x, y));
+	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
+	
+	
+	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
+	*((Uint32*)pixel) = color;      
+    }
+  }
+  SDL_UnlockSurface(gBackgroundImage);
+}
+
+
 
 
 void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius)
@@ -346,9 +327,6 @@ void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight,
   {
     int x = (rand() % imageWidth) + 1;
     int y = (rand() % imageHeight) + 1;
-    
-//     std::cout << " x " << x << std::endl;
-//     std::cout << " y " << y << std::endl;
     
     if ( !foodNearby(x, y, thresholdRadius, coords))
     {
@@ -556,11 +534,54 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
 
 Uint8 BasicPheromoneWorldObserver::getIntensityAt(int x, int y)
 {
+  if (intensities[x][y] > 255)
+    return 255;
+  else if (intensities[x][y] < 0)
+    return 0;
+    
+  return intensities[x][y];
+}
+
+int BasicPheromoneWorldObserver::getActualIntensityAt(int x, int y)
+{
   return intensities[x][y];
 }
 
 void BasicPheromoneWorldObserver::setIntensityAt(int x, int y, Uint8 value)
 {
+  if (intensities[x][y] > 255)
+    intensities[x][y] = 255;
+  else if (intensities[x][y] < 0)
+    intensities[x][y] = 0;
+  else  
+    intensities[x][y] = value;  
+}
+
+void BasicPheromoneWorldObserver::setActualIntensityAt(int x, int y, int value)
+{
   intensities[x][y] = value;
+}
+
+void BasicPheromoneWorldObserver::increaseIntensityAt(int x, int y, Uint8 value)
+{
+  int val = (int)intensities[x][y] + value;
+  if (val > 255)
+    val = 255;
+  
+  intensities[x][y] = val;
+
+}
+void BasicPheromoneWorldObserver::reduceIntensityAt(int x, int y, Uint8 value)
+{
+  int val = (int)intensities[x][y] - value;
+  if (val < 0)
+    val = 0;
+  
+  intensities[x][y] = val;
+}
+
+void BasicPheromoneWorldObserver::modifyIntensityAt(int x, int y, int value)
+{
+  intensities[x][y] += value;
 }
 

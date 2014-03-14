@@ -27,6 +27,7 @@ BasicPheromoneAgentWorldModel::~BasicPheromoneAgentWorldModel()
 void BasicPheromoneAgentWorldModel::secretePheromone(int interval, int lifetime, int maxDiffusion, Uint8 initialIntensity)
 {
   Pheromone *p = new Pheromone(_world, _agentId, interval, lifetime, maxDiffusion, initialIntensity);
+  
   pheromones.push_back(p);
 }
 

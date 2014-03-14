@@ -60,7 +60,7 @@ void BasicPheromoneControlArchitecture::step()
 	
 	blue = _pSensor->foodFound() == 1 ? 255 : 0;
 	
-	green = releasePheromones ? 100 : 0;
+	green = releasePheromones ? 255 : 0;
 	
 	_wm->setRobotLED_colorValues(red, green, blue);
 	
@@ -210,6 +210,8 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 // 	{
 	_wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
 // 	}
+	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
+	  _wm->_desiredTranslationalValue /= 2;
 	  
 	// Compare distance to walls on both sides
 	if ( _wm->_sensors[W][5] + _wm->_sensors[NW][5] <  _wm->_sensors[NE][5] + _wm->_sensors[E][5] ) 
@@ -220,7 +222,6 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	)
 	{
 		_wm->_desiredRotationalVelocity = +2;
-		std::cout << "DAFUK" << std::endl;
 	}
 	else
 		if ( _wm->_sensors[NE][5] + _wm->_sensors[E][5] < 2*gSensorRange ) 

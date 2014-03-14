@@ -32,26 +32,51 @@ void BasicPheromoneAgentObserver::reset()
 {
 	// nothing to do.
 }
-
+/*
 void BasicPheromoneAgentObserver::step()
 {
    ++stepCounter;
    
-   if (stepCounter == 10)
+   if (stepCounter == 1)
    {
      Uint8 initialIntensity = _wm->getRobotLED_greenValue();
-     _wm->secretePheromone(20, 300, 70, initialIntensity);
+//      std::cout << "intensity " << (int)initialIntensity << std::endl;
+     _wm->secretePheromone(1, 10000, 5, initialIntensity);
      stepCounter = 0;
    }
   // Update active pheromones in queue
-  for (int i = currentIndex; i < _wm->getPheromoneQueueSize(); i++)
+  for (int i = 0; i < _wm->getPheromoneQueueSize(); i++)
   {
-    Pheromone *p = _wm->getPheromone(i);
+    Pheromone *p = _wm->getPheromone(i);   
+    
     if (p->isActive())
     {
-	p->step();
-	if (p->isUpdated())
-	  updateIntensities(p); 
+// 	p->step();
+	if (true)//p->isUpdated())
+	{
+// 	  updateIntensities(p); 
+	  int x, y;
+	  p->getCenter(x, y);
+	  
+	  int intens = 250;
+	  
+	  _wo->setActualIntensityAt(x, y, intens);
+	  _wo->setActualIntensityAt(x+1, y, intens);
+	  _wo->setActualIntensityAt(x-1, y, intens);
+	  _wo->setActualIntensityAt(x, y+1, intens);
+	  _wo->setActualIntensityAt(x, y-1, intens);
+	  
+	  _wo->setActualIntensityAt(x+1, y+1, intens/2);
+	  _wo->setActualIntensityAt(x-1, y+1, intens/2);
+	  _wo->setActualIntensityAt(x+1, y-1, intens/2);
+	  _wo->setActualIntensityAt(x-1, y-1, intens/2);
+	  
+// 	  _wo->setActualIntensityAt(x+1, y+1, p->getIntensity());
+// 	  _wo->setActualIntensityAt(x-1, y+1, p->getIntensity());
+// 	  _wo->setActualIntensityAt(x+1, y+1, p->getIntensity());
+// 	  _wo->setActualIntensityAt(x+1, y-1, p->getIntensity());
+
+	}
 
     }
     else
@@ -61,7 +86,40 @@ void BasicPheromoneAgentObserver::step()
     }
   }
 }
+*/
+void BasicPheromoneAgentObserver::step()
+{  
+  int x, y;
+  x = _wm->getXReal();
+  y = _wm->getYReal();
+  
+  _wo->activatePheromone(x, y);
+    _wo->activatePheromone(x+1, y);
+  _wo->activatePheromone(x-1, y);
+  _wo->activatePheromone(x, y+1);
+  _wo->activatePheromone(x, y-1);
+  
+    _wo->activatePheromone(x+1, y+1);
+  _wo->activatePheromone(x-1, y-1);
+  _wo->activatePheromone(x+1, y-1);
+  _wo->activatePheromone(x-1, y+1);
 
+
+ /* 
+  int intens = 255;
+	  
+	  _wo->setActualIntensityAt(x, y, intens);
+	  _wo->setActualIntensityAt(x+1, y, intens);
+	  _wo->setActualIntensityAt(x-1, y, intens);
+	  _wo->setActualIntensityAt(x, y+1, intens);
+	  _wo->setActualIntensityAt(x, y-1, intens);
+	  
+	  _wo->setActualIntensityAt(x+1, y+1, intens/2);
+	  _wo->setActualIntensityAt(x-1, y+1, intens/2);
+	  _wo->setActualIntensityAt(x+1, y-1, intens/2);
+	  _wo->setActualIntensityAt(x-1, y-1, intens/2);
+	  */
+}
 
 void BasicPheromoneAgentObserver::updateIntensities(Pheromone *p)
 {

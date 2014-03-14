@@ -48,15 +48,15 @@ Pheromone::~Pheromone()
 
 void Pheromone::init()
 {
-  _stepCounter = -50;
-  a = _initialIntensity; //FIXME Only seems to work when this is 255
+  _stepCounter = -20;
+  a = _initialIntensity;
   _radius = 0;
   _isUpdated = false;
   RobotAgent *robot = _world->getAgent(_robotId);  
   robot -> getCoord(_x, _y);
   _x += x_offset;
   _y += y_offset;
-  filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
+//   filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
   
  
 }

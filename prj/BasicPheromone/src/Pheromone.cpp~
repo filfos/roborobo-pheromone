@@ -48,7 +48,7 @@ Pheromone::~Pheromone()
 
 void Pheromone::init()
 {
-  _stepCounter = -50;
+  _stepCounter = -20;
   a = _initialIntensity; //FIXME Only seems to work when this is 255
   _radius = 0;
   _isUpdated = false;
@@ -56,7 +56,7 @@ void Pheromone::init()
   robot -> getCoord(_x, _y);
   _x += x_offset;
   _y += y_offset;
-  filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
+//   filledCircleRGBA(gBackgroundImage, _x, _y, _radius, r, g, b, a);
   
  
 }
@@ -88,8 +88,8 @@ void Pheromone::evaporate()
    _oldRadius = _radius;
    
    double radiusFactor = 1 - ((double)a / (double)_initialIntensity);
-   
-   _radius = ceil((1-norm_a)*_maxDiffusion);
+   //1-norm_a
+   _radius = ceil(radiusFactor*_maxDiffusion);
   if (a == 0)
   {
     a=0;

@@ -28,7 +28,6 @@ void BasicPheromoneAgentWorldModel::secretePheromone(int interval, int lifetime,
 {
   Pheromone *p = new Pheromone(_world, _agentId, interval, lifetime, maxDiffusion, initialIntensity);
   pheromones.push_back(p);
-  std::cout << "-----------------Queue Size: " << pheromones.size() << std::endl;
 }
 
 

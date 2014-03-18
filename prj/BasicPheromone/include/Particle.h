@@ -28,6 +28,8 @@ class Particle
       
       int intensity;
       
+      double evaporationFactor;
+      
   
   
       
@@ -48,6 +50,10 @@ class Particle
       
       int getIntensity();
       void setIntensity(int _intensity);
+      
+      void evaporate();
+      
+      void mixIntensities(Particle *p);
       
       void swap();
       

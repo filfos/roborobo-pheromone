@@ -64,12 +64,24 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int defaultLifetime = 300;		
 		static const int defaultMaxDiffusion = 70;
 		
+		static const int lifetime = 500;
+		static const int interval = 20;
+		
+		double evaporationFactor;
+		
 // 		Uint8 intensities[1500][900];
 		std::vector< std::vector<int> > intensities;
-// 		std::vector< std::vector<int> > intensityBuffer;
+		std::vector< std::vector<int> > intensityBuffer;
 		std::vector< std::vector<bool> > wallMap;
-		std::vector< std::vector<Particle*> > particleMap;
+// 		std::vector< std::vector<Particle*> > particleMap;
 // 		std::vector< std::vector<Particle*> > particleBuffer;
+		
+  
+  
+		
+// 		int pheromoneMap[][900];
+// 		int pheromoneBuffer[][900];
+// 		int wallMap[][900];
 		
 		void randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius);
 		bool foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood);
@@ -87,18 +99,24 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void checkForFood();
 		void drawIntensities();
 		
+		void createWallMap();
+		
 		/* -------- For Celleular Automata ------- */
 		void updateIntensityMap();
+		
 		
 		double eightNeighbourMean(int x, int y);
 		double maxNeighbour(int x, int y);
 		
 		void addBufferedValues();
 				
-		
+		bool foodPlaced;
 		bool wallUpdated;
 		
 		Uint8 getAveragedIntensity(int x, int y);
+		
+		void updatePheromones();
+		void diffuse(int x, int y);
 		
 		
 	public:
@@ -126,7 +144,7 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		/* Increase or reduce the existing intensity value at (x, y) with the given value */
 		void modifyIntensityAt(int x, int y, int value);
 		
-		void activatePheromone(int x, int y);
+		void activatePheromone(int x, int y, int intensity);
 		
 		
 };

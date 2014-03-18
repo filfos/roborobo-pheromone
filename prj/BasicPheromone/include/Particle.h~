@@ -28,6 +28,8 @@ class Particle
       
       int intensity;
       
+      double evaporationFactor;
+      
   
   
       
@@ -49,18 +51,13 @@ class Particle
       int getIntensity();
       void setIntensity(int _intensity);
       
-      /* set all velocities (e, n, w, s) to zero */
-      void reset();
+      void evaporate();
       
-      /* Set eNext, nNext, wNext, sNext to zero */
-      void resetBuffer();
+      void mixIntensities(Particle p);
       
       void swap();
       
-      /*  */
-      void translation(Particle *p);
-      
-      void handleCollision();
+
       
 };
 

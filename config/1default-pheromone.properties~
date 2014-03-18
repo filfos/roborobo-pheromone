@@ -104,6 +104,6 @@ gRadioNetwork = 					false
 
 # agent starting location
 
-agent[0].x = 						200
-agent[0].y = 						200
+agent[0].x = 						500
+agent[0].y = 						500
 agent[0].orientation = 				180		# 0...359, clockwise -- default is 0.

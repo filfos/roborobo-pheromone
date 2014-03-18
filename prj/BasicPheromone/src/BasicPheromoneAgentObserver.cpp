@@ -93,32 +93,7 @@ void BasicPheromoneAgentObserver::step()
   x = _wm->getXReal();
   y = _wm->getYReal();
   
-  _wo->activatePheromone(x, y);
-    _wo->activatePheromone(x+1, y);
-  _wo->activatePheromone(x-1, y);
-  _wo->activatePheromone(x, y+1);
-  _wo->activatePheromone(x, y-1);
-  
-    _wo->activatePheromone(x+1, y+1);
-  _wo->activatePheromone(x-1, y-1);
-  _wo->activatePheromone(x+1, y-1);
-  _wo->activatePheromone(x-1, y+1);
-
-
- /* 
-  int intens = 255;
-	  
-	  _wo->setActualIntensityAt(x, y, intens);
-	  _wo->setActualIntensityAt(x+1, y, intens);
-	  _wo->setActualIntensityAt(x-1, y, intens);
-	  _wo->setActualIntensityAt(x, y+1, intens);
-	  _wo->setActualIntensityAt(x, y-1, intens);
-	  
-	  _wo->setActualIntensityAt(x+1, y+1, intens/2);
-	  _wo->setActualIntensityAt(x-1, y+1, intens/2);
-	  _wo->setActualIntensityAt(x+1, y-1, intens/2);
-	  _wo->setActualIntensityAt(x-1, y-1, intens/2);
-	  */
+  _wo->activatePheromone(x, y, 255);
 }
 
 void BasicPheromoneAgentObserver::updateIntensities(Pheromone *p)

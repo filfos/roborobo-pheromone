@@ -17,59 +17,40 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	stepCounter = 0;
 	score = 0;
 	wallUpdated = false;
+	foodPlaced = false;
+		
+	
+	evaporationFactor = exp((log(0.5)/lifetime )*interval);
+	
+	std::cout << "kabooom" << std::endl;
+	
+// 	pheromoneMap[1][1] = 2;
+	
+// 	int pheromoneMap[1500][900] = {{0}};
+// 	int pheromoneBuffer[1500][900] = {{0}};
 	
 	
 	intensities.resize(gScreenWidth);
+	intensityBuffer.resize(gScreenWidth);
 	wallMap.resize(gScreenWidth);
-// 	intensityBuffer.resize(gScreenWidth);
-	particleMap.resize(gScreenWidth);
-// 	particleBuffer.resize(gScreenWidth);
+
 	for (int i = 0; i < gScreenWidth; i++)
 	{
 	  intensities[i].resize(gScreenHeight);
+	  intensityBuffer[i].resize(gScreenHeight);
 	  wallMap[i].resize(gScreenHeight);
-// 	  intensityBuffer[i].resize(gScreenHeight);
-	  particleMap[i].resize(gScreenHeight);
-// 	  particleBuffer[i].resize(gScreenHeight);
 	}
 	
-	for (int x = 0; x < gScreenWidth; x++)
-	{
-	  for (int y = 0; y < gScreenHeight; y++)
-	  {
-	    Particle *p = new Particle();
-	    particleMap[x][y] = p; 
-	    
-// 	    Particle *p2 = new Particle();
-// 	    particleBuffer[x][y] = p2;
-	  }
-	}
-		
-	tempForeground = IMG_Load("data/pheromone/rand1.png");
-// 	for (int y = 0; y < gScreenHeight; y++)
+// 	for (int x = 0; x < gScreenWidth; x++)
 // 	{
-// 	  std::cout << std::endl;
-// 	  for (int x = 0; x < gScreenWidth; x++)
+// 	  for (int y = 0; y < gScreenHeight; y++)
 // 	  {
-// 	    Uint8 r, g, b;	  
-// 	    Uint32 pixel = getPixel32(tempForeground, x, y );
-// 	    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+// 	    Particle *p = new Particle();
+// 	    particleMap[x][y] = p; 
 // 	    
-// 	    if (r == 0 && b == 0 && g == 0)
-// 	    { 
-// 	      wallMap[x][y] = true;
-// 	      std::cout << 1;
-// 	    }
-// 	    else
-// 	    {
-// 	      wallMap[x][y] = false;
-// 	      std::cout << 0;
-// 	    }
 // 	  }
 // 	}
-	
 
-	
 	
 // 	Environment 1 1300x700
 // 	createFood(100, 105, 20);
@@ -88,7 +69,8 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 // 	createFood(148, 678, 30);
 // 	createFood(828, 834, 30);
 // 	createFood(1414, 810, 30);
-	randomizeFood(gScreenWidth, gScreenHeight, 10, 30);
+
+// 	randomizeFood(gScreenWidth, gScreenHeight, 10, 30);
 	
 	
 	
@@ -109,22 +91,7 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 // 	createFood(21, 616, 20);
 // 	createFood(595, 613, 20);
 	
-	noofFoodFound = 0;
 	
-	for (Uint8 i = 0; i < foodList.size(); i++)
-	{
-	  foundFood.push_back(0);
-	  foodFoundTimestamps.push_back(0);
-	  foodIdTimestamps.push_back(0);
-	}
-	
-	noofPheromoneTimesteps = 30;
-	
-	//condition must be greater than noof agents.
-	for (int i = 0; i < 10; i++)
-	{
-	  pheromoneTimer.push_back(noofPheromoneTimesteps);
-	}
 	
 }
 
@@ -140,7 +107,10 @@ void BasicPheromoneWorldObserver::reset()
 
 void BasicPheromoneWorldObserver::step()
 {
-  WorldObserver::step();  
+  WorldObserver::step();
+  createWallMap();
+  randomizeFood(gScreenWidth, gScreenHeight, 10, 30);
+  
   
   if (noofFoodFound == foodList.size())
   {
@@ -162,13 +132,23 @@ void BasicPheromoneWorldObserver::step()
   }
   
   stepCounter++;
+  
 
+//   if (stepCounter % 5 == 0)
+//     updateIntensityMap();
+//   
+//   if (stepCounter == 20)
+//   {
+//     stepCounter = 0;    
+//     drawIntensities();
+//   }
   if (stepCounter == 10)
   {
-    stepCounter = 0;    
-    updateIntensityMap();
+    updatePheromones();
     drawIntensities();
+    stepCounter = 0;
   }
+  
   checkForFood();
   stepAllFoods();
 
@@ -286,6 +266,40 @@ void BasicPheromoneWorldObserver::createFood(Sint16 x_center, Sint16 y_center, S
 }
 
 
+void BasicPheromoneWorldObserver::createWallMap()
+{
+  if (!wallUpdated)
+  {
+    wallUpdated = true;
+    for (int y = 0; y < gScreenHeight; y++)
+	{
+// 	  std::cout << std::endl;
+	  for (int x = 0; x < gScreenWidth; x++)
+	  {
+	    Uint8 r, g, b;	  
+	    Uint32 pixel = getPixel32(gForegroundImage, x, y );
+	    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
+	    
+	    if (x == 2 || y == 2 || x == (gScreenWidth-2) || y == (gScreenHeight-2))
+	    {
+	      wallMap[x][y] = 1;
+	      continue;
+	    }
+	    
+	    if (r == 0 && b == 0 && g == 0)
+	    { 
+	      wallMap[x][y] = true;
+	    }
+	    else
+	    {
+	      wallMap[x][y] = false;
+	    }
+	  }
+	}
+  }
+  
+}
+
 void BasicPheromoneWorldObserver::checkForFood()
 {
   for (int i = 0; i != gAgentCounter; i++)
@@ -330,11 +344,14 @@ void BasicPheromoneWorldObserver::stepAllFoods()
 void BasicPheromoneWorldObserver::drawIntensities()
 { 
   SDL_LockSurface(gBackgroundImage);
-  for (Uint32 x = 0; x < intensities.size(); x++)
+  for (Uint32 x = 1; x < intensities.size()-1; x++)
   {
-    for (Uint32 y = 0; y < intensities[0].size(); y++)
-    {        
-	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255 - getIntensityAt(x, y), 255 - getIntensityAt(x, y));
+    for (Uint32 y = 1; y < intensities[0].size()-1; y++)
+    {   
+	intensities[x][y] = intensityBuffer[x][y];
+	intensityBuffer[x][y] = 0;
+	Uint8 intens = getIntensityAt(x, y); //getAveragedIntensity(x, y);
+	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255-intens, 255-intens );
 	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
 	
 	
@@ -345,58 +362,128 @@ void BasicPheromoneWorldObserver::drawIntensities()
   SDL_UnlockSurface(gBackgroundImage);
 }
 
+void BasicPheromoneWorldObserver::updatePheromones()
+{
+  for (int y = 1; y < gScreenHeight-1; y++)
+  {
+    for (int x = 1; x < gScreenWidth-1; x++)
+    {
+      if (intensities[x][y] == 0 || wallMap[x][y] == 1)
+      {
+	continue;
+      }
+      else
+      {
+// 	evaporationFactor = 0.999;
+      int intens = intensities[x][y]/5;
+      intensityBuffer[x][y] += intens*evaporationFactor*5;
+      intensityBuffer[x+1][y] += intens*evaporationFactor;
+      intensityBuffer[x][y+1] += intens*evaporationFactor;
+      intensityBuffer[x-1][y] += intens*evaporationFactor;
+      intensityBuffer[x][y-1] += intens*evaporationFactor;
+      }
+    }
+  }
+}
+
+void BasicPheromoneWorldObserver::diffuse(int x, int y)
+{
+  
+}
+
+double BasicPheromoneWorldObserver::eightNeighbourMean(int x, int y)
+{  
+  double sum = 0;
+  
+  sum += intensities[x][y]*8;
+  
+  sum += intensities[x][y+1]*1; //N
+  sum += intensities[x][y-1]*1; //S
+  sum += intensities[x+1][y]*1; //E
+  sum += intensities[x-1][y]*1; //W
+  
+  sum += intensities[x+1][y+1]; //NE
+  sum += intensities[x+1][y-1]; //SE
+  sum += intensities[x-1][y-1]; //SW
+  sum += intensities[x-1][y+1]; //NW
+    
+  return sum/16;
+}
 
 
 
 void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius)
 {
-  int count = 0;
-  std::vector<std::vector<int> > coords(2, std::vector<int>(noofFood));  
-  
-  srand(time(0));
-  
-  for (int i = 0; i != noofFood; i++)
+  if (!foodPlaced)
   {
-    int x = (rand() % imageWidth) + 1;
-    int y = (rand() % imageHeight) + 1;
-    
-    if ( !foodNearby(x, y, thresholdRadius, coords))
-    {
+      foodPlaced = true;
+      int count = 0;
+      std::vector<std::vector<int> > coords(2, std::vector<int>(noofFood));  
       
-      bool obstacleOverlap = true;
-      while(obstacleOverlap)
-      {
-	std::vector<int> loc(2);
-	loc = insideObstacle(x, y, 30);
-	x += loc[0];
-	y += loc[1];
+      srand(time(0));
+      
+      for (int i = 0; i != noofFood; i++)
+      {  
+	int x = (rand() % imageWidth) + 1;
+	int y = (rand() % imageHeight) + 1;
 	
-	obstacleOverlap = loc[0] != 0 && loc[1] != 0;
+	if ( !foodNearby(x, y, thresholdRadius, coords))
+	{
+
+	  bool obstacleOverlap = true;
+	  while(obstacleOverlap)
+	  {
+	    std::vector<int> loc(2);
+	    loc = insideObstacle(x, y, 30);
+	    x += loc[0];
+	    y += loc[1];
+	    
+	    obstacleOverlap = loc[0] != 0 && loc[1] != 0;
+	    
+	  }
+	  coords[0].push_back(x);
+	  coords[1].push_back(y);
+	  createFood(x, y, 20);      
+	  std::cout << "x : " << x << "  y  " << y << std::endl;
+	}
+	else
+	{
+	  ++count;
+	  --i;
+	  std::cout << "Food number " << i << " retrying" << std::endl;
+	}
 	
+	if (count > 100)
+	{
+	  std::cout << "ABANDON SHIP" << std::endl;
+	  return;
+	}
+
       }
-       coords[0].push_back(x);
-       coords[1].push_back(y);
-       createFood(x, y, 20);      
-       std::cout << "x : " << x << "  y  " << y << std::endl;
-    }
-    else
+      
+      std::cout << " ------- FOOD LOCATIONS ------" << std::endl;
+      for (Uint8 i = 0; i < coords[0].size(); i++)
+	std::cout << " x:  " << coords[0][i] << "    y:  " << coords[1][i] << std::endl;
+      
+      noofFoodFound = 0;
+  } 
+  if (foodPlaced)
+  {
+    for (Uint8 i = 0; i < foodList.size(); i++)
     {
-      ++count;
-      --i;
-      std::cout << "Food number " << i << " retrying" << std::endl;
+      foundFood.push_back(0);
+      foodFoundTimestamps.push_back(0);
+      foodIdTimestamps.push_back(0);
     }
     
-    if (count > 100)
+    noofPheromoneTimesteps = 30;
+    
+    //condition must be greater than noof agents.
+    for (int i = 0; i < 10; i++)
     {
-      std::cout << "ABANDON SHIP" << std::endl;
-      return;
+      pheromoneTimer.push_back(noofPheromoneTimesteps);
     }
-
   }
-  
-  std::cout << " ------- FOOD LOCATIONS ------" << std::endl;
-  for (Uint8 i = 0; i < coords[0].size(); i++)
-    std::cout << " x:  " << coords[0][i] << "    y:  " << coords[1][i] << std::endl;
 }
 
 bool BasicPheromoneWorldObserver::foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood)
@@ -417,8 +504,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x, y-i ); 
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x, y-i ); 
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     if (r == 0 && b == 0 && g == 0)
       black[0] += 1;      
     else
@@ -427,8 +514,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x+i, y-i );
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x+i, y-i );
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     
     if (r == 0 && b == 0 && g == 0)
       black[1] += 1;      
@@ -438,8 +525,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x+i, y );
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x+i, y );
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     
     if (r == 0 && b == 0 && g == 0)
       black[2] += 1;      
@@ -449,8 +536,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x+i, y+i );
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x+i, y+i );
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     
     if (r == 0 && b == 0 && g == 0)
       black[3] += 1;      
@@ -460,8 +547,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x, y+i );
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x, y+i );
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     
     if (r == 0 && b == 0 && g == 0)
       black[4] += 1;      
@@ -471,8 +558,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x-i, y+i );
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x-i, y+i );
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     
     if (r == 0 && b == 0 && g == 0)
       black[5] += 1;      
@@ -482,8 +569,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x-i, y );
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x-i, y );
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     
     if (r == 0 && b == 0 && g == 0)
       black[6] += 1;      
@@ -493,8 +580,8 @@ std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int r
   
   for (int i = 0; i < radius; i++)
   {
-    Uint32 pixel = getPixel32(tempForeground, x-i, y-i );
-    SDL_GetRGB(pixel, tempForeground->format, &r, &g, &b);
+    Uint32 pixel = getPixel32(gForegroundImage, x-i, y-i );
+    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
     
     if (r == 0 && b == 0 && g == 0)
       black[7] += 1;      
@@ -665,203 +752,158 @@ void BasicPheromoneWorldObserver::updateIntensityMap()
 
 void BasicPheromoneWorldObserver::updateIntensityMap()
 {
-  if (!wallUpdated)
-  {
-    wallUpdated = true;
-    for (int y = 0; y < gScreenHeight; y++)
-	{
-// 	  std::cout << std::endl;
-	  for (int x = 0; x < gScreenWidth; x++)
-	  {
-	    Uint8 r, g, b;	  
-	    Uint32 pixel = getPixel32(gForegroundImage, x, y );
-	    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-	    
-	    if (x == 2 || y == 2 || x == (gScreenWidth-2) || y == (gScreenHeight-2))
-	    {
-	      wallMap[x][y] = 1;
-	      continue;
-	    }
-	    
-	    if (r == 0 && b == 0 && g == 0)
-	    { 
-	      wallMap[x][y] = true;
-	    }
-	    else
-	    {
-	      wallMap[x][y] = false;
-	    }
-	  }
-	}
-  }
-  
-  
-  
-  /* Translation Phase */
-  for (int x = 1; x < gScreenWidth-1; x++)
-  {
-    for (int y = 1; y < gScreenHeight-1; y++)
-    {
-      Particle *p = particleMap[x][y];
-      
-      int intens = p->getIntensity();
-      
-      /* TRANSLATION AND WALL REFLECTION */
-      if (p->e)
-      {
-	p->e = 0;
-	if (wallMap[x+1][y])
-	  p->w = 1;
-	else
-	{
-	  particleMap[x+1][y]->eNext = 1;
-	  particleMap[x+1][y]->setIntensity(intens);
-	}
-	//----
-	if (p->s)
-	{
-	  if (!wallMap[x+1][y+1])
-	  {
-	    particleMap[x+1][y+1]->eNext;
-	    particleMap[x+1][y+1]->sNext;
-	    particleMap[x+1][y+1]->setIntensity(intens);
-	  }
-	}
-	if (p->n)
-	{
-	  if (!wallMap[x+1][y-1])
-	  {
-	    particleMap[x+1][y-1]->eNext;
-	    particleMap[x+1][y-1]->sNext;
-	    particleMap[x+1][y-1]->setIntensity(intens);
-	  }
-	}
-	
-	  //---
-      }
-      
-      if (p->w)
-      {
-	p->w = 0;
-	if (wallMap[x-1][y])
-	  p->e = 1;
-	else
-	{
-	  particleMap[x-1][y]->wNext = 1;
-	  particleMap[x-1][y]->setIntensity(intens);
-	}
-	
-	//----
-	if (p->s)
-	{
-	  if (!wallMap[x-1][y+1])
-	  {
-	    particleMap[x-1][y+1]->eNext;
-	    particleMap[x-1][y+1]->sNext;
-	    particleMap[x-1][y+1]->setIntensity(intens);
-	  }
-	}
-	if (p->n)
-	{
-	  if (!wallMap[x-1][y-1])
-	  {
-	    particleMap[x-1][y-1]->eNext;
-	    particleMap[x-1][y-1]->sNext;
-	    particleMap[x-1][y-1]->setIntensity(intens);
-	  }
-	}
-	
-	  //---
-      }   
-      
-      if (p->n)
-      {
-	p->n = 0;
-	if (wallMap[x][y+1])
-	  p->s = 1;
-	else
-	{
-	  particleMap[x][y+1]->nNext = 1;
-	  particleMap[x][y+1]->setIntensity(intens);
-	}
-      }   
-      
-      if (p->s)
-      {
-	p->s = 0;
-	if (wallMap[x][y-1])
-	  p->n = 1;
-	else
-	{
-	  particleMap[x][y-1]->sNext = 1;
-	  particleMap[x][y-1]->setIntensity(intens);
-	}
-      }
-      
-      
-      intensities[x][y] = intens;
-      
-    }
-  }
-  /* COLLISION */
-  for (int x = 1; x < gScreenWidth-1; x++)
-  {
-    for (int y = 1; y < gScreenHeight-1; y++)
-    {
-      Particle *p = particleMap[x][y];
-      
-      if (p->eNext && p->wNext && (!p->nNext && !p->sNext))
-      {
-	p->nNext = 1;
-	p->sNext = 1;
-      }
-      
-      if (p->nNext && p->sNext && (!p->eNext && !p->wNext))
-      {
-	p->eNext = 1;
-	p->wNext = 1;
-      }
-      p->swap();
-//       intensities[x][y] = eightNeighbourMean(x, y);
-      
-    }
-  }  
+   
+//   /* Translation Phase */
+//   for (int x = 1; x < gScreenWidth-1; x++)
+//   {
+//     for (int y = 1; y < gScreenHeight-1; y++)
+//     {
+//       Particle *p = particleMap[x][y];
+//       int intens = p->getIntensity();
+//       intensities[x][y] = intens;
+//       intens = eightNeighbourMean(x, y);
+//      
+//       /* TRANSLATION AND WALL REFLECTION */
+//       if (p->e)
+//       {
+// 	p->e = 0;
+// 	if (wallMap[x+1][y])
+// 	  p->w = 1;
+// 	else
+// 	{
+// 	  particleMap[x+1][y]->eNext = 1;
+// 	  particleMap[x+1][y]->setIntensity(intens);
+// 	}
+// 	//---- Diagonal
+// 	if (p->s)
+// 	{
+// 	  if (!wallMap[x+1][y+1])
+// 	  {
+// 	    particleMap[x+1][y+1]->eNext;
+// 	    particleMap[x+1][y+1]->sNext;
+// 	    particleMap[x+1][y+1]->setIntensity(intens);
+// 	  }
+// 	}
+// 	if (p->n)
+// 	{
+// 	  if (!wallMap[x+1][y-1])
+// 	  {
+// 	    particleMap[x+1][y-1]->eNext;
+// 	    particleMap[x+1][y-1]->sNext;
+// 	    particleMap[x+1][y-1]->setIntensity(intens);
+// 	  }
+// 	}
+// 	
+// 	
+//       //--- 
+//       }
+//       
+//       if (p->w)
+//       {
+// 	p->w = 0;
+// 	if (wallMap[x-1][y])
+// 	  p->e = 1;
+// 	else
+// 	{
+// 	  particleMap[x-1][y]->wNext = 1;
+// 	  particleMap[x-1][y]->setIntensity(intens);
+// 	}
+// 	
+// 	//---- Diagonal
+// 	if (p->s)
+// 	{
+// 	  if (!wallMap[x-1][y+1])
+// 	  {
+// 	    particleMap[x-1][y+1]->eNext;
+// 	    particleMap[x-1][y+1]->sNext;
+// 	    particleMap[x-1][y+1]->setIntensity(intens);
+// 	  }
+// 	}
+// 	if (p->n)
+// 	{
+// 	  if (!wallMap[x-1][y-1])
+// 	  {
+// 	    particleMap[x-1][y-1]->eNext;
+// 	    particleMap[x-1][y-1]->sNext;
+// 	    particleMap[x-1][y-1]->setIntensity(intens);
+// 	  }
+// 	}
+// 	
+// 	  //---
+//       }   
+//       
+//       if (p->n)
+//       {
+// 	p->n = 0;
+// 	if (wallMap[x][y+1])
+// 	  p->s = 1;
+// 	else
+// 	{
+// 	  particleMap[x][y+1]->nNext = 1;
+// 	  particleMap[x][y+1]->setIntensity(intens);
+// 	}
+//       }   
+//       
+//       if (p->s)
+//       {
+// 	p->s = 0;
+// 	if (wallMap[x][y-1])
+// 	  p->n = 1;
+// 	else
+// 	{
+// 	  particleMap[x][y-1]->sNext = 1;
+// 	  particleMap[x][y-1]->setIntensity(intens);
+// 	}
+//       }
+//       
+// //       p->evaporate();
+// //       p->swap();
+// 
+//     }
+//   }
+//   /* COLLISION */
+//   for (int x = 1; x < gScreenWidth-1; x++)
+//   {
+//     for (int y = 1; y < gScreenHeight-1; y++)
+//     {
+//       Particle *p = particleMap[x][y];
+//       
+//       if (p->eNext && p->wNext && (!p->nNext && !p->sNext))
+//       {
+// 	p->nNext = 1;
+// 	p->sNext = 1;
+// // 	p->setIntensity(particleMap[x+1][y]->getIntensity() + particleMap[x-1][y]->getIntensity());
+//       }
+//       
+//       if (p->nNext && p->sNext && (!p->eNext && !p->wNext))
+//       {
+// 	p->eNext = 1;
+// 	p->wNext = 1;
+// // 	p->setIntensity(particleMap[x][y+1]->getIntensity() + particleMap[x][y-1]->getIntensity());
+// 
+//       }
+//       p->evaporate();
+//       p->swap();
+// //       intensities[x][y] = eightNeighbourMean(x, y);
+//       
+//     }
+//   }  
 }
-void BasicPheromoneWorldObserver::activatePheromone(int x, int y)
+void BasicPheromoneWorldObserver::activatePheromone(int x, int y, int intensity)
 {
-  Particle *p = particleMap[x][y];
-  p->setIntensity(255);
-  p->e = 1;
-  p->w = 1;
-  p->n = 1;
-  p->s = 1;
+  intensities[x][y] = intensity;
+  
+  intensities[x+1][y] = intensity/2;
+  intensities[x-1][y] = intensity/2;
+  intensities[x][y+1] = intensity/2;
+  intensities[x][y-1] = intensity/2;
+
+  intensities[x+1][y+1] = intensity/4;
+  intensities[x+1][y-1] = intensity/4;
+  intensities[x-1][y+1] = intensity/4;
+  intensities[x-1][y-1] = intensity/4;
 }
 
-double BasicPheromoneWorldObserver::eightNeighbourMean(int x, int y)
-{
-  //TODO Edge padding (copy edge)
-  
-  double sum = 0;
-  
-  //sum += intensities[x][y]*8;
-  
-  sum += intensities[x][y+1]*4; //N
-  sum += intensities[x][y-1]*4; //S
-  sum += intensities[x+1][y]*4; //E
-  sum += intensities[x-1][y]*4; //W
-  
-  sum += intensities[x+1][y+1]; //NE
-  sum += intensities[x+1][y-1]; //SE
-  sum += intensities[x-1][y-1]; //SW
-  sum += intensities[x-1][y+1]; //NW
-  
-//     sum += intensities[x+1][y+2]*2; //N
-//   sum += intensities[x-1][y-2]*2; //S
-//   sum += intensities[x+2][y+1]*2; //E
-//   sum += intensities[x-2][y-1]*2; //W
-//   
-  return sum/20;
-}
 
 Uint8 BasicPheromoneWorldObserver::getAveragedIntensity(int x, int y)
 {

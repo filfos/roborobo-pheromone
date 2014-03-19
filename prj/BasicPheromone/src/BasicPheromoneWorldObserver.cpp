@@ -111,7 +111,6 @@ void BasicPheromoneWorldObserver::step()
   createWallMap();
   randomizeFood(gScreenWidth, gScreenHeight, 10, 30);
   
-  
   if (noofFoodFound == foodList.size())
   {
     for (Uint8 i = 0; i < foodList.size(); i++)
@@ -144,7 +143,9 @@ void BasicPheromoneWorldObserver::step()
 //   }
   if (stepCounter == 10)
   {
-    updatePheromones();
+//     updatePheromones();
+    diffuse();
+    evaporate();
     drawIntensities();
     stepCounter = 0;
   }
@@ -344,13 +345,14 @@ void BasicPheromoneWorldObserver::stepAllFoods()
 void BasicPheromoneWorldObserver::drawIntensities()
 { 
   SDL_LockSurface(gBackgroundImage);
-  for (Uint32 x = 1; x < intensities.size()-1; x++)
+  for (Uint32 x = 1; x < intensities.size()-1; x+=1)
   {
-    for (Uint32 y = 1; y < intensities[0].size()-1; y++)
+    for (Uint32 y = 1; y < intensities[0].size()-1; y+=1)
     {   
-	intensities[x][y] = intensityBuffer[x][y];
-	intensityBuffer[x][y] = 0;
-	Uint8 intens = getIntensityAt(x, y); //getAveragedIntensity(x, y);
+// 	intensities[x][y] = intensityBuffer[x][y];
+// 	intensityBuffer[x][y] = 0;
+// 	intensities[x][y] = intensities[x][y]*0.95;
+	Uint8 intens = eightNeighbourMean(x, y); //getAveragedIntensity(x, y);
 	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255-intens, 255-intens );
 	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
 	
@@ -375,42 +377,132 @@ void BasicPheromoneWorldObserver::updatePheromones()
       else
       {
 // 	evaporationFactor = 0.999;
-      int intens = intensities[x][y]/5;
-      intensityBuffer[x][y] = intens*evaporationFactor*5;
-      intensityBuffer[x+1][y] += intens*evaporationFactor;
-      intensityBuffer[x][y+1] += intens*evaporationFactor;
-      intensityBuffer[x-1][y] += intens*evaporationFactor;
-      intensityBuffer[x][y-1] += intens*evaporationFactor;
+      if(intensities[x][y] > 255) intensities[x][y] = 255;
+      int intens = intensities[x][y]*0.126;
+      intensityBuffer[x+1][y] += intens;
+//       intensityBuffer[x+1][y] /= 2;
+      intensityBuffer[x][y+1] += intens;
+//       intensityBuffer[x][y+1] /= 2;
+      intensityBuffer[x-1][y] += intens;
+//       intensityBuffer[x-1][y] /= 2;
+      intensityBuffer[x][y-1] += intens;
+      
+      intensityBuffer[x+1][y+1] += intens;
+            intensityBuffer[x+1][y-1] += intens;
+      intensityBuffer[x-1][y+1] += intens;
+      intensityBuffer[x-1][y-1] += intens;
+
+//       intensityBuffer[x][y-1] /= 2;
+//       intensityBuffer[x][y] += intens;
+//       intensityBuffer[x][y] /= 2;
       }
     }
   }
 }
 
-void BasicPheromoneWorldObserver::diffuse(int x, int y)
+void BasicPheromoneWorldObserver::diffuse()
 {
-  
+  for (int y = 1; y < gScreenHeight-1; y++)
+  {
+    for (int x = 1; x < gScreenWidth-1; x++)
+    {
+      if (wallMap[x][y] == 1)
+      {
+	continue;
+      }
+      else
+      {
+	intensityBuffer[x][y] = getMax(intensities[x+1][y], 
+					intensities[x-1][y], 
+					intensities[x][y+1], 
+					intensities[x][y-1] );
+	
+      }
+    }
+  }
+  intensities = intensityBuffer;
+}
+
+void BasicPheromoneWorldObserver::evaporate()
+{
+  for (int y = 0; y < gScreenHeight; y++)
+  {
+    for (int x = 0; x < gScreenWidth; x++)
+    {
+      intensities[x][y] = intensities[x][y]*0.95;
+    }
+  }
+}
+
+	/*
+	 * Wednesday: Spawn a finite pool of e.g. 2000. Diffusion is done 
+	 * by spreading portions of the pool. if a value above 255 is
+	 * seen; draw 255, but retain the original value.
+	 * 
+	 *
+	int sum = 0;
+	sum += factor*intensities[x+1][y];
+	sum += factor*intensities[x-1][y];
+	sum += factor*intensities[x][y+1];
+	sum += factor*intensities[x][y-1];
+
+	sum += factor*intensities[x+1][y+1];
+	sum += factor*intensities[x-1][y-1];
+	sum += factor*intensities[x+1][y-1];
+	sum += factor*intensities[x-1][y+1];
+	
+	intensityBuffer[x][y] += sum/8;
+      }
+    }
+  }
+}
+        */
+int BasicPheromoneWorldObserver::getMax(int a, int b, int c, int d)
+{
+  int max = a > b ? a : b;
+  max = max > c ? max : c;
+  max = max > d ? max : d;
+    
+  return max;
 }
 
 double BasicPheromoneWorldObserver::eightNeighbourMean(int x, int y)
 {  
   double sum = 0;
   
-  sum += intensities[x][y]*8;
+//   sum += intensities[x][y]*;
   
-  sum += intensities[x][y+1]*1; //N
-  sum += intensities[x][y-1]*1; //S
-  sum += intensities[x+1][y]*1; //E
-  sum += intensities[x-1][y]*1; //W
+  sum += intensities[x][y+1]*4; //N
+  sum += intensities[x][y-1]*4; //S
+  sum += intensities[x+1][y]*4; //E
+  sum += intensities[x-1][y]*4; //W
   
-  sum += intensities[x+1][y+1]; //NE
-  sum += intensities[x+1][y-1]; //SE
-  sum += intensities[x-1][y-1]; //SW
-  sum += intensities[x-1][y+1]; //NW
+  sum += intensities[x+1][y+1]*1; //NE
+  sum += intensities[x+1][y-1]*1; //SE
+  sum += intensities[x-1][y-1]*1; //SW
+  sum += intensities[x-1][y+1]*1; //NW
     
-  return sum/16;
+  return sum/20;
 }
 
+void BasicPheromoneWorldObserver::activatePheromone(int x, int y, int intensity)
+{
+  intensities[x][y] = intensity;
+  
+  for (int i = 1; i <= 1; i++)
+  {
+  
+  intensities[x+i][y] = intensity;
+  intensities[x-i][y] = intensity;
+  intensities[x][y+i] = intensity;
+  intensities[x][y-i] = intensity;
 
+  intensities[x+i][y+i] = intensity;
+  intensities[x+i][y-i] = intensity;
+  intensities[x-i][y+i] = intensity;
+  intensities[x-i][y-i] = intensity;
+  }
+}
 
 void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius)
 {
@@ -889,20 +981,7 @@ void BasicPheromoneWorldObserver::updateIntensityMap()
 //     }
 //   }  
 }
-void BasicPheromoneWorldObserver::activatePheromone(int x, int y, int intensity)
-{
-  intensities[x][y] = intensity;
-  
-  intensities[x+1][y] = intensity/2;
-  intensities[x-1][y] = intensity/2;
-  intensities[x][y+1] = intensity/2;
-  intensities[x][y-1] = intensity/2;
 
-  intensities[x+1][y+1] = intensity/4;
-  intensities[x+1][y-1] = intensity/4;
-  intensities[x-1][y+1] = intensity/4;
-  intensities[x-1][y-1] = intensity/4;
-}
 
 
 Uint8 BasicPheromoneWorldObserver::getAveragedIntensity(int x, int y)

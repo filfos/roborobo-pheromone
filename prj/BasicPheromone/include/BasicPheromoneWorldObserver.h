@@ -116,7 +116,10 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		Uint8 getAveragedIntensity(int x, int y);
 		
 		void updatePheromones();
-		void diffuse(int x, int y);
+		void diffuse();
+		void evaporate();
+		
+		int getMax(int a, int b, int c, int d);
 		
 		
 	public:

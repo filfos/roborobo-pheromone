@@ -24,11 +24,14 @@ BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgent
     
     _pSensor = new BasicPheromoneSensor(__wm);
     stepCounter = 0;
+    pheromoneCounter = 0;
     stagnationRotation = 0;
+    pheromoneIgnoreCounter = 50;
 
     isRotating = false;
     isReversing = false;
     doneReversing = false;
+    isPheromoneStagnated = false;
     
     red = 0;
     green = 0;
@@ -63,7 +66,7 @@ void BasicPheromoneControlArchitecture::step()
 	green = releasePheromones ? 255 : 0;
 	
 	_wm->setRobotLED_colorValues(red, green, blue);
-	
+	  
 	
 	mStatus = determineBehaviour();
 	
@@ -146,6 +149,8 @@ void BasicPheromoneControlArchitecture::pheromoneReaction()
 void BasicPheromoneControlArchitecture::wallAvoidance()
 {
   releasePheromones = true;
+  
+//   std::cout << "ONLY WALL" << std::endl;
   //Slow down if wall is detected straight ahead
   _wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
   
@@ -159,7 +164,7 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 	{
 	//robot body radius = 16, thus right triangle created by sensors have hypotenuse 80
 	// and adjacent side: 80*cos(45) = 40*sqrt(2). To weigh them equally the ratio 80/40*sqrt(2) = 1.41
-	//is used reduce the importance of side sensors (right/east and left/west).
+	//is used reduce the importance of side sensors (right/east and left/west)... or maybe not after all
 		rot += (( (double)gSensorRange - _wm->_sensors[NW][5] ) / (double)gSensorRange);
 		rot += (( (double)gSensorRange - (_wm->_sensors[W][5]))/ (double)gSensorRange);
 // 		std::cout << "WEST "<< rot <<std::endl;
@@ -200,6 +205,7 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 {
 	releasePheromones = true;
+// 	std::cout << " WALL AND PHEROMONE" << std::endl;
 
 	//Slow down if wall is detected straight ahead
 // 	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
@@ -210,8 +216,8 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 // 	{
 	_wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
 // 	}
-// 	if (_pSensor->_sensor[FRONT][LIGHT] > 0) TODO Resore
-// 	  _wm->_desiredTranslationalValue =  + 2 - 2*(( 255.0 - _pSensor->_sensor[FRONT][LIGHT] ) / 255.0);
+	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
+	  _wm->_desiredTranslationalValue =  + 2 - 1*(( 255.0 - _pSensor->_sensor[FRONT][LIGHT] ) / 255.0);
 	  
 	// Compare distance to walls on both sides
 	if ( _wm->_sensors[W][5] + _wm->_sensors[NW][5] <  _wm->_sensors[NE][5] + _wm->_sensors[E][5] ) 
@@ -287,6 +293,10 @@ void BasicPheromoneControlArchitecture::wallStagnation()
 
 void BasicPheromoneControlArchitecture::pheromoneStagnation()
 {
+  ignorePheromones = true;
+  pheromoneIgnoreCounter = 100;
+  isPheromoneStagnated = false;
+  
   //some code already in pheromoneReaction().
     //should inhibit more abrubt turns. Maybe even stop completely.
     
@@ -492,12 +502,23 @@ bool BasicPheromoneControlArchitecture::checkWallStagnation()
     stdX = sqrt(stdX);
     stdY = sqrt(stdY);
     
-    std::cout << "Wall Stagnation limit 20:    Value:   "    << stdX + stdY << std::endl;
+//     std::cout << "Wall Stagnation limit 20:    Value:   "    << stdX + stdY << std::endl;
     lastLocations.clear();
     stepCounter = 0;
+    
+    /* Pheromone stagnation hack. Not clean, but can't be bothered doing this twice */
+    if (pheromoneCounter > 50)
+    {
+      if (stdY + stdX < 50)
+	isPheromoneStagnated = true;
+      else
+	isPheromoneStagnated = false;
+      pheromoneCounter = 0;
+    }
+    
     if (stdX + stdY < 20)
     {
-      std::cout << "|||||||||| STAGNATION |||||||||" << std::endl;
+//       std::cout << "|||||||||| STAGNATION |||||||||" << std::endl;
       return true;
     }
   }
@@ -505,6 +526,26 @@ bool BasicPheromoneControlArchitecture::checkWallStagnation()
 }
 bool BasicPheromoneControlArchitecture::checkPheromoneStagnation()
 {
+  double sum = 0;
+  for (int i = 0; i < 8; i++)
+  {
+    sum += _pSensor->_sensor[i][LIGHT];
+  }
+  if (sum > 1)
+  {
+    ++pheromoneCounter;
+  }
+  if (isPheromoneStagnated)
+    return true;
+
+
+  if (pheromoneIgnoreCounter > 0)
+    --pheromoneIgnoreCounter;
+  if (pheromoneIgnoreCounter == 0)
+    ignorePheromones = false;
+  
+  
+  
   return false;
 }
 bool BasicPheromoneControlArchitecture::checkPheromoneDetected()
@@ -522,6 +563,7 @@ bool BasicPheromoneControlArchitecture::checkPheromoneDetected()
  
   return false;
 }
+
 
 double BasicPheromoneControlArchitecture::getWallAttackAngle()
 {

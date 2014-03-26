@@ -1,0 +1,31 @@
+ENVIRONMENT 1
+
+ createFood( 620, 75, 30 );
+ createFood( 425, 761, 30 );
+ createFood( 114, 760, 30 );
+ createFood( 263, 870, 30 );
+ createFood( 565, 570, 30 );
+ createFood( 1247, 198, 30 );
+ createFood( 219, 400, 30 );
+ createFood( 1338, 128, 30 );
+ createFood( 993, 355, 30 );
+ createFood( 954, 522, 30 );
+agent[0].x = 500
+agent[0].y = 500
+agent[0].orientation = 270
+agent[1].x = 1358
+agent[1].y = 862
+agent[1].orientation = -26.514
+agent[2].x = 1146
+agent[2].y = 894
+agent[2].orientation = 161.65
+agent[3].x = 811
+agent[3].y = 208
+agent[3].orientation = -59.5404
+agent[4].x = 308
+agent[4].y = 144
+agent[4].orientation = -119.237
+agent[5].x = 160
+agent[5].y = 63
+agent[5].orientation = -153.544
+

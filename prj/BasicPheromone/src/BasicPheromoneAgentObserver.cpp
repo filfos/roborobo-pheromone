@@ -94,6 +94,18 @@ void BasicPheromoneAgentObserver::step()
   y = _wm->getYReal();
   
   _wo->activatePheromone(x, y, 255);
+  
+/* LATTICE GAS */  
+//     _wo->activatePheromone(x, y, 255);
+//     _wo->activatePheromone(x+1, y, 255);
+//   _wo->activatePheromone(x-1, y, 255);
+//   _wo->activatePheromone(x, y+1, 255);
+//   _wo->activatePheromone(x, y-1, 255);
+//   
+//     _wo->activatePheromone(x+1, y+1, 255);
+//   _wo->activatePheromone(x-1, y-1, 255);
+//   _wo->activatePheromone(x+1, y-1, 255);
+//   _wo->activatePheromone(x-1, y+1, 255);
 }
 
 void BasicPheromoneAgentObserver::updateIntensities(Pheromone *p)

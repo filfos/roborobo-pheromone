@@ -67,15 +67,34 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int lifetime = 500;
 		static const int interval = 20;
 		
+		static const int cellSize = 30;
+		
 		double evaporationFactor;
 		
 // 		Uint8 intensities[1500][900];
 		std::vector< std::vector<int> > intensities;
 		std::vector< std::vector<int> > intensityBuffer;
 		std::vector< std::vector<bool> > wallMap;
-// 		std::vector< std::vector<Particle*> > particleMap;
+		std::vector< std::vector<Particle*> > particleMap;
 // 		std::vector< std::vector<Particle*> > particleBuffer;
 		
+ 		std::vector< std::vector<int> > movementHistory;
+
+		
+		std::vector< std::vector<bool> > visitedCells;
+		
+		int cellCheckCounter;
+		double cellVisitedAverage;
+		int noofTimesCellCounted;
+		bool isDone;
+		
+		void countVisitedCells();
+		
+		void addCurrentCells();
+		
+		void addToMovementHistory();
+		
+		void displayMovementHistory(int ms);
   
   
 		
@@ -87,6 +106,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		bool foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood);
 
 		std::vector<int> insideObstacle(int x, int y, int radius);
+		
+		void printAgentLocations();
 
 		
 		void stepAllPheromones();

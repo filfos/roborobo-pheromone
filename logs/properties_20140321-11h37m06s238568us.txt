@@ -1,0 +1,68 @@
+# =-=-=-=-=-=-=-=-=-=-=
+# PROPERTIES FILE DUMP 
+# =-=-=-=-=-=-=-=-=-=-=
+#
+# =-= Roborobo! 
+# =-= Official version tag    : 20120605
+# =-= Current build name      : Amsterdam build
+# =-= Compilation version tag : Mar 14 2014 - 14:03:46
+#
+# Loaded time stamp           : 20140321-11h37m06s238568us
+#
+# Original Properties file    : config/1default-pheromone.properties
+#
+
+
+ConfigurationLoaderObjectName=BasicPheromoneConfigurationLoader
+SlowMotionMode=false
+agent[0].orientation=270
+agent[0].x=500
+agent[0].y=500
+gAgentCounter=1
+gAgentHeight=0
+gAgentIndexFocus=0
+gAgentMaskImageFilename=data/agent-mask-black.png
+gAgentRegistration=true
+gAgentSpecsImageFilename=data/agent-specs-round.png
+gAgentWidth=0
+gAreaHeight=0
+gAreaWidth=0
+gBackgroundImageFilename=data/pheromone/background.png
+gBatchMode=false
+gDisplayMode=0
+gDisplayZoneCaption=false
+gEnergyMode=false
+gEnvironmentImageFilename=data/pheromone/rand1.png
+gFastDisplayModeSpeed=60
+gForegroundImageFilename=data/pheromone/rand1.png
+gFramesPerSecond=60
+gInspectAgent=false
+gInspectorAgent=false
+gInspectorAgentXStart=100
+gInspectorAgentYStart=355
+gInspectorMode=false
+gLocomotionMode=0
+gLogCommentText=(under-development)
+gLogFilename=logs/log.txt
+gMaxIt=-1
+gMaxRadioDistance=-1
+gMaxRotationalSpeed=2
+gMaxSpeedOnXaxis=20
+gMaxSpeedOnYaxis=10
+gMaxTranslationalDeltaValue=2
+gMaxTranslationalSpeed=2
+gMoveStepHeight=1
+gMoveStepWidth=1
+gNbOfAgents=1
+gNiceRendering=true
+gParallaxFactor=1
+gPauseMode=false
+gRadioNetwork=false
+gRandomSeed=1395398226
+gScreenHeight=900
+gScreenWidth=1500
+gSensorRange=64
+gUserCommandMode=false
+gVerbose=false
+gZoneCaptionPrefixFilename=data/zonecaption
+gZoneImageFilename=data/pheromone/background.png

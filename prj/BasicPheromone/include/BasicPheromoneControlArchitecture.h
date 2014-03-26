@@ -67,7 +67,11 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 		
 		BasicPheromoneSensor *_pSensor;
 		int stepCounter;
+		int pheromoneCounter;
 		int stagnationRotation;
+		int pheromoneIgnoreCounter;
+		
+		bool isPheromoneStagnated;
 		
 		int red, green, blue;
 		
@@ -82,6 +86,7 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 				
 		int goalDeg;
 		int reverseCounter;
+		
 		
 		int getAngleOfLightSensor(int sensorId);
 		int getAngleOfDistanceSensor(int sensorId);

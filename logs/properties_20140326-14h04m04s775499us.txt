@@ -1,0 +1,83 @@
+# =-=-=-=-=-=-=-=-=-=-=
+# PROPERTIES FILE DUMP 
+# =-=-=-=-=-=-=-=-=-=-=
+#
+# =-= Roborobo! 
+# =-= Official version tag    : 20120605
+# =-= Current build name      : Amsterdam build
+# =-= Compilation version tag : Mar 26 2014 - 14:03:42
+#
+# Loaded time stamp           : 20140326-14h04m04s775499us
+#
+# Original Properties file    : config/1default-pheromone.properties
+#
+
+
+ConfigurationLoaderObjectName=BasicPheromoneConfigurationLoader
+SlowMotionMode=false
+agent[0].orientation=203.652
+agent[0].x=1166
+agent[0].y=489
+agent[1].orientation=242.174
+agent[1].x=939
+agent[1].y=785
+agent[2].orientation=16.9091
+agent[2].x=994
+agent[2].y=18
+agent[3].orientation=84.7932
+agent[3].x=415
+agent[3].y=260
+agent[4].orientation=356.958
+agent[4].x=619
+agent[4].y=759
+agent[5].orientation=31.833
+agent[5].x=1449
+agent[5].y=23
+gAgentCounter=6
+gAgentHeight=0
+gAgentIndexFocus=0
+gAgentMaskImageFilename=data/agent-mask-black.png
+gAgentRegistration=true
+gAgentSpecsImageFilename=data/agent-specs-round.png
+gAgentWidth=0
+gAreaHeight=0
+gAreaWidth=0
+gBackgroundImageFilename=data/pheromone/background.png
+gBatchMode=false
+gDisplayMode=0
+gDisplayZoneCaption=false
+gEnergyMode=false
+gEnvironmentImageFilename=data/pheromone/rand6.png
+gFastDisplayModeSpeed=60
+gForegroundImageFilename=data/pheromone/rand6.png
+gFramesPerSecond=60
+gInspectAgent=false
+gInspectorAgent=false
+gInspectorAgentXStart=100
+gInspectorAgentYStart=355
+gInspectorMode=false
+gLocomotionMode=0
+gLogCommentText=(under-development)
+gLogFilename=logs/log.txt
+gMaxIt=-1
+gMaxRadioDistance=-1
+gMaxRotationalSpeed=2
+gMaxSpeedOnXaxis=20
+gMaxSpeedOnYaxis=10
+gMaxTranslationalDeltaValue=2
+gMaxTranslationalSpeed=2
+gMoveStepHeight=1
+gMoveStepWidth=1
+gNbOfAgents=6
+gNiceRendering=true
+gParallaxFactor=1
+gPauseMode=false
+gRadioNetwork=false
+gRandomSeed=1395839044
+gScreenHeight=900
+gScreenWidth=1500
+gSensorRange=64
+gUserCommandMode=false
+gVerbose=false
+gZoneCaptionPrefixFilename=data/zonecaption
+gZoneImageFilename=data/pheromone/background.png

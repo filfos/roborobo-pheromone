@@ -30,8 +30,7 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	
 // 	int pheromoneMap[1500][900] = {{0}};
 // 	int pheromoneBuffer[1500][900] = {{0}};
-	
-	
+		
 	intensities.resize(gScreenWidth);
 	intensityBuffer.resize(gScreenWidth);
 	wallMap.resize(gScreenWidth);
@@ -217,13 +216,15 @@ void BasicPheromoneWorldObserver::step()
   
   ++cellCheckCounter;
   if (cellCheckCounter >= 0) // Have to delay execution until agents are initialized
+  {
     addCurrentCells();
+    addToMovementHistory();
+  }
   if (cellCheckCounter == 2000)
   {
     countVisitedCells();
     cellCheckCounter = 0;
   }
-  
   checkForFood();
   stepAllFoods();
 
@@ -245,50 +246,26 @@ void BasicPheromoneWorldObserver::addToMovementHistory()
 		
 void BasicPheromoneWorldObserver::displayMovementHistory(int ms)
 {
-  const SDL_PixelFormat &fmt = *(gEnvironmentImage->format);
   
-  SDL_Surface *movement;
-  movement = SDL_CreateRGBSurfaceFrom(gEnvironmentImage->pixels, 1500, 900, fmt.BitsPerPixel, gEnvironmentImage->pitch, fmt.Rmask, fmt.Gmask, fmt.Bmask, fmt.Amask);
-  SDL_LockSurface(movement);
-  for (Uint32 x = 0; x < movementHistory.size(); x++)
+//   SDL_Surface *movement;
+//   movement = SDL_CreateRGBSurfaceFrom(gEnvironmentImage->pixels, 1500, 900, fmt.BitsPerPixel, gEnvironmentImage->pitch, fmt.Rmask, fmt.Gmask, fmt.Bmask, fmt.Amask);
+  SDL_LockSurface(gBackgroundImage);
+  for (Uint32 y = 0; y < movementHistory[0].size(); y++)
   {
-    for (Uint32 y = 0; y < movementHistory[0].size(); y++)
-    {   
+    for (Uint32 x = 0; x < movementHistory.size(); x++)
+    {
 	int val = movementHistory[x][y];
-	Uint8 intens = val > 255 ? 255 : val;
-	Uint32 color = SDL_MapRGB(movement->format, 255, 255-intens, 255-intens );
-	Uint8* pixel =(Uint8*) movement->pixels;
+	Uint8 intens = val > 0 ? 255 : 0;//val > 255 ? 255 : val;
+	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255-intens, 255-intens );
+	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
 	
 	
-	pixel += (y * movement->pitch) + (x * sizeof(Uint32));
+	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
 	*((Uint32*)pixel) = color;      
     }
   }
-  SDL_UnlockSurface(movement);
-  
-  
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-	printf("Unable to initialize SDL: %s\n", SDL_GetError());
-	return;
-    }
-//  
-    atexit(SDL_Quit);
-//     
-    SDL_Surface *screen = NULL;
-//     SDL_Surface *movement = NULL;
- 
-    screen = SDL_SetVideoMode(1500, 900, 32, SDL_SWSURFACE);
-    if (screen == NULL) {
-	    printf("Unable to set video mode: %s\n", SDL_GetError());
-	    return;
-    }
-    
-//     movement = SDL_LoadIMG("data/pheromone/background.png");
-    SDL_BlitSurface(movement, NULL, screen, NULL);
-    
-    SDL_Flip(movement);
-    SDL_Delay( ms);
-  
+  SDL_UnlockSurface(gBackgroundImage);  
+  gPauseMode = true;
 }
 
 
@@ -428,6 +405,7 @@ void BasicPheromoneWorldObserver::drawIntensities()
 	
 	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
 	*((Uint32*)pixel) = color;      
+	
     }
   }
   SDL_UnlockSurface(gBackgroundImage);

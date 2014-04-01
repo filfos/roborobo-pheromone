@@ -171,6 +171,10 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void activatePheromone(int x, int y, int intensity);
 		
 		
+		private:
+		int untouchedStepCounter;
+		std::ofstream dispersionFile;
+		void writeDispersionToFile();
 };
 
 #endif

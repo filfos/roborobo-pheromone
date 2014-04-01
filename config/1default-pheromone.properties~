@@ -19,8 +19,8 @@ gLogCommentText  = 					(under-development)
 
 gAgentMaskImageFilename = data/agent-mask-black.png
 gAgentSpecsImageFilename = data/agent-specs-round.png
-gForegroundImageFilename = data/pheromone/rand6.png   # add '_x'
-gEnvironmentImageFilename = data/pheromone/rand6.png # add '_x'
+gForegroundImageFilename = data/pheromone/rand1.png   # add '_x'
+gEnvironmentImageFilename = data/pheromone/rand1.png # add '_x'
 gBackgroundImageFilename = data/pheromone/background.png			
 gZoneImageFilename = data/pheromone/background.png
 gZoneCaptionPrefixFilename = data/zonecaption
@@ -38,7 +38,7 @@ gParallaxFactor = 					1
 
 # general data
 
-gNbOfAgents = 						50 # 5
+gNbOfAgents = 						6 # 5
 
 gDisplayZoneCaption = 				false
 
@@ -50,7 +50,7 @@ ConfigurationLoaderObjectName = BasicPheromoneConfigurationLoader
 
 gMaxIt = -1
 
-gAgentCounter = 					50 # 5
+gAgentCounter = 					6 # 5
 gAgentIndexFocus = 					0
 
 gScreenWidth = 						1500
@@ -104,29 +104,28 @@ gRadioNetwork = 					false
 
 # agent starting location
 
+agent[0].x = 153
+agent[0].y = 110
+agent[0].orientation = 260
 
-agent[0].x = 1166
-agent[0].y = 489
-agent[0].orientation = 203.652
+agent[1].x = 412
+agent[1].y = 525
+agent[1].orientation = 90
 
-agent[1].x = 939
-agent[1].y = 785
-agent[1].orientation = 242.174
+agent[2].x = 602
+agent[2].y = 828
+agent[2].orientation = 200
 
-agent[2].x = 994
-agent[2].y = 18
-agent[2].orientation = 16.9091
+agent[3].x = 617
+agent[3].y = 30
+agent[3].orientation = 160
 
-agent[3].x = 415
-agent[3].y = 260
-agent[3].orientation = 84.7932
+agent[4].x = 780
+agent[4].y = 464
+agent[4].orientation = 110
 
-agent[4].x = 619
-agent[4].y = 759
-agent[4].orientation = 356.958
-
-agent[5].x = 1449
-agent[5].y = 23
-agent[5].orientation = 31.833
+agent[5].x = 1278
+agent[5].y = 109
+agent[5].orientation = 180
 
 

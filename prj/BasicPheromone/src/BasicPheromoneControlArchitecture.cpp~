@@ -148,7 +148,7 @@ void BasicPheromoneControlArchitecture::pheromoneReaction()
 //For 8-sensor CHiRP-robot
 void BasicPheromoneControlArchitecture::wallAvoidance()
 {
-  releasePheromones = true;
+  releasePheromones = false;
   
 //   std::cout << "ONLY WALL" << std::endl;
   //Slow down if wall is detected straight ahead
@@ -204,18 +204,11 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 
 void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 {
-	releasePheromones = true;
+	releasePheromones = true; //TRUE
 // 	std::cout << " WALL AND PHEROMONE" << std::endl;
 
-	//Slow down if wall is detected straight ahead
-// 	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
-// 	{
-// 		_wm->_desiredTranslationalValue = + 2 - 2*( 1.0 - (_pSensor->_sensor[FRONT][LIGHT]) ) ;
-// 	}
-// 	else
-// 	{
+
 	_wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
-// 	}
 	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
 	  _wm->_desiredTranslationalValue =  + 2 - 1*(( 255.0 - _pSensor->_sensor[FRONT][LIGHT] ) / 255.0);
 	  
@@ -228,12 +221,20 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	)
 	{
 		_wm->_desiredRotationalVelocity = +2;
+// 		releasePheromones = false;
 	}
 	else
 		if ( _wm->_sensors[NE][5] + _wm->_sensors[E][5] < 2*gSensorRange ) 
+		{
 			_wm->_desiredRotationalVelocity = -2;
+// 			releasePheromones = false;
+
+		}
 		else if (_pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT] + _pSensor->_sensor[BACK_RIGHT][LIGHT] > 0)
+		{
 			_wm->_desiredRotationalVelocity = -2;
+// 			releasePheromones = false;
+		}
 		else
 			if ( _wm->_desiredRotationalVelocity > 0 ) 
 				_wm->_desiredRotationalVelocity -= 0.5;
@@ -502,7 +503,7 @@ bool BasicPheromoneControlArchitecture::checkWallStagnation()
     stdX = sqrt(stdX);
     stdY = sqrt(stdY);
     
-    std::cout << "Wall Stagnation limit 20:    Value:   "    << stdX + stdY << std::endl;
+//     std::cout << "Wall Stagnation limit 20:    Value:   "    << stdX + stdY << std::endl;
     lastLocations.clear();
     stepCounter = 0;
     
@@ -518,7 +519,7 @@ bool BasicPheromoneControlArchitecture::checkWallStagnation()
     
     if (stdX + stdY < 20)
     {
-      std::cout << "|||||||||| STAGNATION |||||||||" << std::endl;
+//       std::cout << "|||||||||| STAGNATION |||||||||" << std::endl;
       return true;
     }
   }

@@ -1,0 +1,83 @@
+# =-=-=-=-=-=-=-=-=-=-=
+# PROPERTIES FILE DUMP 
+# =-=-=-=-=-=-=-=-=-=-=
+#
+# =-= Roborobo! 
+# =-= Official version tag    : 20120605
+# =-= Current build name      : Amsterdam build
+# =-= Compilation version tag : Mar 31 2014 - 15:36:33
+#
+# Loaded time stamp           : 20140331-16h11m41s998690us
+#
+# Original Properties file    : config/1default-pheromone.properties
+#
+
+
+ConfigurationLoaderObjectName=BasicPheromoneConfigurationLoader
+SlowMotionMode=false
+agent[0].orientation=260
+agent[0].x=153
+agent[0].y=110
+agent[1].orientation=90
+agent[1].x=412
+agent[1].y=525
+agent[2].orientation=200
+agent[2].x=602
+agent[2].y=828
+agent[3].orientation=160
+agent[3].x=617
+agent[3].y=30
+agent[4].orientation=110
+agent[4].x=780
+agent[4].y=464
+agent[5].orientation=180
+agent[5].x=1278
+agent[5].y=109
+gAgentCounter=6
+gAgentHeight=0
+gAgentIndexFocus=0
+gAgentMaskImageFilename=data/agent-mask-black.png
+gAgentRegistration=true
+gAgentSpecsImageFilename=data/agent-specs-round.png
+gAgentWidth=0
+gAreaHeight=0
+gAreaWidth=0
+gBackgroundImageFilename=data/pheromone/background.png
+gBatchMode=false
+gDisplayMode=0
+gDisplayZoneCaption=false
+gEnergyMode=false
+gEnvironmentImageFilename=data/pheromone/rand4.png
+gFastDisplayModeSpeed=60
+gForegroundImageFilename=data/pheromone/rand4.png
+gFramesPerSecond=60
+gInspectAgent=false
+gInspectorAgent=false
+gInspectorAgentXStart=100
+gInspectorAgentYStart=355
+gInspectorMode=false
+gLocomotionMode=0
+gLogCommentText=(under-development)
+gLogFilename=logs/log.txt
+gMaxIt=-1
+gMaxRadioDistance=-1
+gMaxRotationalSpeed=2
+gMaxSpeedOnXaxis=20
+gMaxSpeedOnYaxis=10
+gMaxTranslationalDeltaValue=2
+gMaxTranslationalSpeed=2
+gMoveStepHeight=1
+gMoveStepWidth=1
+gNbOfAgents=6
+gNiceRendering=true
+gParallaxFactor=1
+gPauseMode=false
+gRadioNetwork=false
+gRandomSeed=1396275101
+gScreenHeight=900
+gScreenWidth=1500
+gSensorRange=64
+gUserCommandMode=false
+gVerbose=false
+gZoneCaptionPrefixFilename=data/zonecaption
+gZoneImageFilename=data/pheromone/background.png

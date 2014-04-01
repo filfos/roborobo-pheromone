@@ -91,6 +91,10 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void countVisitedCells();
 		
 		void addCurrentCells();
+		
+		void addToMovementHistory();
+		
+		void displayMovementHistory(int ms);
   
   
 		
@@ -167,6 +171,9 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void activatePheromone(int x, int y, int intensity);
 		
 		
+		private:
+		int untouchedStepCounter;
+		std::ofstream dispersionFile;
 };
 
 #endif

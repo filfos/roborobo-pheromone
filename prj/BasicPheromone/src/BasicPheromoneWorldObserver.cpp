@@ -10,9 +10,13 @@
 
 #include "World/World.h"
 
+// #include <iostream>
+// #include <fstream>
+
 BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : WorldObserver( __world )
 {
 	_world = __world;
+	untouchedStepCounter = 0;
 	stepCounter = 0;
 	score = 0;
 	wallUpdated = false;
@@ -25,12 +29,8 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	
 	evaporationFactor = exp((log(0.5)/lifetime )*interval);
 	
-	
-// 	pheromoneMap[1][1] = 2;
-	
-// 	int pheromoneMap[1500][900] = {{0}};
-// 	int pheromoneBuffer[1500][900] = {{0}};
-		
+	dispersionFile.open("testFile.txt");
+			
 	intensities.resize(gScreenWidth);
 	intensityBuffer.resize(gScreenWidth);
 	wallMap.resize(gScreenWidth);
@@ -75,17 +75,30 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 // 	  }
 // 	}
 
-/* RAND 1 */	
-//  createFood( 1365, 845,20);//1440, 894, 20 );
+/* RAND 1  OLD ????*/	
+//  createFood( 1365, 845,20);
 //  createFood( 375, 170, 20 );
 //  createFood( 1298, 507, 20 );
-//  createFood( 1403, 181, 20);// 1487, 181, 20 );
+//  createFood( 1403, 181, 20);
 //  createFood( 169, 636, 20 );
 //  createFood( 786, 94, 20 );
 //  createFood( 1386, 291, 20 );
-//  createFood( 1098, 679, 20);//1079, 748, 20 );
+//  createFood( 1098, 679, 20);
 //  createFood( 1119, 285, 20 );
 //  createFood( 308, 284, 20 );
+
+
+/* RAND 1 */
+//  createFood( 376, 170,20);
+//  createFood( 308, 286, 20 );
+//  createFood( 170, 636, 20 );
+//  createFood( 786, 96, 20);
+//  createFood( 1121, 289, 20 );
+//  createFood( 1098, 677, 20 );
+//  createFood( 1405, 180, 20 );
+//  createFood( 1389, 294, 20);
+//  createFood( 1300, 508, 20 );
+//  createFood( 1368, 846, 20 );
 
 /* RAND 2 */
 //  createFood( 1311, 461, 20 );
@@ -136,16 +149,16 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 //  createFood( 984, 627, 20 );
 
 /* RAND 6 */
- createFood( 540, 257, 20 );
- createFood( 882, 571, 20 );
- createFood( 1284, 361, 20 );
- createFood( 448, 769, 20 );
- createFood( 980, 317, 20 );
- createFood( 1240, 854, 20 );
- createFood( 1369, 26, 20 );
- createFood( 52, 154, 20 );
- createFood( 167, 637, 20 );
- createFood( 143, 850, 20 );
+//  createFood( 540, 257, 20 );
+//  createFood( 882, 571, 20 );
+//  createFood( 1284, 361, 20 );
+//  createFood( 448, 769, 20 );
+//  createFood( 980, 317, 20 );
+//  createFood( 1240, 854, 20 );
+//  createFood( 1369, 26, 20 );
+//  createFood( 52, 154, 20 );
+//  createFood( 167, 637, 20 );
+//  createFood( 143, 850, 20 );
 
 	
  
@@ -167,6 +180,8 @@ void BasicPheromoneWorldObserver::step()
   createWallMap();
   randomizeFood(gScreenWidth, gScreenHeight, 0, 30);
   
+  untouchedStepCounter++;
+  
   if (noofFoodFound == foodList.size() && !isDone)
   {
     isDone = true;
@@ -181,8 +196,8 @@ void BasicPheromoneWorldObserver::step()
       std::cout << i+1 << " : " << (int)foodIdTimestamps.at(i) << std::endl;
     }
     std::cout << "--------------" << std::endl;
-    countVisitedCells();
-    displayMovementHistory(6000);
+//     countVisitedCells();
+//     displayMovementHistory(6000);
   
 
     
@@ -208,9 +223,15 @@ void BasicPheromoneWorldObserver::step()
   {
 //     updatePheromones();
 //     updateIntensityMap();
-    diffuse();
+
+    //-------
+//     diffuse();
+    
 //     evaporate();
-    drawIntensities();
+
+    //-----
+//     drawIntensities();
+    
     stepCounter = 0;
   }
   
@@ -219,15 +240,17 @@ void BasicPheromoneWorldObserver::step()
   {
     addCurrentCells();
     addToMovementHistory();
+    writeDispersionToFile();
+
   }
-  if (cellCheckCounter == 2000)
+  if (cellCheckCounter == 4000)
   {
     countVisitedCells();
+    displayMovementHistory(6000);
     cellCheckCounter = 0;
   }
   checkForFood();
   stepAllFoods();
-
   
 }
 
@@ -268,6 +291,41 @@ void BasicPheromoneWorldObserver::displayMovementHistory(int ms)
   gPauseMode = true;
 }
 
+void BasicPheromoneWorldObserver::writeDispersionToFile()
+{
+  int x_mean = 0;
+  int y_mean = 0;
+  int x, y;
+  
+  /* Calculate new center point */
+  for (int i = 0; i < gAgentCounter; i++)
+  {
+    _world->getAgent(i)->getCoord(x, y);
+    x_mean += x;
+    y_mean += y;
+  }
+  x_mean /= gAgentCounter;
+  y_mean /= gAgentCounter;
+  
+  
+  double x_avg = 0;
+  double y_avg = 0;
+  double avg_distance = 0;
+  /* Calculate average distance from the center point */
+  for (int i = 0; i < gAgentCounter; i++)
+  {
+    _world->getAgent(i)->getCoord(x, y);
+    x_avg = pow(x - x_mean, 2.0);
+    y_avg = pow(y - y_mean, 2.0);
+    
+    avg_distance += sqrt(x_avg + y_avg);
+  }
+  avg_distance /= gAgentCounter;
+  
+  dispersionFile << avg_distance << "\n";
+  
+}
+
 
 void BasicPheromoneWorldObserver::countVisitedCells()
 {
@@ -289,6 +347,8 @@ void BasicPheromoneWorldObserver::countVisitedCells()
   cellVisitedAverage += (double)noofVisitedCells/(double)noofCells;
   std::cout << "     Covered Cells / total cells = " << noofVisitedCells << " / " << noofCells << " = " << (double)noofVisitedCells/(double)noofCells << std::endl;
   std::cout << "     AVG Covered / Times Counted = " << cellVisitedAverage << " / " << noofTimesCellCounted << " = " << (double)cellVisitedAverage/(double)noofTimesCellCounted << std::endl;
+  std::cout << "-----\n" << "fraction of visited Cell / total timesteps " << cellVisitedAverage << " / " << untouchedStepCounter << " =  " << (double)cellVisitedAverage / (double)untouchedStepCounter << std::endl;
+  dispersionFile.close();
 
 }
 
@@ -528,6 +588,7 @@ double BasicPheromoneWorldObserver::eightNeighbourMean(int x, int y)
 
 void BasicPheromoneWorldObserver::activatePheromone(int x, int y, int intensity)
 {
+  
   intensities[x][y] = intensity;
   
   for (int i = 1; i <= 1; i++)

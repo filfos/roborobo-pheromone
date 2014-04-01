@@ -93,7 +93,9 @@ void BasicPheromoneAgentObserver::step()
   x = _wm->getXReal();
   y = _wm->getYReal();
   
-  _wo->activatePheromone(x, y, 255);
+//   if (getRobotLED_blueValue() == 255)
+  if (_wm->getRobotLED_greenValue() == 255)
+    _wo->activatePheromone(x, y, 255);
   
 /* LATTICE GAS */  
 //     _wo->activatePheromone(x, y, 255);

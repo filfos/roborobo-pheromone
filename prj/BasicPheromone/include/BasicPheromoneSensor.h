@@ -51,6 +51,9 @@ class BasicPheromoneSensor
     const static int sensorRange = 100;
     
     int foodFound();
+    
+    int getIndexOfMaxLeftLightSensor();
+    int getIndexOfMaxRightLightSensor();
 
 
 

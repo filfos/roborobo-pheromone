@@ -189,6 +189,42 @@ void BasicPheromoneSensor::checkForFood(int x, int y)
 }
 
 
+int BasicPheromoneSensor::getIndexOfMaxLeftLightSensor()
+{
+  int maxIndex = -1;
+  double maxVal = 0;
+  
+  for (int i = 6; i <= 7; i++)
+  {
+    if (_sensor[i][5] > maxVal)
+    {
+      maxVal = _sensor[i][5];
+      maxIndex = i;
+    } 
+  }
+  
+  return maxIndex;
+}
+
+int BasicPheromoneSensor::getIndexOfMaxRightLightSensor()
+{
+  int maxIndex = -1;
+  double maxVal = 0;
+  
+  for (int i = 1; i <= 2; i++)
+  {
+    if (_sensor[i][5] > maxVal)
+    {
+      maxVal = _sensor[i][5];
+      maxIndex = i;
+    }
+  }
+  
+  return maxIndex;
+}
+
+
+
 
 int BasicPheromoneSensor::foodFound()
 {

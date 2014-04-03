@@ -19,8 +19,8 @@ gLogCommentText  = 					(under-development)
 
 gAgentMaskImageFilename = data/agent-mask-black.png
 gAgentSpecsImageFilename = data/agent-specs-round.png
-gForegroundImageFilename = data/pheromone/rand1.png   # add '_x'
-gEnvironmentImageFilename = data/pheromone/rand1.png # add '_x'
+gForegroundImageFilename = data/pheromone/rand4.png   # add '_x'
+gEnvironmentImageFilename = data/pheromone/rand4.png # add '_x'
 gBackgroundImageFilename = data/pheromone/background.png			
 gZoneImageFilename = data/pheromone/background.png
 gZoneCaptionPrefixFilename = data/zonecaption
@@ -38,7 +38,7 @@ gParallaxFactor = 					1
 
 # general data
 
-gNbOfAgents = 						6 # 5
+gNbOfAgents = 						1 # 5
 
 gDisplayZoneCaption = 				false
 
@@ -50,7 +50,7 @@ ConfigurationLoaderObjectName = BasicPheromoneConfigurationLoader
 
 gMaxIt = -1
 
-gAgentCounter = 					6 # 5
+gAgentCounter = 					1 # 5
 gAgentIndexFocus = 					0
 
 gScreenWidth = 						1500

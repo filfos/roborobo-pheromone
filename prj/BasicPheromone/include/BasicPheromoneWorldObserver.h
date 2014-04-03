@@ -67,7 +67,7 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int lifetime = 500;
 		static const int interval = 20;
 		
-		static const int cellSize = 30;
+		static const int cellSize = 60;
 		
 		double evaporationFactor;
 		
@@ -174,7 +174,9 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		private:
 		int untouchedStepCounter;
 		std::ofstream dispersionFile;
+		std::ofstream tilesFoundFile;
 		void writeDispersionToFile();
+		void writeToTilesFoundFile();
 };
 
 #endif

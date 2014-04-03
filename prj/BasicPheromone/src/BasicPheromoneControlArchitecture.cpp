@@ -38,7 +38,7 @@ BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgent
     blue = 0;
     
     ignorePheromones = false;
-    releasePheromones = false;
+    releasePheromones = true;
     
     mStatus = DEFAULT;
       
@@ -148,7 +148,7 @@ void BasicPheromoneControlArchitecture::pheromoneReaction()
 //For 8-sensor CHiRP-robot
 void BasicPheromoneControlArchitecture::wallAvoidance()
 {
-  releasePheromones = false;
+  releasePheromones = true;
   
 //   std::cout << "ONLY WALL" << std::endl;
   //Slow down if wall is detected straight ahead
@@ -204,8 +204,10 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 
 void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 {
-	releasePheromones = true; //TRUE
+	releasePheromones = true;
 // 	std::cout << " WALL AND PHEROMONE" << std::endl;
+	int leftMax = _pSensor->getIndexOfMaxLeftLightSensor();	
+	int rightMax = _pSensor->getIndexOfMaxRightLightSensor();
 
 
 	_wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
@@ -215,13 +217,15 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	// Compare distance to walls on both sides
 	if ( _wm->_sensors[W][5] + _wm->_sensors[NW][5] <  _wm->_sensors[NE][5] + _wm->_sensors[E][5] ) 
 		_wm->_desiredRotationalVelocity = +2;
-		  
-	else if (_pSensor->_sensor[LEFT][LIGHT] + _pSensor->_sensor[FRONT_LEFT][LIGHT] +_pSensor->_sensor[BACK_LEFT][LIGHT] >
-		  _pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT] + _pSensor->_sensor[BACK_RIGHT][LIGHT]
-	)
+	
+	//START
+	else if (leftMax != -1 && _pSensor->_sensor[leftMax][LIGHT] == _pSensor->_sensor[rightMax][LIGHT])
 	{
-		_wm->_desiredRotationalVelocity = +2;
-// 		releasePheromones = false;
+	  _wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
+	}
+	else if (_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT])
+	{
+	  _wm->_desiredRotationalVelocity = +2;
 	}
 	else
 		if ( _wm->_sensors[NE][5] + _wm->_sensors[E][5] < 2*gSensorRange ) 
@@ -230,11 +234,33 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 // 			releasePheromones = false;
 
 		}
-		else if (_pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT] + _pSensor->_sensor[BACK_RIGHT][LIGHT] > 0)
+		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01)
 		{
 			_wm->_desiredRotationalVelocity = -2;
 // 			releasePheromones = false;
 		}
+	  
+		
+	//STOP	  
+// 	else if (_pSensor->_sensor[LEFT][LIGHT] + _pSensor->_sensor[FRONT_LEFT][LIGHT] +_pSensor->_sensor[BACK_LEFT][LIGHT] >
+// 		  _pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT] + _pSensor->_sensor[BACK_RIGHT][LIGHT]
+// 	)
+// 	{
+// 		_wm->_desiredRotationalVelocity = +2;
+// // 		releasePheromones = false;
+// 	}
+// 	else
+// 		if ( _wm->_sensors[NE][5] + _wm->_sensors[E][5] < 2*gSensorRange ) 
+// 		{
+// 			_wm->_desiredRotationalVelocity = -2;
+// // 			releasePheromones = false;
+// 
+// 		}
+// 		else if (_pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT] + _pSensor->_sensor[BACK_RIGHT][LIGHT] > 0)
+// 		{
+// 			_wm->_desiredRotationalVelocity = -2;
+// // 			releasePheromones = false;
+// 		}
 		else
 			if ( _wm->_desiredRotationalVelocity > 0 ) 
 				_wm->_desiredRotationalVelocity -= 0.5;

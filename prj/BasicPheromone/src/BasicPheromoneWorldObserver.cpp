@@ -29,7 +29,8 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	
 	evaporationFactor = exp((log(0.5)/lifetime )*interval);
 	
-	dispersionFile.open("testFile.txt");
+	dispersionFile.open("dispersion_distance.txt");
+	tilesFoundFile.open("tiles_found.txt");
 			
 	intensities.resize(gScreenWidth);
 	intensityBuffer.resize(gScreenWidth);
@@ -225,12 +226,12 @@ void BasicPheromoneWorldObserver::step()
 //     updateIntensityMap();
 
     //-------
-//     diffuse();
+    diffuse();
     
 //     evaporate();
 
     //-----
-//     drawIntensities();
+    drawIntensities();
     
     stepCounter = 0;
   }
@@ -241,9 +242,10 @@ void BasicPheromoneWorldObserver::step()
     addCurrentCells();
     addToMovementHistory();
     writeDispersionToFile();
+    writeToTilesFoundFile();
 
   }
-  if (cellCheckCounter == 4000)
+  if (cellCheckCounter == 6000)
   {
     countVisitedCells();
     displayMovementHistory(6000);
@@ -326,6 +328,20 @@ void BasicPheromoneWorldObserver::writeDispersionToFile()
   
 }
 
+void BasicPheromoneWorldObserver::writeToTilesFoundFile()
+{
+  int noofTilesVisited = 0;
+  for (int x = 0; x < gScreenWidth/cellSize; x++)
+  {
+    for (int y = 0; y < gScreenHeight/cellSize; y++)
+    {
+      if (visitedCells[x][y])
+	++noofTilesVisited;
+    }
+  }
+  
+  tilesFoundFile << noofTilesVisited << "\n";
+}
 
 void BasicPheromoneWorldObserver::countVisitedCells()
 {
@@ -349,6 +365,7 @@ void BasicPheromoneWorldObserver::countVisitedCells()
   std::cout << "     AVG Covered / Times Counted = " << cellVisitedAverage << " / " << noofTimesCellCounted << " = " << (double)cellVisitedAverage/(double)noofTimesCellCounted << std::endl;
   std::cout << "-----\n" << "fraction of visited Cell / total timesteps " << cellVisitedAverage << " / " << untouchedStepCounter << " =  " << (double)cellVisitedAverage / (double)untouchedStepCounter << std::endl;
   dispersionFile.close();
+  tilesFoundFile.close();
 
 }
 

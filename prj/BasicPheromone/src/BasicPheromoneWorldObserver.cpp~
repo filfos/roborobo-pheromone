@@ -220,10 +220,11 @@ void BasicPheromoneWorldObserver::step()
 //     stepCounter = 0;    
 //     drawIntensities();
 //   }
-  if (stepCounter == 10)
+  if (stepCounter == interval)
   {
 //     updatePheromones();
 //     updateIntensityMap();
+
 
     //-------
 //     diffuse();
@@ -245,7 +246,7 @@ void BasicPheromoneWorldObserver::step()
     writeToTilesFoundFile();
 
   }
-  if (cellCheckCounter == 6000)
+  if (cellCheckCounter == 10000)
   {
     countVisitedCells();
     displayMovementHistory(6000);
@@ -533,7 +534,7 @@ void BasicPheromoneWorldObserver::diffuse()
 	intensityBuffer[x][y] = getMax(intensities[x+1][y], 
 					intensities[x-1][y], 
 					intensities[x][y+1], 
-					intensities[x][y-1] )*.97;
+					intensities[x][y-1] )*evaporationFactor; //0.97
 	
       }
     }

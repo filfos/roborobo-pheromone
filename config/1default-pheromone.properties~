@@ -19,8 +19,8 @@ gLogCommentText  = 					(under-development)
 
 gAgentMaskImageFilename = data/agent-mask-black.png
 gAgentSpecsImageFilename = data/agent-specs-round.png
-gForegroundImageFilename = data/pheromone/rand4.png   # add '_x'
-gEnvironmentImageFilename = data/pheromone/rand4.png # add '_x'
+gForegroundImageFilename = data/pheromone/background.png   # randX.png
+gEnvironmentImageFilename = data/pheromone/background.png # randX.png
 gBackgroundImageFilename = data/pheromone/background.png			
 gZoneImageFilename = data/pheromone/background.png
 gZoneCaptionPrefixFilename = data/zonecaption
@@ -104,28 +104,8 @@ gRadioNetwork = 					false
 
 # agent starting location
 
-agent[0].x = 153
-agent[0].y = 110
-agent[0].orientation = 260
-
-agent[1].x = 412
-agent[1].y = 525
-agent[1].orientation = 90
-
-agent[2].x = 602
-agent[2].y = 828
-agent[2].orientation = 200
-
-agent[3].x = 617
-agent[3].y = 30
-agent[3].orientation = 160
-
-agent[4].x = 780
-agent[4].y = 464
-agent[4].orientation = 110
-
-agent[5].x = 1278
-agent[5].y = 109
-agent[5].orientation = 180
+agent[0].x = 1043
+agent[0].y = 429
+agent[0].orientation = 225.682
 
 

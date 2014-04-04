@@ -184,18 +184,18 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 			// Straighten out
 			if ( _wm->_desiredRotationalVelocity > 0 )
 			{
-				_wm->_desiredRotationalVelocity -= 0.5;
+				_wm->_desiredRotationalVelocity -= 0.25;
 			}
 			else
 			{
 				if ( _wm->_desiredRotationalVelocity < 0) 
 				{
-					_wm->_desiredRotationalVelocity += 0.5;
+					_wm->_desiredRotationalVelocity += 0.25;
 				}
 				else
 				{
 					// Add small random rotation
-					_wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
+					_wm->_desiredRotationalVelocity = 0;//0.01 - (double)(rand()%10)/10.*0.02;
 				}
 			}
 		}
@@ -218,7 +218,7 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	if ( _wm->_sensors[W][5] + _wm->_sensors[NW][5] <  _wm->_sensors[NE][5] + _wm->_sensors[E][5] ) 
 		_wm->_desiredRotationalVelocity = +2;
 	
-	//START
+	
 	else if (leftMax != -1 && _pSensor->_sensor[leftMax][LIGHT] == _pSensor->_sensor[rightMax][LIGHT])
 	{
 	  _wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
@@ -239,36 +239,14 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 			_wm->_desiredRotationalVelocity = -2;
 // 			releasePheromones = false;
 		}
-	  
-		
-	//STOP	  
-// 	else if (_pSensor->_sensor[LEFT][LIGHT] + _pSensor->_sensor[FRONT_LEFT][LIGHT] +_pSensor->_sensor[BACK_LEFT][LIGHT] >
-// 		  _pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT] + _pSensor->_sensor[BACK_RIGHT][LIGHT]
-// 	)
-// 	{
-// 		_wm->_desiredRotationalVelocity = +2;
-// // 		releasePheromones = false;
-// 	}
-// 	else
-// 		if ( _wm->_sensors[NE][5] + _wm->_sensors[E][5] < 2*gSensorRange ) 
-// 		{
-// 			_wm->_desiredRotationalVelocity = -2;
-// // 			releasePheromones = false;
-// 
-// 		}
-// 		else if (_pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT] + _pSensor->_sensor[BACK_RIGHT][LIGHT] > 0)
-// 		{
-// 			_wm->_desiredRotationalVelocity = -2;
-// // 			releasePheromones = false;
-// 		}
 		else
 			if ( _wm->_desiredRotationalVelocity > 0 ) 
-				_wm->_desiredRotationalVelocity -= 0.5;
+				_wm->_desiredRotationalVelocity -= 0.25;
 			else
 				if ( _wm->_desiredRotationalVelocity < 0) 
-					_wm->_desiredRotationalVelocity += 0.5;
+					_wm->_desiredRotationalVelocity += 0.25;
 				else
-					_wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
+					_wm->_desiredRotationalVelocity = 0; //0.001 - (double)(rand()%10)/10.*0.002;
 }
 
 

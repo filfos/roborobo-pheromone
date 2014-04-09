@@ -64,10 +64,10 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int defaultLifetime = 300;		
 		static const int defaultMaxDiffusion = 70;
 		
-		static const int lifetime = 500;
-		static const int interval = 10;
+		static const int lifetime = 250;
+		static const int interval = 50;
 		
-		static const int cellSize = 60;
+		static const int cellSize = 25;
 		
 		double evaporationFactor;
 		

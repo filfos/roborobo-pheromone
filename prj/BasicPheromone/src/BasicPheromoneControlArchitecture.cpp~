@@ -59,11 +59,12 @@ void BasicPheromoneControlArchitecture::reset()
 
 void BasicPheromoneControlArchitecture::step()
 {
+	
 	_pSensor->update();
 	
 	blue = _pSensor->foodFound() == 1 ? 255 : 0;
 	
-	green = 0;//releasePheromones ? 255 : 0;
+	green = releasePheromones ? 255 : 0;
 	
 	_wm->setRobotLED_colorValues(red, green, blue);
 	  
@@ -86,7 +87,7 @@ void BasicPheromoneControlArchitecture::step()
 	    wallAvoidance();
 	else
 	  std::cout << "This should never print " << std::endl;
-	
+
 // 	std::cout << _wm->_sensors[0][0] << std::endl;
 // 	std::cout << _wm->_sensors[0][1] << std::endl;
 // 	std::cout << _wm->_sensors[0][2] << std::endl;
@@ -181,6 +182,7 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 		}
 		else
 		{
+			_wm->_desiredRotationalVelocity += .1;
 			// Straighten out
 			if ( _wm->_desiredRotationalVelocity > 0 )
 			{
@@ -208,38 +210,55 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 // 	std::cout << " WALL AND PHEROMONE" << std::endl;
 	int leftMax = _pSensor->getIndexOfMaxLeftLightSensor();	
 	int rightMax = _pSensor->getIndexOfMaxRightLightSensor();
+	double rot = 1;
 
 
 	_wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
-	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
-	  _wm->_desiredTranslationalValue =  + 2 - 1*(( 255.0 - _pSensor->_sensor[FRONT][LIGHT] ) / 255.0);
+	
+	if (_wm->_sensors[N][5] < (double)gSensorRange*(2/3) && _wm->_sensors[NE][5] == (double)gSensorRange &&  _wm->_sensors[NW][5] == (double)gSensorRange)
+    	_wm->_desiredRotationalVelocity = 0.4 - (double)(rand()%10)/10.*0.2;
+
+	
+// 	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
+// 	  _wm->_desiredTranslationalValue =  + 2 - 1*(( 255.0 - _pSensor->_sensor[FRONT][LIGHT] ) / 255.0);
 	  
-	// Compare distance to walls on both sides
+	//WALL TURN RIGHT
 	if ( _wm->_sensors[W][5] + _wm->_sensors[NW][5] <  _wm->_sensors[NE][5] + _wm->_sensors[E][5] ) 
-		_wm->_desiredRotationalVelocity = +2;
-	
-	
+	{
+		rot += (( (double)gSensorRange - _wm->_sensors[NW][5] ) / (double)gSensorRange);
+		rot += (( (double)gSensorRange - (_wm->_sensors[W][5]))/ (double)gSensorRange);
+		_wm->_desiredRotationalVelocity = rot;// - _wm->_sensors[NE][5]/(double)gSensorRange - _wm->_sensors[E][5]/(double)gSensorRange;
+	}
+	//PHEROMONE SHIFT RANDOM
 	else if (leftMax != -1 && _pSensor->_sensor[leftMax][LIGHT] == _pSensor->_sensor[rightMax][LIGHT])
 	{
 	  _wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
 	}
-	else if (_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT])
+	//PHEROMONE TURN RIGHT
+	else if (_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT] && rightMax != -1)
 	{
-	  _wm->_desiredRotationalVelocity = +2;
+	  _wm->_desiredRotationalVelocity = +2 - 2*(_pSensor->_sensor[leftMax][LIGHT]);
 	}
 	else
+		//WALL TURN LEFT
 		if ( _wm->_sensors[NE][5] + _wm->_sensors[E][5] < 2*gSensorRange ) 
 		{
-			_wm->_desiredRotationalVelocity = -2;
+		    rot += (( (double)gSensorRange - _wm->_sensors[NE][5]) / (double)gSensorRange);
+		    rot += (( (double)gSensorRange - (_wm->_sensors[E][5]))/ (double)gSensorRange);
+		    _wm->_desiredRotationalVelocity = -rot;// + _wm->_sensors[NE][5]/(double)gSensorRange + _wm->_sensors[E][5]/(double)gSensorRange;
 // 			releasePheromones = false;
 
 		}
-		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01)
+		//PHEROMONE TURN LEFT
+		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01 && leftMax != -1)
 		{
-			_wm->_desiredRotationalVelocity = -2;
+			_wm->_desiredRotationalVelocity = -2 + 2*(_pSensor->_sensor[rightMax][LIGHT]);
 // 			releasePheromones = false;
 		}
 		else
+		{
+			_wm->_desiredRotationalVelocity += .1;
+			//STRAIGHTEN OUT
 			if ( _wm->_desiredRotationalVelocity > 0 ) 
 				_wm->_desiredRotationalVelocity -= 0.25;
 			else
@@ -247,6 +266,7 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 					_wm->_desiredRotationalVelocity += 0.25;
 				else
 					_wm->_desiredRotationalVelocity = 0; //0.001 - (double)(rand()%10)/10.*0.002;
+		}
 }
 
 

@@ -182,7 +182,7 @@ void BasicPheromoneWorldObserver::step()
   randomizeFood(gScreenWidth, gScreenHeight, 0, 30);
   
   untouchedStepCounter++;
-  
+//   std::cout << untouchedStepCounter << std::endl;
   if (noofFoodFound == foodList.size() && !isDone)
   {
     isDone = true;
@@ -211,6 +211,11 @@ void BasicPheromoneWorldObserver::step()
   
   stepCounter++;
   
+  
+
+  
+  
+  
 
 //   if (stepCounter % 5 == 0)
 //     updateIntensityMap();
@@ -225,9 +230,15 @@ void BasicPheromoneWorldObserver::step()
 //     updatePheromones();
 //     updateIntensityMap();
 
-
     //-------
     diffuse();
+    
+    
+    
+    
+    
+    
+    
     
 //     evaporate();
 
@@ -246,7 +257,7 @@ void BasicPheromoneWorldObserver::step()
     writeToTilesFoundFile();
 
   }
-  if (cellCheckCounter == 10000)
+  if (cellCheckCounter == 6415)
   {
     countVisitedCells();
     displayMovementHistory(6000);

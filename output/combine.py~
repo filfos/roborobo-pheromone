@@ -1,6 +1,8 @@
 
 
 import os
+import csv
+from itertools import izip
 
 #print os.getcwd()
 
@@ -23,8 +25,7 @@ dispersion_file = open("dispersion.csv", "w")
 for file in dispersion_sorted:
     file_object = open(directory+"/batch/"+file, 'r')
     dispersion_file.write( file_object.readline()+"\n" )
-    print file_object.name
-  #  os.remove("batch/"+file_object)
+  #  os.remove(file_object.name)
    
 dispersion_file.close 
 
@@ -35,6 +36,14 @@ for file in tiles_sorted:
    # os.remove(file_object.name)
 	
 tiles_file.close()
+
+#TRANSPOSE FILES
+t = izip(*csv.reader(open("tiles.csv", "rb")))
+csv.writer(open("tiles_transposed.csv", "wb")).writerows(t)
+
+d = izip(*csv.reader(open("dispersion.csv", "rb")))
+csv.writer(open("dispersion_transposed.csv", "wb")).writerows(d)
+
 
 
 

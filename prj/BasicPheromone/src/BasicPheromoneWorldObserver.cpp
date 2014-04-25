@@ -41,17 +41,21 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	{
 	  std::string tiles = "output/batch/tiles"+gStartTime+".dat";
 	  std::string disp = "output/batch/dispersion"+gStartTime+".dat";
-	  std::string spawn = "output/spawn/"+spawnNumber+"spawn";
 	  	  
 	  tilesFoundFile.open(tiles.c_str());
 	  dispersionFile.open(disp.c_str());
-	  spawnLocationFile.open(spawn.c_str());
+	  
+	  if (shouldWriteSpawnLocations)
+	  {
+	    std::string spawn = "output/spawn/"+spawnNumber+"spawn";
+	    spawnLocationFile.open(spawn.c_str());
+	  }
 	}
 	else
 	{
-	  dispersionFile.open("output/dispersion_distance.txt");
-	  tilesFoundFile.open("output/tiles_found.txt");
-	  spawnLocationFile.open("output/spawn_locations.txt");
+	  dispersionFile.open("output/other/dispersion_distance.txt");
+	  tilesFoundFile.open("output/other/tiles_found.txt");
+	  spawnLocationFile.open("output/other/spawn_locations.txt");
 	}
 	
 				
@@ -279,7 +283,7 @@ void BasicPheromoneWorldObserver::writeDispersionToFile()
   }
   avg_distance /= gAgentCounter;
   
-  dispersionFile << avg_distance << ", ";
+  dispersionFile << avg_distance << ",";
   
 }
 
@@ -295,7 +299,7 @@ void BasicPheromoneWorldObserver::writeToTilesFoundFile()
     }
   }
   
-  tilesFoundFile << noofTilesVisited << ", ";
+  tilesFoundFile << noofTilesVisited << ",";
 }
 
 void BasicPheromoneWorldObserver::countVisitedCells()

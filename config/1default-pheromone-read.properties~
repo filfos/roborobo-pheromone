@@ -38,7 +38,7 @@ gParallaxFactor = 					1
 
 # general data
 
-gNbOfAgents = 						5 # 5
+gNbOfAgents = 						1 # 5
 
 gDisplayZoneCaption = 				false
 
@@ -50,7 +50,7 @@ ConfigurationLoaderObjectName = BasicPheromoneConfigurationLoader
 
 gMaxIt = 3000
 
-gAgentCounter = 					5 # 5
+gAgentCounter = 					1 # 5
 gAgentIndexFocus = 					0
 
 gScreenWidth = 						1000 #1500

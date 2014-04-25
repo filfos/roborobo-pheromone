@@ -1,0 +1,13 @@
+import sys
+import csv
+
+with open("tiles.csv") as f:
+    reader = csv.reader(f)
+    cols = []
+    for row in reader:
+        cols.append(row)
+
+with open("tiles_transposed.csv", "wb") as f:
+    writer = csv.writer(f)
+    for i in range(len(max(cols, key=len))):
+        writer.writerow([(c[i] if i<len(c) else '') for c in cols])

@@ -63,6 +63,8 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 		double maxLim (double a, double lim);
 		
 		const static double pi = 3.141592;
+		
+		bool isNotUsingPheromones;
 
 		
 		BasicPheromoneSensor *_pSensor;

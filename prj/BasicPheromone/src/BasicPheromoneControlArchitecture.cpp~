@@ -21,6 +21,11 @@
 BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgentWorldModel *__wm ) : BehaviorControlArchitecture ( __wm )
 {
     _wm = (BasicPheromoneAgentWorldModel*)__wm;
+    BasicPheromoneWorldObserver* wo = (BasicPheromoneWorldObserver*)_wm->getWorld()->getWorldObserver();
+    
+    isNotUsingPheromones = wo->isPheromonesInUse();
+    
+    std::cout << wo->isPheromonesInUse() << " yes "  << std::endl;
     
     _pSensor = new BasicPheromoneSensor(__wm);
     stepCounter = 0;
@@ -64,7 +69,15 @@ void BasicPheromoneControlArchitecture::step()
 	
 	blue = _pSensor->foodFound() == 1 ? 255 : 0;
 	
-	green = releasePheromones ? 255 : 0;
+	
+	if (isNotUsingPheromones)
+	{
+	  green = releasePheromones ? 255 : 0;
+	}
+	else
+	{
+	  green = 0;
+	}
 	
 	_wm->setRobotLED_colorValues(red, green, blue);
 	  
@@ -235,7 +248,7 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	  _wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
 	}
 	//PHEROMONE TURN RIGHT
-	else if (_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT] && rightMax != -1)
+	else if (_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT])// && rightMax != -1)
 	{
 	  _wm->_desiredRotationalVelocity = +2 - 2*(_pSensor->_sensor[leftMax][LIGHT]);
 	}
@@ -250,7 +263,7 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 
 		}
 		//PHEROMONE TURN LEFT
-		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01 && leftMax != -1)
+		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01)// && leftMax != -1)
 		{
 			_wm->_desiredRotationalVelocity = -2 + 2*(_pSensor->_sensor[rightMax][LIGHT]);
 // 			releasePheromones = false;

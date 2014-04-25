@@ -1,0 +1,163 @@
+#! /bin/bash
+
+clear
+
+usage()
+{
+	echo "USAGE: ./runParallal.sh [OPTIONS] NB_OF_EXP CONFIG_FILE NB_OF_INSTANCE "
+	echo ""
+	echo "OPTIONS"
+	echo "	-p, --postExperiemtScript=SCRIPT_AND_PARAMETERS"
+	echo "		Use the SCRIPT_AND_PARAMETERS after an experiment has been completed"
+}
+
+oneRun()
+{
+	#init variables
+	config=$1
+	mainTimeStamp=$2
+	postExperimentScript=$3
+	readSpawn=$4
+
+	isSuccess=0
+	timeStamp=`date +%H%M%S%N`	
+
+	#launch experiment
+	expNo=$(cat	"complete$mainTimeStamp")
+
+        #Read spawn locations from file
+	if [ "$readSpawn" = "r" ]
+	then
+		echo "READING Spawn locations"
+		config=$(echo $config|sed 's/pheromone.properties/pheromone-read.properties/')
+		readSpawnLocations $expNo $config
+	else
+		echo "Spawn locations Random"
+	fi
+
+	./roborobo -l $config 2>"temp"$timeStamp"Error" | tee "temp$timeStamp"
+
+	#apply post-experiment processing if the last experiment isn't already done
+	if [ ! -e "./lastRunDone" ]
+	then
+		#standard post-experiment processing
+		if [ "$postExperimentScript" = "" ]
+		then
+			#wait until can update the results
+			while [ -e "take$mainTimeStamp" ]
+			do
+				sleep 1
+			done
+			#update results
+			touch "take$mainTimeStamp" 
+			count=$(cat	"complete$mainTimeStamp")
+			count=$((count+1))
+			echo $count > "complete$mainTimeStamp"
+			rm "take$mainTimeStamp" 
+			rm "temp$timeStamp"
+
+			echo "Done : $count/$nbExp"
+
+		#user specified post-experiment processing
+		else
+			. $postExperimentScript
+		fi
+	else
+		rm "take$mainTimeStamp" 
+		rm "temp$timeStamp"
+	fi
+}
+
+
+
+readSpawnLocations()
+{
+	expNo=$1
+	conf=$2
+	export IFS=","
+	cat output/spawn/"$expNo"spawn | while read n x y o; 
+	       do 
+		   #echo "$expNo spawn robot: $n x: $x y:  $y  theta $o";
+		   #echo "using config file $conf"
+		   sed -i "/agent\[$n\]\.x =/s/= .*/= $x/" "$conf";
+		   sed -i "/agent\[$n\]\.y =/s/= .*/= $y/" "$conf";
+		   sed -i "/agent\[$n\]\.orientation =/s/= .*/= $o/" "$conf";
+		   
+	       done
+	   		
+	
+}
+
+
+
+
+
+
+if [ $# -lt 3 ]
+then
+	usage
+else
+
+	nbInst=""
+	nbExp=""
+	config=""
+	postExperimentScript=""
+	rdSpawn=""
+
+	while [ "$1" != "" ]; do
+			case $1 in
+					-p | --postExperimentScript )	shift
+																				postExperimentScript=$1
+																				;;
+					-h | --help )           			usage
+																				exit
+																				;;
+					*) break
+			esac
+			shift
+	done
+
+	nbExp=$1
+	config=$2
+	nbInst=$3
+	rdSpawn=$4
+
+	mainTimeStamp=`date +%H%M%S%N`	
+	completeCnt=0
+	totCnt=0
+	lastRunDone=0
+
+	if [ -e "./lastRunDone" ]
+	then
+		rm lastRunDone
+	fi
+
+	echo "0" > "complete$mainTimeStamp"
+
+	while [ $completeCnt -lt $nbExp ]
+	do
+		while [ `jobs | wc -l` -ge $nbInst ] # check the number of instance currently running
+		do
+			jobs >/dev/null
+			sleep 5
+		done
+
+		while [ -e "take$mainTimeStamp" ]
+		do
+			sleep 1
+		done
+		touch "take$mainTimeStamp" 
+		completeCnt=$(cat "complete$mainTimeStamp")
+		rm "take$mainTimeStamp" 
+
+		if [ $completeCnt -lt $nbExp ]
+		then
+			oneRun $config $mainTimeStamp "$postExperimentScript" "$rdSpawn" &
+			totCnt=$((totCnt+1))
+		fi
+		sleep 1
+	done
+	touch "./lastRunDone"
+	killall -9 roborobo
+fi
+

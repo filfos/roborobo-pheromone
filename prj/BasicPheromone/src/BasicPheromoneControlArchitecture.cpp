@@ -21,6 +21,11 @@
 BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgentWorldModel *__wm ) : BehaviorControlArchitecture ( __wm )
 {
     _wm = (BasicPheromoneAgentWorldModel*)__wm;
+    BasicPheromoneWorldObserver* wo = (BasicPheromoneWorldObserver*)_wm->getWorld()->getWorldObserver();
+    
+    isNotUsingPheromones = wo->isPheromonesInUse();
+    
+    std::cout << wo->isPheromonesInUse() << " 0=wall avoidance, 1=pheromone "  << std::endl;
     
     _pSensor = new BasicPheromoneSensor(__wm);
     stepCounter = 0;
@@ -64,7 +69,15 @@ void BasicPheromoneControlArchitecture::step()
 	
 	blue = _pSensor->foodFound() == 1 ? 255 : 0;
 	
-	green = releasePheromones ? 255 : 0;
+	
+	if (isNotUsingPheromones)
+	{
+	  green = releasePheromones ? 255 : 0;
+	}
+	else
+	{
+	  green = 0;
+	}
 	
 	_wm->setRobotLED_colorValues(red, green, blue);
 	  

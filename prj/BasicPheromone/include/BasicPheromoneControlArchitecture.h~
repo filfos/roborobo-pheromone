@@ -69,6 +69,7 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 		int stepCounter;
 		int pheromoneCounter;
 		int stagnationRotation;
+		int pheromoneIgnoreCounter;
 		
 		bool isPheromoneStagnated;
 		

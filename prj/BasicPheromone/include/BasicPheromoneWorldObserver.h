@@ -26,6 +26,9 @@
 #include "BasicPheromone/include/BasicPheromoneAgentWorldModel.h"
 #include "BasicPheromone/include/Particle.h"
 
+#include <stdio.h>
+#include <sys/types.h>
+#include <dirent.h>
 
 class World;
 
@@ -64,8 +67,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		static const int defaultLifetime = 300;		
 		static const int defaultMaxDiffusion = 70;
 		
-		static const int lifetime = 250;
-		static const int interval = 50;
+		static const int lifetime = 300;
+		static const int interval = 30;
 		
 		static const int cellSize = 25;
 		
@@ -97,6 +100,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void displayMovementHistory(int ms);
   
   
+		bool firstLoop;
+		bool isUsingPheromones;
 		
 // 		int pheromoneMap[][900];
 // 		int pheromoneBuffer[][900];
@@ -171,12 +176,19 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void activatePheromone(int x, int y, int intensity);
 		
 		
+		bool isPheromonesInUse();
+		
+		
 		private:
 		int untouchedStepCounter;
 		std::ofstream dispersionFile;
 		std::ofstream tilesFoundFile;
+		std::ofstream spawnLocationFile;
+		bool shouldWriteSpawnLocations;
 		void writeDispersionToFile();
 		void writeToTilesFoundFile();
+		void writeAgentLocation();
+		std::string generateSpawnFileNumber();
 };
 
 #endif

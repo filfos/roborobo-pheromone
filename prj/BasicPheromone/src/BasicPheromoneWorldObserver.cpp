@@ -22,16 +22,39 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	wallUpdated = false;
 	foodPlaced = false;
 	isDone = false;
+	
+	firstLoop = true;
+	
+	//CHANGE TO DISABLE PHEROMONES COMPLETELY
+	//when True: READ spawnlocations. False: WRITE
+	isUsingPheromones = false;
+	shouldWriteSpawnLocations = false;
 		
 	cellCheckCounter = -30;
 	cellVisitedAverage = 0.0;
 	noofTimesCellCounted = 0;
 	
+	std::string spawnNumber = generateSpawnFileNumber();
+		
 	evaporationFactor = exp((log(0.5)/lifetime )*interval);
+	if (gBatchMode)
+	{
+	  std::string tiles = "output/batch/tiles"+gStartTime+".dat";
+	  std::string disp = "output/batch/dispersion"+gStartTime+".dat";
+	  std::string spawn = "output/spawn/"+spawnNumber+"spawn";
+	  	  
+	  tilesFoundFile.open(tiles.c_str());
+	  dispersionFile.open(disp.c_str());
+	  spawnLocationFile.open(spawn.c_str());
+	}
+	else
+	{
+	  dispersionFile.open("output/dispersion_distance.txt");
+	  tilesFoundFile.open("output/tiles_found.txt");
+	  spawnLocationFile.open("output/spawn_locations.txt");
+	}
 	
-	dispersionFile.open("dispersion_distance.txt");
-	tilesFoundFile.open("tiles_found.txt");
-			
+				
 	intensities.resize(gScreenWidth);
 	intensityBuffer.resize(gScreenWidth);
 	wallMap.resize(gScreenWidth);
@@ -66,103 +89,6 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	  for (int y = 0; y < gScreenHeight; y++)
 	    movementHistory[x][y] = 0;
 	
-// 	for (int x = 0; x < gScreenWidth; x++)
-// 	{
-// 	  for (int y = 0; y < gScreenHeight; y++)
-// 	  {
-// 	    Particle *p = new Particle();
-// 	    particleMap[x][y] = p; 
-// 	    
-// 	  }
-// 	}
-
-/* RAND 1  OLD ????*/	
-//  createFood( 1365, 845,20);
-//  createFood( 375, 170, 20 );
-//  createFood( 1298, 507, 20 );
-//  createFood( 1403, 181, 20);
-//  createFood( 169, 636, 20 );
-//  createFood( 786, 94, 20 );
-//  createFood( 1386, 291, 20 );
-//  createFood( 1098, 679, 20);
-//  createFood( 1119, 285, 20 );
-//  createFood( 308, 284, 20 );
-
-
-/* RAND 1 */
-//  createFood( 376, 170,20);
-//  createFood( 308, 286, 20 );
-//  createFood( 170, 636, 20 );
-//  createFood( 786, 96, 20);
-//  createFood( 1121, 289, 20 );
-//  createFood( 1098, 677, 20 );
-//  createFood( 1405, 180, 20 );
-//  createFood( 1389, 294, 20);
-//  createFood( 1300, 508, 20 );
-//  createFood( 1368, 846, 20 );
-
-/* RAND 2 */
-//  createFood( 1311, 461, 20 );
-//  createFood( 1473, 709, 20 );
-//  createFood( 1426, 70, 20 );
-//  createFood( 466, 728, 20 );
-//  createFood( 235, 852, 20 );
-//  createFood( 489, 80, 20 );
-//  createFood( 1323, 238, 20 );
-//  createFood( 430, 273, 20 );
-//  createFood( 930, 288, 20 );
-//  createFood( 87, 707, 20 );
-
-/* RAND 3 */
-//  createFood( 785, 514, 20 );
-//  createFood( 526, 798, 20 );
-//  createFood( 1431, 235, 20 );
-//  createFood( 259, 575, 20 );
-//  createFood( 71, 849, 20 );
-//  createFood( 326, 307, 20);
-//  createFood( 808, 170, 20 );
-//  createFood( 1221, 737, 20 );
-//  createFood( 652, 715, 20 );
-//  createFood( 1074, 139, 20 );
-
-/* RAND 4 */
-//  createFood( 1431, 474, 20 );
-//  createFood( 1227, 604, 20 );
-//  createFood( 1209, 289, 20 );
-//  createFood( 1268, 674, 20 );
-//  createFood( 734, 704, 20 );
-//  createFood( 155, 264, 20 );
-//  createFood( 1000, 734, 20 );
-//  createFood( 139, 48, 20 );
-//  createFood( 1045, 314, 20 );
-//  createFood( 912, 102, 20 );
-
-/* RAND 5 */	
-//  createFood( 218, 536, 20 );
-//  createFood( 693, 866, 20 );
-//  createFood( 824, 263, 20 );
-//  createFood( 32, 379, 20 );
-//  createFood( 1251, 390, 20 );
-//  createFood( 309, 680, 20 );
-//  createFood( 668, 472, 20 );
-//  createFood( 1306, 849, 20 );
-//  createFood( 1149, 156, 20 );
-//  createFood( 984, 627, 20 );
-
-/* RAND 6 */
-//  createFood( 540, 257, 20 );
-//  createFood( 882, 571, 20 );
-//  createFood( 1284, 361, 20 );
-//  createFood( 448, 769, 20 );
-//  createFood( 980, 317, 20 );
-//  createFood( 1240, 854, 20 );
-//  createFood( 1369, 26, 20 );
-//  createFood( 52, 154, 20 );
-//  createFood( 167, 637, 20 );
-//  createFood( 143, 850, 20 );
-
-	
- 
 }
 
 BasicPheromoneWorldObserver::~BasicPheromoneWorldObserver()
@@ -172,7 +98,7 @@ BasicPheromoneWorldObserver::~BasicPheromoneWorldObserver()
 
 void BasicPheromoneWorldObserver::reset()
 {
-	// nothing to do.p
+	// nothing to do
 }
 
 void BasicPheromoneWorldObserver::step()
@@ -180,6 +106,21 @@ void BasicPheromoneWorldObserver::step()
   WorldObserver::step();
   createWallMap();
   randomizeFood(gScreenWidth, gScreenHeight, 0, 30);
+  
+  if (firstLoop)
+  {
+    
+    if (gBatchMode && shouldWriteSpawnLocations)
+    {
+	writeAgentLocation();
+    }
+    else
+    {
+        printAgentLocations();
+    }
+
+    firstLoop = false;
+  }
   
   untouchedStepCounter++;
 //   std::cout << untouchedStepCounter << std::endl;
@@ -197,55 +138,25 @@ void BasicPheromoneWorldObserver::step()
       std::cout << i+1 << " : " << (int)foodIdTimestamps.at(i) << std::endl;
     }
     std::cout << "--------------" << std::endl;
-//     countVisitedCells();
-//     displayMovementHistory(6000);
-  
-
-    
-//     pause();
   }
   else
   {
     score++;
   }
   
-  stepCounter++;
+  stepCounter++;  
   
-  
-
-  
-  
-  
-
-//   if (stepCounter % 5 == 0)
-//     updateIntensityMap();
-//   
-//   if (stepCounter == 20)
-//   {
-//     stepCounter = 0;    
-//     drawIntensities();
-//   }
-  if (stepCounter == interval)
+  if (isUsingPheromones)
   {
-//     updatePheromones();
-//     updateIntensityMap();
-
-    //-------
-    diffuse();
-    
-    
-    
-    
-    
-    
-    
-    
-//     evaporate();
-
-    //-----
-    drawIntensities();
-    
-    stepCounter = 0;
+    if (stepCounter == interval)
+    {
+      //-------
+      diffuse();
+      //-----
+      drawIntensities();
+      
+      stepCounter = 0;
+    }
   }
   
   ++cellCheckCounter;
@@ -257,7 +168,7 @@ void BasicPheromoneWorldObserver::step()
     writeToTilesFoundFile();
 
   }
-  if (cellCheckCounter == 6415)
+  if (cellCheckCounter == -5000)//20500)//6850)
   {
     countVisitedCells();
     displayMovementHistory(6000);
@@ -266,6 +177,38 @@ void BasicPheromoneWorldObserver::step()
   checkForFood();
   stepAllFoods();
   
+}
+
+std::string BasicPheromoneWorldObserver::generateSpawnFileNumber()
+{
+  std::string directory = "/home/filip/Roborobo-Pheromone/output/spawn/";
+  
+  DIR *dp;
+  int i = -2;
+  struct dirent *ep;     
+  dp = opendir (directory.c_str());
+
+  if (dp != NULL)
+  {
+    while ((ep = readdir (dp)) != NULL )
+    {
+      i++;
+    }
+
+    (void) closedir (dp);
+  }
+  else
+  {
+    perror ("Couldn't open the directory");
+  }
+  
+//   std::cout << "Using directory: " << directory << " for spawn locations" << std::endl;
+//   printf("There's %d files in the current directory.\n", i);
+  
+  std::stringstream ss;
+  ss << i;
+    
+  return ss.str();
 }
 
 void BasicPheromoneWorldObserver::addToMovementHistory()
@@ -336,7 +279,7 @@ void BasicPheromoneWorldObserver::writeDispersionToFile()
   }
   avg_distance /= gAgentCounter;
   
-  dispersionFile << avg_distance << "\n";
+  dispersionFile << avg_distance << ", ";
   
 }
 
@@ -352,7 +295,7 @@ void BasicPheromoneWorldObserver::writeToTilesFoundFile()
     }
   }
   
-  tilesFoundFile << noofTilesVisited << "\n";
+  tilesFoundFile << noofTilesVisited << ", ";
 }
 
 void BasicPheromoneWorldObserver::countVisitedCells()
@@ -652,9 +595,24 @@ void BasicPheromoneWorldObserver::printAgentLocations()
     
     std::cout << "\nagent["<<i<<"].x = "<<wm->_xReal << std::endl;
     std::cout << "agent["<<i<<"].y = "<<wm->_yReal << std::endl;
-    std::cout << "agent["<<i<<"].orientation = "<<wm->_agentAbsoluteOrientation +180<< std::endl;
+    std::cout << "agent["<<i<<"].orientation = "<<wm->_agentAbsoluteOrientation<< std::endl;
   }
 }
+
+void BasicPheromoneWorldObserver::writeAgentLocation()
+{
+  for (int i = 0; i < gAgentCounter; i++)
+  {
+    RobotAgentWorldModel *wm = _world->getAgent(i)->getWorldModel();
+    
+    spawnLocationFile << i << ",";
+    spawnLocationFile << wm->_xReal << ",";
+    spawnLocationFile << wm->_yReal << ",";
+    spawnLocationFile << wm->_agentAbsoluteOrientation << "\n";
+  }
+  spawnLocationFile.close();
+}
+
 
 
 void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius)
@@ -711,7 +669,7 @@ void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight,
 	std::cout << " createFood( " << coords[0][i] << ", " << coords[1][i] << ", 20 );" << std::endl;
       
       noofFoodFound = 0;
-      printAgentLocations();
+//       printAgentLocations();
   } 
   if (foodPlaced)
   {
@@ -949,191 +907,12 @@ void BasicPheromoneWorldObserver::modifyIntensityAt(int x, int y, int value)
   intensities[x][y] += value;
 }
 
-/*
-void BasicPheromoneWorldObserver::updateIntensityMap()
-{
-  if (!wallUpdated)
-  {
-    wallUpdated = true;
-    for (int y = 0; y < gScreenHeight; y++)
-	{
-// 	  std::cout << std::endl;
-	  for (int x = 0; x < gScreenWidth; x++)
-	  {
-	    Uint8 r, g, b;	  
-	    Uint32 pixel = getPixel32(gForegroundImage, x, y );
-	    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-	    
-	    if (r == 0 && b == 0 && g == 0)
-	    { 
-	      wallMap[x][y] = true;
-	    }
-	    else
-	    {
-	      wallMap[x][y] = false;
-	    }
-	  }
-	}
-  }
-  
-  for (int x = 2; x < gScreenWidth-2; x++)
-  {
-    for (int y = 2; y < gScreenHeight-2; y++)
-    {
-      if (wallMap[x][y] == true)
-      {
-	intensityBuffer[x][y] = 0; //continue;
-      }
-            
-     double mean = eightNeighbourMean(x,y);
-      
-      intensityBuffer[x][y] = mean;
-    
-      
-    }
-  }
-  addBufferedValues();
-}
-	*/
+
 
 void BasicPheromoneWorldObserver::updateIntensityMap()
 {
    
-//   /* Translation Phase */
-//   for (int x = 1; x < gScreenWidth-1; x++)
-//   {
-//     for (int y = 1; y < gScreenHeight-1; y++)
-//     {
-//       Particle *p = particleMap[x][y];
-//       int intens = p->getIntensity();
-//       intensities[x][y] = intens;
-//       intens = eightNeighbourMean(x, y);
-//      
-//       /* TRANSLATION AND WALL REFLECTION */
-//       if (p->e)
-//       {
-// 	p->e = 0;
-// 	if (wallMap[x+1][y])
-// 	  p->w = 1;
-// 	else
-// 	{
-// 	  particleMap[x+1][y]->eNext = 1;
-// 	  particleMap[x+1][y]->setIntensity(intens);
-// 	}
-// 	//---- Diagonal
-// 	if (p->s)
-// 	{
-// 	  if (!wallMap[x+1][y+1])
-// 	  {
-// 	    particleMap[x+1][y+1]->eNext;
-// 	    particleMap[x+1][y+1]->sNext;
-// 	    particleMap[x+1][y+1]->setIntensity(intens);
-// 	  }
-// 	}
-// 	if (p->n)
-// 	{
-// 	  if (!wallMap[x+1][y-1])
-// 	  {
-// 	    particleMap[x+1][y-1]->eNext;
-// 	    particleMap[x+1][y-1]->sNext;
-// 	    particleMap[x+1][y-1]->setIntensity(intens);
-// 	  }
-// 	}
-// 	
-// 	
-//       //--- 
-//       }
-//       
-//       if (p->w)
-//       {
-// 	p->w = 0;
-// 	if (wallMap[x-1][y])
-// 	  p->e = 1;
-// 	else
-// 	{
-// 	  particleMap[x-1][y]->wNext = 1;
-// 	  particleMap[x-1][y]->setIntensity(intens);
-// 	}
-// 	
-// 	//---- Diagonal
-// 	if (p->s)
-// 	{
-// 	  if (!wallMap[x-1][y+1])
-// 	  {
-// 	    particleMap[x-1][y+1]->eNext;
-// 	    particleMap[x-1][y+1]->sNext;
-// 	    particleMap[x-1][y+1]->setIntensity(intens);
-// 	  }
-// 	}
-// 	if (p->n)
-// 	{
-// 	  if (!wallMap[x-1][y-1])
-// 	  {
-// 	    particleMap[x-1][y-1]->eNext;
-// 	    particleMap[x-1][y-1]->sNext;
-// 	    particleMap[x-1][y-1]->setIntensity(intens);
-// 	  }
-// 	}
-// 	
-// 	  //---
-//       }   
-//       
-//       if (p->n)
-//       {
-// 	p->n = 0;
-// 	if (wallMap[x][y+1])
-// 	  p->s = 1;
-// 	else
-// 	{
-// 	  particleMap[x][y+1]->nNext = 1;
-// 	  particleMap[x][y+1]->setIntensity(intens);
-// 	}
-//       }   
-//       
-//       if (p->s)
-//       {
-// 	p->s = 0;
-// 	if (wallMap[x][y-1])
-// 	  p->n = 1;
-// 	else
-// 	{
-// 	  particleMap[x][y-1]->sNext = 1;
-// 	  particleMap[x][y-1]->setIntensity(intens);
-// 	}
-//       }
-//       
-// //       p->evaporate();
-// //       p->swap();
-// 
-//     }
-//   }
-//   /* COLLISION */
-//   for (int x = 1; x < gScreenWidth-1; x++)
-//   {
-//     for (int y = 1; y < gScreenHeight-1; y++)
-//     {
-//       Particle *p = particleMap[x][y];
-//       
-//       if (p->eNext && p->wNext && (!p->nNext && !p->sNext))
-//       {
-// 	p->nNext = 1;
-// 	p->sNext = 1;
-// 	p->setIntensity(particleMap[x+1][y]->getIntensity() + particleMap[x-1][y]->getIntensity());
-//       }
-//       
-//       if (p->nNext && p->sNext && (!p->eNext && !p->wNext))
-//       {
-// 	p->eNext = 1;
-// 	p->wNext = 1;
-// 	p->setIntensity(particleMap[x][y+1]->getIntensity() + particleMap[x][y-1]->getIntensity());
-// 
-//       }
-// //       p->evaporate();
-//       p->swap();
-// //       intensities[x][y] = eightNeighbourMean(x, y);
-//       
-//     }
-//   }  
+
 }
 
 
@@ -1199,32 +978,13 @@ void BasicPheromoneWorldObserver::addBufferedValues()
   {
     for (int y = 0; y < gScreenHeight; y++)
     {
-//       intensities[x][y] = particleBuffer[x][y]->getIntensity();
-//       particleBuffer[x][y]->reset();
+      // I'm useless now :)
     }
   }
 }
 
 
-/*
-void BasicPheromoneWorldObserver::addBufferedValues()
-{
-  for (int x = 0; x < gScreenWidth; x++)
-  {
-    for (int y = 0; y < gScreenHeight; y++)
-    {
-      if (intensityBuffer[x][y] != 0)
-      {
-// 	mean = mean *  exp((log(0.5)/50 )*1000);
-	intensities[x][y] = intensityBuffer[x][y]; // exp(log(intensityBuffer[x][y]));
-// 	double mean = eightNeighbourMean(x,y);
-// 	intensities[x][y] = mean;
-	
-	intensityBuffer[x][y] = 0;
-      }
-    }
-  }
-}*/
+
 void BasicPheromoneWorldObserver::stepAllPheromones()
 {
     int deleteNr = 0;
@@ -1284,6 +1044,11 @@ void BasicPheromoneWorldObserver::secretePheromones(int interval, int lifetime, 
     
   }
   
+}
+
+bool BasicPheromoneWorldObserver::isPheromonesInUse()
+{
+  return isUsingPheromones;
 }
 
 

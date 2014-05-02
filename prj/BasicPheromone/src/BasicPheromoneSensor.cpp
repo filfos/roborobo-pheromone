@@ -31,10 +31,11 @@ BasicPheromoneSensor::BasicPheromoneSensor(RobotAgentWorldModel *__wm)
   _sensor[5][0] = 225.0;
   _sensor[6][0] = 270.0;
   _sensor[7][0] = 315.0;
-  
-  _foodFound = 0;
-  
+    
   x_center = 0; y_center = 0;
+  
+  lengthLight = 20;
+  
 
 }
 
@@ -45,8 +46,6 @@ BasicPheromoneSensor::~BasicPheromoneSensor()
 
 void BasicPheromoneSensor::update()
 {
-  _foodFound = 0;
-//  int x_center, y_center;
   _wm->_world->getAgent(_wm->_agentId)->getCoord(x_center, y_center);
   
   x_center += x_offset;
@@ -72,10 +71,8 @@ void BasicPheromoneSensor::update()
     _sensor[i][2] = round( x_center + co*lengthLight );
     _sensor[i][3] = round( y_center + si*lengthLight );
         
-   // _sensor[i][4] = findNearestWall(x_center, y_center, co, si); // distance to nearest black pixel in foreground image
     _sensor[i][5] = getLightSensorValue(_sensor[i][2], _sensor[i][3]);
     
-    checkForFood(_sensor[i][2], _sensor[i][3]);    
   }
  
   if (_wm->_agentId == 0)
@@ -96,12 +93,6 @@ void BasicPheromoneSensor::update()
 //     std::cout << "   " << _sensor[5][1] <<"     " << _sensor[3][1] << std::endl;
 //     std::cout << "         " << _sensor[4][1] << std::endl;
 
-  //  PRINT DIRECTION TO NEAREST WALL
-//     std::cout << "         " << _sensor[0][4] << std::endl;
-//     std::cout << "   " << _sensor[7][4] <<"     " << _sensor[1][4] << std::endl;
-//     std::cout << "" << _sensor[6][4] <<"              " << _sensor[2][4] << std::endl;
-//     std::cout << "   " << _sensor[5][4] <<"     " << _sensor[3][4] << std::endl;
-//     std::cout << "         " << _sensor[4][4] << std::endl;
     
     //PRINT LIGHT SENSOR VALUES
 //     std::cout << "         " << _sensor[0][5] << std::endl;
@@ -112,54 +103,7 @@ void BasicPheromoneSensor::update()
   }
  }
  
- int BasicPheromoneSensor::distanceToPheromone(int sensorId)
- {
-   double radius = 1;
-   while (radius < sensorRange)
-   {
-     int x = round(x_center + cosine(_sensor[sensorId][1]) * radius);
-     int y = round(y_center + sine(_sensor[sensorId][1]) * radius);
-     
-     Uint32 pixel = getPixel32(gBackgroundImage, x, y );
-     Uint8 r, g, b;
-     
-     //std::cout << "green " << (int)g << std::endl;
 
-     SDL_GetRGB(pixel, gBackgroundImage->format, &r, &g, &b);
-     
-     if (r == 255 && g < 255 && b < 255) //simulate red channel alpha value
-       return radius;
-     
-     ++radius;
-   }
-   
-   return -1;
-   
- }
- 
- double BasicPheromoneSensor::getPheromoneIntensity(int sensorId, double distance)
- {
-   
-   return 0;
- }
- 
-
-double BasicPheromoneSensor::findNearestWall(int x_center, int y_center, double x_cos, double y_sin)
-{
-  double radius = 1;
-  while (radius < sensorRange)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, round(x_center + x_cos*radius), round(y_center + y_sin));
-    Uint8 r, g, b;
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    if(r == 0)
-    {
-      return radius;
-    }
-    radius++;
-  }
-  return radius;
-}
 
 double BasicPheromoneSensor::getLightSensorValue(int x, int y)
 {
@@ -170,22 +114,6 @@ double BasicPheromoneSensor::getLightSensorValue(int x, int y)
     return (255.0 - (double)b)/255.0;
   
   return 0;
-}
-
-void BasicPheromoneSensor::checkForFood(int x, int y)
-{
-  if (_foodFound == 0)
-  {
-    Uint32 pixel = getPixel32(gZoneImage, x, y);
-    Uint8 r, g, b;
-    SDL_GetRGB(pixel, gZoneImage->format, &r, &g, &b);
-   // std::cout << (int)r << " " << (int)g << " " << (int)b << std::endl;
-    if (r == 0 && g == 255 && b == 0)
-    {
-      _foodFound = 1;
-//       std::cout << "FOOOOOD" << std::endl;
-    }
-  }
 }
 
 
@@ -223,13 +151,6 @@ int BasicPheromoneSensor::getIndexOfMaxRightLightSensor()
   return maxIndex;
 }
 
-
-
-
-int BasicPheromoneSensor::foodFound()
-{
-  return _foodFound;
-}
 
 double BasicPheromoneSensor::sine(double theta)
 {

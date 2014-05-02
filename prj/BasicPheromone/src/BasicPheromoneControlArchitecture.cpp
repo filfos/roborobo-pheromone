@@ -7,9 +7,6 @@
  */
 
 #include "BasicPheromone/include/BasicPheromoneControlArchitecture.h"
-//#include "World/World.h"
-#include "BasicPheromone/include/Food.h"
-
 #include "Observers/WorldObserver.h"
 #include "World/World.h"
 #include "BasicPheromone/include/BasicPheromoneWorldObserver.h"
@@ -23,7 +20,7 @@ BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgent
     _wm = (BasicPheromoneAgentWorldModel*)__wm;
     BasicPheromoneWorldObserver* wo = (BasicPheromoneWorldObserver*)_wm->getWorld()->getWorldObserver();
     
-    isNotUsingPheromones = wo->isPheromonesInUse();
+    isUsingPheromones = wo->isPheromonesInUse();
     
     std::cout << wo->isPheromonesInUse() << " 0=wall avoidance, 1=pheromone "  << std::endl;
     
@@ -65,12 +62,9 @@ void BasicPheromoneControlArchitecture::reset()
 void BasicPheromoneControlArchitecture::step()
 {
 	
-	_pSensor->update();
+	_pSensor->update();	
 	
-	blue = _pSensor->foodFound() == 1 ? 255 : 0;
-	
-	
-	if (isNotUsingPheromones)
+	if (isUsingPheromones)
 	{
 	  green = releasePheromones ? 255 : 0;
 	}
@@ -90,8 +84,8 @@ void BasicPheromoneControlArchitecture::step()
 	else if (mStatus == PHEROMONE_STAGNATION)
 	  pheromoneStagnation();
 	
-	else if (mStatus == PHEROMONE_AVOIDANCE)
-	  pheromoneReaction();
+// 	else if (mStatus == PHEROMONE_AVOIDANCE)
+// 	  pheromoneReaction();
 	
 	else if (mStatus == DEFAULT)
 	  if (!ignorePheromones)
@@ -130,33 +124,6 @@ void BasicPheromoneControlArchitecture::step()
       
 }
 
-
-void BasicPheromoneControlArchitecture::pheromoneReaction()
-{
-  if (!isRotating)
-  {
-    std::cout << "FRONT: " << _pSensor->_sensor[FRONT][LIGHT] << std::endl;
-    
-    Uint8 bestDirection = 10;
-    int val = -1;
-    
-    for (Uint8 i = 0; i < 8; i++)
-    {
-      int temp = 0;
-      temp += _pSensor->_sensor[(i+7)%8][LIGHT];
-      temp += _pSensor->_sensor[i][LIGHT];
-      temp += _pSensor->_sensor[(i+9)%8][LIGHT];
-      
-      if (temp > val)
-      {
-	val = temp;
-	bestDirection = i;
-      }
-    }
-    stagnationRotation = getAngleOfLightSensor(bestDirection);
-  }
-  stopAndRotate(stagnationRotation);
-}
 
 
 //For 8-sensor CHiRP-robot
@@ -223,13 +190,16 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 // 	std::cout << " WALL AND PHEROMONE" << std::endl;
 	int leftMax = _pSensor->getIndexOfMaxLeftLightSensor();	
 	int rightMax = _pSensor->getIndexOfMaxRightLightSensor();
-	double rot = 1;
-
-
-	_wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
 	
-	if (_wm->_sensors[N][5] < (double)gSensorRange*(2/3) && _wm->_sensors[NE][5] == (double)gSensorRange &&  _wm->_sensors[NW][5] == (double)gSensorRange)
-    	_wm->_desiredRotationalVelocity = 0.4 - (double)(rand()%10)/10.*0.2;
+	double maxSpeed = (double)gMaxTranslationalSpeed;
+	double maxRot = (double)gMaxRotationalSpeed;
+	double rot = maxRot/2;
+
+	_wm->_desiredTranslationalValue =  + maxSpeed - maxSpeed*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
+	
+	//Random Rotation when only front sensor detects an object
+// 	if (_wm->_sensors[N][5] < (double)gSensorRange*(2/3) && _wm->_sensors[NE][5] == (double)gSensorRange &&  _wm->_sensors[NW][5] == (double)gSensorRange)
+//     	_wm->_desiredRotationalVelocity = 0.4 - (double)(rand()%10)/10.*0.2;
 
 	
 // 	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
@@ -250,7 +220,7 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	//PHEROMONE TURN RIGHT
 	else if (_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT])// && rightMax != -1)
 	{
-	  _wm->_desiredRotationalVelocity = +2 - 2*(_pSensor->_sensor[leftMax][LIGHT]);
+	  _wm->_desiredRotationalVelocity = +maxRot - maxRot*(_pSensor->_sensor[leftMax][LIGHT]);
 	}
 	else
 		//WALL TURN LEFT
@@ -263,9 +233,9 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 
 		}
 		//PHEROMONE TURN LEFT
-		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01)// && leftMax != -1)
+		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01 && _pSensor->_sensor[rightMax][LIGHT] != _pSensor->_sensor[leftMax][LIGHT])// && leftMax != -1)
 		{
-			_wm->_desiredRotationalVelocity = -2 + 2*(_pSensor->_sensor[rightMax][LIGHT]);
+			_wm->_desiredRotationalVelocity = -maxRot + maxRot*(_pSensor->_sensor[rightMax][LIGHT]);
 // 			releasePheromones = false;
 		}
 		else
@@ -283,13 +253,6 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 }
 
 
-void BasicPheromoneControlArchitecture::foodReaction(int x, int y)
-{  
- // std::cout << "Found food at  x:" << x << "   y: " << y <<  std::endl;
- // _wm->setRobotLED_colorValues(0, 0, 255);
-}
-
-
 
 void BasicPheromoneControlArchitecture::wallStagnation()
 {
@@ -303,7 +266,6 @@ void BasicPheromoneControlArchitecture::wallStagnation()
     if (!isRotating)
     {
       isReversing = false;
-      std::cout << "CONTINUING " << std::endl;
       Uint8 bestDirection = 10;
       int val = -1;
       for (Uint8 i = 0; i < 8; i++)
@@ -334,23 +296,6 @@ void BasicPheromoneControlArchitecture::pheromoneStagnation()
   ignorePheromones = true;
   pheromoneIgnoreCounter = 100;
   isPheromoneStagnated = false;
-  
-  //some code already in pheromoneReaction().
-    //should inhibit more abrubt turns. Maybe even stop completely.
-    
-    //IDEA
-    /*
-     * similar check to wall stagnation (possibly higher threshold)
-     * 	if little movement and there is alot of pheromones present;
-     * 		ignore pheromones for X time steps.
-     * 
-     * check location at time 0. them location at time 100.
-     * draw circle from first location. if the cartesian
-     * coordinates from the second is within the circle, then
-     * ignore pheromones for a short duration.
-     * 
-     * Ways to continuously increase/decrease the size of the circle.
-     */
 }
 
 
@@ -376,7 +321,7 @@ void BasicPheromoneControlArchitecture::reverse(int duration)
 				else
 					_wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
 	
-	   if (reverseCounter == duration)
+    if (reverseCounter == duration)
     {
       reverseCounter = 0;
       doneReversing = true;
@@ -492,13 +437,7 @@ int BasicPheromoneControlArchitecture::determineBehaviour()
 //     std::cout << "	status: pheromone stagnation" << std::endl;
     return PHEROMONE_STAGNATION;
   }
-  
-  if (checkPheromoneDetected())
-  {
-//     std::cout << "	status: pheromone avoidance" << std::endl;
-    return PHEROMONE_AVOIDANCE;
-  }
-  
+
 //   std::cout << "	status: default" << std::endl;
   return DEFAULT;
 }
@@ -548,7 +487,10 @@ bool BasicPheromoneControlArchitecture::checkWallStagnation()
     if (pheromoneCounter > 50)
     {
       if (stdY + stdX < 50)
+      {
 	isPheromoneStagnated = true;
+	std::cout << "pheromone stagnation" << std::endl;
+      }
       else
 	isPheromoneStagnated = false;
       pheromoneCounter = 0;
@@ -586,101 +528,6 @@ bool BasicPheromoneControlArchitecture::checkPheromoneStagnation()
   
   return false;
 }
-bool BasicPheromoneControlArchitecture::checkPheromoneDetected()
-{
-  double mean = 0;
-  for (int i = 0; i < 8; i++)
-    mean += _pSensor->_sensor[i][LIGHT];
-  
-  mean /= 8;
-  
-  if (mean > 0)
-  {
-    return false; //TODO Change to true;
-  }
- 
-  return false;
-}
 
 
-double BasicPheromoneControlArchitecture::getWallAttackAngle()
-{
-/*  
-   if (_wm->_sensors[N][5] < (double)gSensorRange && _wm->_sensors[NE][5] < (double)gSensorRange)
-  {
-    double b = _wm->_sensors[NE][5] + 16; //add radius of robot body
-    double c = _wm->_sensors[N][5] + 16;
-    
-    double a = sqrt( b*b + c*c - 2*b*c*cosine(45) );
-    
-    double bAngle = arcsine( ( b*sine(45) / a ) );
-    
-    std::cout << "attack angle RIGHT  "<< bAngle << std::endl;
-  }
-  
-  else if (_wm->_sensors[N][5] < (double)gSensorRange && _wm->_sensors[NW][5] < (double)gSensorRange)
-  {
-    double b = _wm->_sensors[NW][5] + 16;
-    double c = _wm->_sensors[N][5] + 16;
-    
-    double a = sqrt( b*b + c*c - 2*b*c*cosine(45) );
-    
-    double cAngle = arcsine( ( c*sine(45) / a ) );
-    
-    std::cout << "attack angle LEFT   "<< cAngle << std::endl;
-  }
-  */
- /* 
-  if (_wm->_sensors[NE][5] < (double)gSensorRange && _wm->_sensors[E][5] < (double)gSensorRange)
-  {
-    double b = _wm->_sensors[NE][5];
-    double c = _wm->_sensors[E][5];
-    
-    double a = sqrt( b*b + c*c - 2*b*c*cosine(45) );
-    
-    double bAngle = arcsine( ( b*sine(45) / a ) ) - 45;
-    
-    std::cout << "attack angle "<< bAngle << std::endl;
-  }
-  
-  else if (_wm->_sensors[NW][5] < (double)gSensorRange && _wm->_sensors[W][5] < (double)gSensorRange)
-  {
-    double b = _wm->_sensors[NW][5];
-    double c = _wm->_sensors[W][5];
-    
-    double a = sqrt( b*b + c*c - 2*b*c*cosine(45) );
-    
-    double bAngle = arcsine( ( b*sine(45) / a ) );
-    
-    std::cout << "attack angle "<< bAngle << std::endl;
-  }
-  */
-  return -1;
-}
-
-double BasicPheromoneControlArchitecture::sine(double theta)
-{
-  
-  return sin(theta*pi/180);
-}
-
-double BasicPheromoneControlArchitecture::cosine(double theta)
-{
-  return cos(theta*pi/180);
-  
-}
- 
-double BasicPheromoneControlArchitecture::arcsine(double ratio)
-{
-  return asin(ratio)*180/pi;
-}
- 
-double BasicPheromoneControlArchitecture::maxLim (double a, double lim)
-{
-  if (a > lim) 
-    return lim;
-  
-  return a;
-}
- 
  

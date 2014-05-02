@@ -23,31 +23,6 @@ BasicPheromoneAgentWorldModel::~BasicPheromoneAgentWorldModel()
 }
 
 
-
-void BasicPheromoneAgentWorldModel::secretePheromone(int interval, int lifetime, int maxDiffusion, Uint8 initialIntensity)
-{
-  Pheromone *p = new Pheromone(_world, _agentId, interval, lifetime, maxDiffusion, initialIntensity);
-  
-  pheromones.push_back(p);
-}
-
-
-void BasicPheromoneAgentWorldModel::stepPheromones()
-{
-  
-}
-
-
-Pheromone* BasicPheromoneAgentWorldModel::getPheromone(int index)
-{
-  return pheromones.at(index);
-}
-
-int BasicPheromoneAgentWorldModel::getPheromoneQueueSize()
-{
-  return pheromones.size();
-}
-
 World* BasicPheromoneAgentWorldModel::getWorld()
 {
   return _world;

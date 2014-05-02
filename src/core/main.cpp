@@ -13,6 +13,7 @@
 #include "RoboroboMain/main.h"
 #include <stdlib.h>
 #include <signal.h>
+#include <unistd.h>
 
 // For getopt
 extern char *optarg;

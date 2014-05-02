@@ -17,18 +17,13 @@
 #include "BasicPheromoneAgentWorldModel.h"
 #include "Observers/AgentObserver.h"
 #include "BasicPheromone/include/BasicPheromoneWorldObserver.h"
-#include "BasicPheromone/include/Pheromone.h"
 
 class BasicPheromoneAgentObserver : public AgentObserver
 {
 	protected:
 		BasicPheromoneAgentWorldModel	*_wm;
 		BasicPheromoneWorldObserver *_wo;
-		
-		int currentIndex;
-		Uint8 stepCounter;
-		void updateIntensities(Pheromone *p);
-		
+				
 
 	public:
 		//Initializes the variables

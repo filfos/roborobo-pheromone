@@ -48,7 +48,7 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 		
 		bool checkWallStagnation();
 		bool checkPheromoneStagnation();
-		bool checkPheromoneDetected();
+// 		bool checkPheromoneDetected();
 		
 		void reverse(int duration);
 		void stopAndRotate(int deg);
@@ -64,7 +64,7 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 		
 		const static double pi = 3.141592;
 		
-		bool isNotUsingPheromones;
+		bool isUsingPheromones;
 
 		
 		BasicPheromoneSensor *_pSensor;

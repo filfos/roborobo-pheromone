@@ -21,10 +21,7 @@
 #include <cstdlib>
 #include <time.h>
 #include <math.h>
-#include "BasicPheromone/include/Pheromone.h"
-#include "BasicPheromone/include/Food.h"
 #include "BasicPheromone/include/BasicPheromoneAgentWorldModel.h"
-#include "BasicPheromone/include/Particle.h"
 
 #include <stdio.h>
 #include <sys/types.h>
@@ -34,95 +31,42 @@ class World;
 
 class BasicPheromoneWorldObserver : public WorldObserver
 {
-	protected:
-//		std::deque<Pheromone*> pheromoneQueue;
-		std::vector<Pheromone*> pheromoneQueue;
-		
-		std::vector<Pheromone*> pheromoneDefaultQueue;
-
-		std::vector<Food*> foodList;
-		std::vector<int> pheromoneTimer;
-		
-		std::vector<int> foundFood;
-		std::vector<int> foodFoundTimestamps;
-		std::vector<int> foodIdTimestamps;
-		int noofPheromoneTimesteps;
-		Uint8 noofFoodFound;
-		int score;
-		
+	protected:		
 		SDL_Surface* tempForeground;
 		
 		int stepCounter;
 		
 		//Pheromone properties
-		static const bool useFoodPheromones = false;
-		static const bool useDefaultPheromones = true;
+		int lifetime;
+		int interval;
 		
-		static const int foodInterval = 50;
-		static const int foodLifetime = 1000;
-		static const int foodMaxDiffusion = 100;
-		
-		
-		static const int defaultInterval = 20;
-		static const int defaultLifetime = 300;		
-		static const int defaultMaxDiffusion = 70;
-		
-		static const int lifetime = 300;
-		static const int interval = 30;
-		
-		static const int cellSize = 25;
+		int cellSize;
 		
 		double evaporationFactor;
 		
-// 		Uint8 intensities[1500][900];
 		std::vector< std::vector<int> > intensities;
 		std::vector< std::vector<int> > intensityBuffer;
 		std::vector< std::vector<bool> > wallMap;
-		std::vector< std::vector<Particle*> > particleMap;
-// 		std::vector< std::vector<Particle*> > particleBuffer;
+
 		
  		std::vector< std::vector<int> > movementHistory;
 
-		
 		std::vector< std::vector<bool> > visitedCells;
 		
 		int cellCheckCounter;
 		double cellVisitedAverage;
 		int noofTimesCellCounted;
-		bool isDone;
 		
 		void countVisitedCells();
 		
 		void addCurrentCells();
-		
-		void addToMovementHistory();
-		
-		void displayMovementHistory(int ms);
   
   
 		bool firstLoop;
 		bool isUsingPheromones;
 		
-// 		int pheromoneMap[][900];
-// 		int pheromoneBuffer[][900];
-// 		int wallMap[][900];
-		
-		void randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius);
-		bool foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood);
-
-		std::vector<int> insideObstacle(int x, int y, int radius);
-		
 		void printAgentLocations();
-
-		
-		void stepAllPheromones();
-		void stepAllFoods();
-		
-		void secretePheromones();
-		void secretePheromones(int interval, int lifetime, int maxDiffusion);
-		
-		void createFood(Sint16 x_center, Sint16 y_center, Sint16 radius);
-		void checkForFood();
+				
 		void drawIntensities();
 		
 		void createWallMap();
@@ -134,14 +78,14 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		double eightNeighbourMean(int x, int y);
 		double maxNeighbour(int x, int y);
 		
-		void addBufferedValues();
+// 		void addBufferedValues();
 				
-		bool foodPlaced;
+// 		bool foodPlaced;
 		bool wallUpdated;
 		
 		Uint8 getAveragedIntensity(int x, int y);
 		
-		void updatePheromones();
+// 		void updatePheromones();
 		void diffuse();
 		void evaporate();
 		
@@ -189,6 +133,9 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void writeToTilesFoundFile();
 		void writeAgentLocation();
 		std::string generateSpawnFileNumber();
+		
+		int c1;
+		int c2;
 };
 
 #endif

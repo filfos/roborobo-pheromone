@@ -11,6 +11,7 @@ usage()
 	echo "		Use the SCRIPT_AND_PARAMETERS after an experiment has been completed"
 }
 
+
 oneRun()
 {
 	#init variables
@@ -78,7 +79,7 @@ readSpawnLocations()
 	export IFS=","
 	cat output/spawn/"$expNo"spawn | while read n x y o; 
 	       do 
-		   #echo "$expNo spawn robot: $n x: $x y:  $y  theta $o";
+		   echo "$expNo spawn robot: $n x: $x y:  $y  theta $o";
 		   #echo "using config file $conf"
 		   sed -i "/agent\[$n\]\.x =/s/= .*/= $x/" "$conf";
 		   sed -i "/agent\[$n\]\.y =/s/= .*/= $y/" "$conf";

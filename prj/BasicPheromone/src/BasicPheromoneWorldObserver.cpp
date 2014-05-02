@@ -18,23 +18,34 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	_world = __world;
 	untouchedStepCounter = 0;
 	stepCounter = 0;
-	score = 0;
 	wallUpdated = false;
-	foodPlaced = false;
-	isDone = false;
 	
 	firstLoop = true;
 	
+	c1 = 0;
+	c2 = 0;
+	
+//Increase interval to reduce diffusion
+//Increase lifetime to reduce evaporation
+	lifetime = 500;
+	interval = 20;
+		
+	cellSize = 25;
+	
+	
 	//CHANGE TO DISABLE PHEROMONES COMPLETELY
 	//when True: READ spawnlocations. False: WRITE
-	isUsingPheromones = false;
+	isUsingPheromones = true;
 	shouldWriteSpawnLocations = false;
 		
-	cellCheckCounter = -30;
+	cellCheckCounter = -10; //-30
 	cellVisitedAverage = 0.0;
 	noofTimesCellCounted = 0;
 	
+	
 	std::string spawnNumber = generateSpawnFileNumber();
+	
+	std::cout << "spawn number: " << spawnNumber << std::endl;
 		
 	evaporationFactor = exp((log(0.5)/lifetime )*interval);
 	if (gBatchMode)
@@ -62,7 +73,6 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	intensities.resize(gScreenWidth);
 	intensityBuffer.resize(gScreenWidth);
 	wallMap.resize(gScreenWidth);
-	movementHistory.resize(gScreenWidth);
 	
 	int h = gScreenHeight/cellSize;
 	int w = gScreenWidth/cellSize;
@@ -70,15 +80,12 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	std::cout << h << "   " << w << std::endl;
 	
 	visitedCells.resize(w);
-// 	particleMap.resize(gScreenWidth);
 
 	for (int i = 0; i < gScreenWidth; i++)
 	{
 	  intensities[i].resize(gScreenHeight);
 	  intensityBuffer[i].resize(gScreenHeight);
 	  wallMap[i].resize(gScreenHeight);
-	  movementHistory[i].resize(gScreenHeight);
-// 	  particleMap[i].resize(gScreenHeight);
 	}
 	
 	for (int i = 0; i < w ; i++)
@@ -88,10 +95,6 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	for (int x = 0; x < w; x++)
 	  for (int y = 0; y < h; y++)
 	    visitedCells[x][y] = false;
-	  
-	for (int x = 0; x < gScreenWidth; x++)
-	  for (int y = 0; y < gScreenHeight; y++)
-	    movementHistory[x][y] = 0;
 	
 }
 
@@ -109,11 +112,9 @@ void BasicPheromoneWorldObserver::step()
 {
   WorldObserver::step();
   createWallMap();
-  randomizeFood(gScreenWidth, gScreenHeight, 0, 30);
   
   if (firstLoop)
   {
-    
     if (gBatchMode && shouldWriteSpawnLocations)
     {
 	writeAgentLocation();
@@ -127,27 +128,6 @@ void BasicPheromoneWorldObserver::step()
   }
   
   untouchedStepCounter++;
-//   std::cout << untouchedStepCounter << std::endl;
-  if (noofFoodFound == foodList.size() && !isDone)
-  {
-    isDone = true;
-    for (Uint8 i = 0; i < foodList.size(); i++)
-    {
-      std::cout << (int)foodFoundTimestamps.at(i) << std::endl;
-    }
-    std::cout << std::endl;
-    std::cout << "--------------" << std::endl;
-    for (Uint8 i = 0; i < foodList.size(); i++)
-    {
-      std::cout << i+1 << " : " << (int)foodIdTimestamps.at(i) << std::endl;
-    }
-    std::cout << "--------------" << std::endl;
-  }
-  else
-  {
-    score++;
-  }
-  
   stepCounter++;  
   
   if (isUsingPheromones)
@@ -156,6 +136,8 @@ void BasicPheromoneWorldObserver::step()
     {
       //-------
       diffuse();
+//       evaporate();
+
       //-----
       drawIntensities();
       
@@ -167,26 +149,20 @@ void BasicPheromoneWorldObserver::step()
   if (cellCheckCounter >= 0) // Have to delay execution until agents are initialized
   {
     addCurrentCells();
-    addToMovementHistory();
     writeDispersionToFile();
     writeToTilesFoundFile();
 
   }
-  if (cellCheckCounter == -5000)//20500)//6850)
+  if (cellCheckCounter == 10000)//20500)//6850)
   {
     countVisitedCells();
-    displayMovementHistory(6000);
-    cellCheckCounter = 0;
-  }
-  checkForFood();
-  stepAllFoods();
-  
+  }  
 }
 
 std::string BasicPheromoneWorldObserver::generateSpawnFileNumber()
 {
-  std::string directory = "/home/filip/Roborobo-Pheromone/output/spawn/";
-  
+  std::string directory = "/home/filip/roborobo-pheromone/output/spawn";
+
   DIR *dp;
   int i = -2;
   struct dirent *ep;     
@@ -215,48 +191,13 @@ std::string BasicPheromoneWorldObserver::generateSpawnFileNumber()
   return ss.str();
 }
 
-void BasicPheromoneWorldObserver::addToMovementHistory()
-{
-  for (int i = 0; i < gAgentCounter; i++)
-  {
-    int x, y;
-    _world->getAgent(i)->getCoord(x, y);
-    x += 15;
-    y += 15;
-    
-    movementHistory[x][y] += 1;    
-  }
-}
-		
-void BasicPheromoneWorldObserver::displayMovementHistory(int ms)
-{
-  
-//   SDL_Surface *movement;
-//   movement = SDL_CreateRGBSurfaceFrom(gEnvironmentImage->pixels, 1500, 900, fmt.BitsPerPixel, gEnvironmentImage->pitch, fmt.Rmask, fmt.Gmask, fmt.Bmask, fmt.Amask);
-  SDL_LockSurface(gBackgroundImage);
-  for (Uint32 y = 0; y < movementHistory[0].size(); y++)
-  {
-    for (Uint32 x = 0; x < movementHistory.size(); x++)
-    {
-	int val = movementHistory[x][y];
-	Uint8 intens = val > 0 ? 255 : 0;//val > 255 ? 255 : val;
-	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255-intens, 255-intens );
-	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
-	
-	
-	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
-	*((Uint32*)pixel) = color;      
-    }
-  }
-  SDL_UnlockSurface(gBackgroundImage);  
-  gPauseMode = true;
-}
 
 void BasicPheromoneWorldObserver::writeDispersionToFile()
 {
   int x_mean = 0;
   int y_mean = 0;
   int x, y;
+  
   
   /* Calculate new center point */
   for (int i = 0; i < gAgentCounter; i++)
@@ -283,6 +224,7 @@ void BasicPheromoneWorldObserver::writeDispersionToFile()
   }
   avg_distance /= gAgentCounter;
   
+//   std::cout << "D : " <<c1++ << std::endl;
   dispersionFile << avg_distance << ",";
   
 }
@@ -298,7 +240,7 @@ void BasicPheromoneWorldObserver::writeToTilesFoundFile()
 	++noofTilesVisited;
     }
   }
-  
+//   std::cout << "T : " << c2++ << std::endl;
   tilesFoundFile << noofTilesVisited << ",";
 }
 
@@ -333,21 +275,14 @@ void BasicPheromoneWorldObserver::addCurrentCells()
   for (int i = 0; i < gAgentCounter; i++)
   {
     int x, y;
-     x += 15;
-     y += 15;
+//      x += 15;
+//      y += 15;
     _world->getAgent(i)->getCoord(x, y);
     visitedCells[x/cellSize][y/cellSize] = true;
   }
 }
 
 
-void BasicPheromoneWorldObserver::createFood(Sint16 x_center, Sint16 y_center, Sint16 radius)
-{
-  
-  Food *f = new Food(x_center, y_center, radius);
-  foodList.push_back(f);  
-  
-}
 
 
 void BasicPheromoneWorldObserver::createWallMap()
@@ -381,49 +316,7 @@ void BasicPheromoneWorldObserver::createWallMap()
 	  }
 	}
   }
-  
 }
-
-void BasicPheromoneWorldObserver::checkForFood()
-{
-  for (int i = 0; i != gAgentCounter; i++)
-  {
-    if(_world->getAgent(i)->getWorldModel()->getRobotLED_blueValue() == 255)
-    {
-      int x, y;
-      _world->getAgent(i)->getCoord(x, y);
-      //correct error in Roborobo's coordinates:
-      x += 15;
-      y += 15;
-      for (Uint8 j = 0; j < foodList.size(); j++)
-      {
-	int id = foodList.at(j)->getId(x, y);
-	
-	if (id != 0 && foundFood.at(id-1) == 0)
-	{
-	  foodList.at(id-1)->hide();
-	  foundFood.at(id-1) = 1;
-	  noofFoodFound++;
-	  foodFoundTimestamps.at(noofFoodFound-1) = score;
-	  foodIdTimestamps.at(id-1) = score;
-	}
-      }
-    }
-  }
-}
-
-void BasicPheromoneWorldObserver::stepAllFoods()
-{
-  for (Uint32 i = 0; i != foodList.size(); i++)
-  {
-    if (foundFood.at(i) == 0)
-    {
-      Food *f = foodList.at(i);
-      f -> step();
-    }
-  }
-}
-
 
 void BasicPheromoneWorldObserver::drawIntensities()
 { 
@@ -432,9 +325,7 @@ void BasicPheromoneWorldObserver::drawIntensities()
   {
     for (Uint32 y = 1; y < intensities[0].size()-1; y+=1)
     {   
-// 	intensities[x][y] = intensityBuffer[x][y];
-// 	intensityBuffer[x][y] = 0;
-	Uint8 intens = eightNeighbourMean(x, y); //getAveragedIntensity(x, y);
+	Uint8 intens = intensities[x][y];//eightNeighbourMean(x, y); //getAveragedIntensity(x, y);
 	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255-intens, 255-intens );
 	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
 	
@@ -447,35 +338,7 @@ void BasicPheromoneWorldObserver::drawIntensities()
   SDL_UnlockSurface(gBackgroundImage);
 }
 
-void BasicPheromoneWorldObserver::updatePheromones()
-{
-  for (int y = 1; y < gScreenHeight-1; y++)
-  {
-    for (int x = 1; x < gScreenWidth-1; x++)
-    {
-      if (intensities[x][y] == 0 || wallMap[x][y] == 1)
-      {
-	continue;
-      }
-      else
-      {
-// 	evaporationFactor = 0.999;
-      if(intensities[x][y] > 255) intensities[x][y] = 255;
-      int intens = intensities[x][y]*0.126;
-      intensityBuffer[x+1][y] += intens;
-      intensityBuffer[x][y+1] += intens;
-      intensityBuffer[x-1][y] += intens;
-      intensityBuffer[x][y-1] += intens;
-      
-      intensityBuffer[x+1][y+1] += intens;
-      intensityBuffer[x+1][y-1] += intens;
-      intensityBuffer[x-1][y+1] += intens;
-      intensityBuffer[x-1][y-1] += intens;
 
-      }
-    }
-  }
-}
 
 void BasicPheromoneWorldObserver::diffuse()
 {
@@ -492,7 +355,7 @@ void BasicPheromoneWorldObserver::diffuse()
 	intensityBuffer[x][y] = getMax(intensities[x+1][y], 
 					intensities[x-1][y], 
 					intensities[x][y+1], 
-					intensities[x][y-1] )*evaporationFactor; //0.97
+					intensities[x][y-1])*evaporationFactor;
 	
       }
     }
@@ -502,38 +365,25 @@ void BasicPheromoneWorldObserver::diffuse()
 
 void BasicPheromoneWorldObserver::evaporate()
 {
-//   for (int y = 0; y < gScreenHeight; y++)
-//   {
-//     for (int x = 0; x < gScreenWidth; x++)
-//     {
-//       intensities[x][y] = intensities[x][y]*0.95;
-//     }
-//   }
-}
-
-	/*
-	 * Wednesday: Spawn a finite pool of e.g. 2000. Diffusion is done 
-	 * by spreading portions of the pool. if a value above 255 is
-	 * seen; draw 255, but retain the original value.
-	 * 
-	 *
-	int sum = 0;
-	sum += factor*intensities[x+1][y];
-	sum += factor*intensities[x-1][y];
-	sum += factor*intensities[x][y+1];
-	sum += factor*intensities[x][y-1];
-
-	sum += factor*intensities[x+1][y+1];
-	sum += factor*intensities[x-1][y-1];
-	sum += factor*intensities[x+1][y-1];
-	sum += factor*intensities[x-1][y+1];
-	
-	intensityBuffer[x][y] += sum/8;
+  for (int y = 1; y < gScreenHeight-1; y++)
+  {
+    for (int x = 1; x < gScreenWidth-1; x++)
+    {
+      if (wallMap[x][y] == 1)
+      {
+	continue;
+      }
+      else
+      {
+	intensities[x][y]*=evaporationFactor;
       }
     }
   }
 }
-        */
+
+
+
+
 int BasicPheromoneWorldObserver::getMax(int a, int b, int c, int d)
 {
   int max = a > b ? a : b;
@@ -549,17 +399,17 @@ double BasicPheromoneWorldObserver::eightNeighbourMean(int x, int y)
   
 //   sum += intensities[x][y]*;
   
-  sum += intensities[x][y+1]*4; //N
-  sum += intensities[x][y-1]*4; //S
-  sum += intensities[x+1][y]*4; //E
-  sum += intensities[x-1][y]*4; //W
+  sum += intensities[x][y+1]*1; //N
+  sum += intensities[x][y-1]*1; //S
+  sum += intensities[x+1][y]*1; //E
+  sum += intensities[x-1][y]*1; //W
   
   sum += intensities[x+1][y+1]*1; //NE
   sum += intensities[x+1][y-1]*1; //SE
   sum += intensities[x-1][y-1]*1; //SW
   sum += intensities[x-1][y+1]*1; //NW
     
-  return sum/20;
+  return sum/8;
 }
 
 void BasicPheromoneWorldObserver::activatePheromone(int x, int y, int intensity)
@@ -567,27 +417,19 @@ void BasicPheromoneWorldObserver::activatePheromone(int x, int y, int intensity)
   
   intensities[x][y] = intensity;
   
-  for (int i = 1; i <= 1; i++)
-  {
-  
-  intensities[x+i][y] = intensity;
-  intensities[x-i][y] = intensity;
-  intensities[x][y+i] = intensity;
-  intensities[x][y-i] = intensity;
-
-  intensities[x+i][y+i] = intensity;
-  intensities[x+i][y-i] = intensity;
-  intensities[x-i][y+i] = intensity;
-  intensities[x-i][y-i] = intensity;
-  }
-
-/* LATTICE GAS */
-//   Particle *p = particleMap[x][y];
-//   p->setIntensity(intensity);
-//   p->e = 1;
-//   p->w = 1;
-//   p->n = 1;
-//   p->s = 1;
+//   for (int i = 1; i <= 1; i++)
+//   {
+//   
+//   intensities[x+i][y] = intensity;
+//   intensities[x-i][y] = intensity;
+//   intensities[x][y+i] = intensity;
+//   intensities[x][y-i] = intensity;
+// 
+//   intensities[x+i][y+i] = intensity;
+//   intensities[x+i][y-i] = intensity;
+//   intensities[x-i][y+i] = intensity;
+//   intensities[x-i][y-i] = intensity;
+//   }
 }
 
 
@@ -618,245 +460,6 @@ void BasicPheromoneWorldObserver::writeAgentLocation()
 }
 
 
-
-void BasicPheromoneWorldObserver::randomizeFood(int imageWidth, int imageHeight, int noofFood, int thresholdRadius)
-{
-  if (!foodPlaced)
-  {
-      foodPlaced = true;
-      int count = 0;
-      std::vector<std::vector<int> > coords(2, std::vector<int>(noofFood));  
-      
-      srand(time(0));
-      
-      for (int i = 0; i != noofFood; i++)
-      {  
-	int x = (rand() % imageWidth) + 1;
-	int y = (rand() % imageHeight) + 1;
-	
-	if ( !foodNearby(x, y, thresholdRadius, coords))
-	{
-
-	  bool obstacleOverlap = true;
-	  while(obstacleOverlap)
-	  {
-	    std::vector<int> loc(2);
-	    loc = insideObstacle(x, y, 30);
-	    x += loc[0];
-	    y += loc[1];
-	    
-	    obstacleOverlap = loc[0] != 0 && loc[1] != 0;
-	    
-	  }
-	  coords[0].push_back(x);
-	  coords[1].push_back(y);
-	  createFood(x, y, 20);      
-// 	  std::cout << "x : " << x << "  y  " << y << std::endl;
-	}
-	else
-	{
-	  ++count;
-	  --i;
-	  std::cout << "Food number " << i << " retrying" << std::endl;
-	}
-	
-	if (count > 100)
-	{
-	  std::cout << "ABANDON SHIP" << std::endl;
-	  return;
-	}
-
-      }
-      
-      std::cout << " ------- FOOD LOCATIONS ------" << std::endl;
-      for (Uint8 i = 0; i < coords[0].size(); i++)
-	std::cout << " createFood( " << coords[0][i] << ", " << coords[1][i] << ", 20 );" << std::endl;
-      
-      noofFoodFound = 0;
-//       printAgentLocations();
-  } 
-  if (foodPlaced)
-  {
-    for (Uint8 i = 0; i < foodList.size(); i++)
-    {
-      foundFood.push_back(0);
-      foodFoundTimestamps.push_back(0);
-      foodIdTimestamps.push_back(0);
-    }
-    
-    noofPheromoneTimesteps = 30;
-    
-    //condition must be greater than noof agents.
-    for (int i = 0; i < 10; i++)
-    {
-      pheromoneTimer.push_back(noofPheromoneTimesteps);
-    }
-  }
-}
-
-bool BasicPheromoneWorldObserver::foodNearby(int x, int y, int radius, std::vector<std::vector<int> > otherFood)
-{
-  for (Uint8 i = 0; i != otherFood.size(); i++)
-  {
-    if (pow((double)(x - otherFood[0][i]) , 2.0) + pow((double)(y - otherFood[1][i]) , 2.0)  <= pow((double)radius, 2.0))
-      return true;
-  }
-  return false;
-}
-
-std::vector<int> BasicPheromoneWorldObserver::insideObstacle(int x, int y, int radius)
-{
-  std::vector<int> black(8);
-  Uint8 r, g, b;
-  
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x, y-i ); 
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    if (r == 0 && b == 0 && g == 0)
-      black[0] += 1;      
-    else
-      break;
-  }
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x+i, y-i );
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    
-    if (r == 0 && b == 0 && g == 0)
-      black[1] += 1;      
-    else
-      break;
-  }
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x+i, y );
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    
-    if (r == 0 && b == 0 && g == 0)
-      black[2] += 1;      
-    else
-      break;
-  } 
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x+i, y+i );
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    
-    if (r == 0 && b == 0 && g == 0)
-      black[3] += 1;      
-    else
-      break;
-  }
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x, y+i );
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    
-    if (r == 0 && b == 0 && g == 0)
-      black[4] += 1;      
-    else
-      break;
-  }
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x-i, y+i );
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    
-    if (r == 0 && b == 0 && g == 0)
-      black[5] += 1;      
-    else
-      break;
-  }
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x-i, y );
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    
-    if (r == 0 && b == 0 && g == 0)
-      black[6] += 1;      
-    else
-      break;
-  } 
-  
-  for (int i = 0; i < radius; i++)
-  {
-    Uint32 pixel = getPixel32(gForegroundImage, x-i, y-i );
-    SDL_GetRGB(pixel, gForegroundImage->format, &r, &g, &b);
-    
-    if (r == 0 && b == 0 && g == 0)
-      black[7] += 1;      
-    else
-      break;
-  }
-  
-  
-  std::vector<int> temp(2);
-  temp[0] = 0;
-  temp[1] = 0;
-  for (Uint8 i = 0; i < black.size(); i++)
-  {
-    if (black[i] > temp[1])
-    {
-      temp[0] = i;
-      temp[1] = black[i];
-    }
-  }
-  
-  
-  int _x = 0;
-  int _y = 0;
-  
-  switch (temp[0])
-  {
-    case 0:
-//       _x = 0;
-      _y -= temp[1];
-      break;
-    case 1:
-      _x += temp[1];
-      _y -=temp[1];
-      break;
-    case 2:
-      _x += temp[1]; 
-//       _y = 0;
-    break;
-    case 3:
-      _x += temp[1];
-      _y += temp[1];
-      break;
-    case 4:
-//       _x = 0;
-      _y += temp[1];
-      break;
-    case 5:
-      _x -= temp[1];
-      _y -= temp[1];
-      break;
-    case 6:
-      _x -= temp[1];
-//       _y = 0;
-      break;
-    case 7:
-      _x -= temp[1];
-      _y += temp[1];
-      break;
-  }
-  
-  
-  std::vector<int> newLoc(2);
-  newLoc[0] = _x;
-  newLoc[1] = _y;  
-      
-  return newLoc;    
-}
 
 Uint8 BasicPheromoneWorldObserver::getIntensityAt(int x, int y)
 {
@@ -911,13 +514,6 @@ void BasicPheromoneWorldObserver::modifyIntensityAt(int x, int y, int value)
   intensities[x][y] += value;
 }
 
-
-
-void BasicPheromoneWorldObserver::updateIntensityMap()
-{
-   
-
-}
 
 
 
@@ -976,79 +572,6 @@ double BasicPheromoneWorldObserver::maxNeighbour(int x, int y)
 }
 
 
-void BasicPheromoneWorldObserver::addBufferedValues()
-{
-  for (int x = 0; x < gScreenWidth; x++)
-  {
-    for (int y = 0; y < gScreenHeight; y++)
-    {
-      // I'm useless now :)
-    }
-  }
-}
-
-
-
-void BasicPheromoneWorldObserver::stepAllPheromones()
-{
-    int deleteNr = 0;
-    if (useFoodPheromones)
-    {
-      for (Uint32 i = 0; i < pheromoneQueue.size(); i++)
-      {
-	if (pheromoneQueue.at(i)->getIntensity() == 0)
-	  deleteNr++;
-	else
-	  pheromoneQueue.at(i)->step();
-    
-      }
-      if (deleteNr > 0)
-      {
-      //TODO FIXME pheromoneQueue.erase(pheromoneQueue.begin(), pheromoneQueue.begin()+deleteNr);
-      }
-    }
-    
-    if (useDefaultPheromones)
-    {
-      for (Uint32 i = 0; i < pheromoneDefaultQueue.size(); i++)
-      {
-	if (pheromoneDefaultQueue.at(i)->getIntensity() == 0)
-	{
-	  //do nothing
-	}
-	else
-	  pheromoneDefaultQueue.at(i)->step();
-      }
-    }
-    
-    
-    
-}
-
-
-void BasicPheromoneWorldObserver::secretePheromones(int interval, int lifetime, int maxDiffusion)
-{
-  for (int i = 0; i != gAgentCounter; i++)
-  {
-    if (_world->getAgent(i)->getWorldModel()->getRobotLED_blueValue() == 255)
-    {
-      if (pheromoneTimer.at(i) > 0)
-      {
-	Pheromone *p = new Pheromone(_world, i, interval, lifetime, maxDiffusion);
-	pheromoneQueue.push_back(p);
-	
-	pheromoneTimer.at(i)--;
-      }
-      else
-      {
-	pheromoneTimer.at(i) = noofPheromoneTimesteps;
-	_world->getAgent(i)->getWorldModel()->setRobotLED_colorValues(0,0,0);
-      }
-    }
-    
-  }
-  
-}
 
 bool BasicPheromoneWorldObserver::isPheromonesInUse()
 {
@@ -1056,41 +579,3 @@ bool BasicPheromoneWorldObserver::isPheromonesInUse()
 }
 
 
-void BasicPheromoneWorldObserver::secretePheromones()
-{
-  for (int i = 0; i != gAgentCounter; i++)
-  {
-    if (_world->getAgent(i)->getWorldModel()->getRobotLED_blueValue() == 255 && useFoodPheromones)
-    {
-      if (pheromoneTimer.at(i) > 0)
-      {
-	Pheromone *p = new Pheromone(_world, i, foodInterval, foodLifetime, foodMaxDiffusion);
-	pheromoneQueue.push_back(p);
-	
-	pheromoneTimer.at(i)--;
-      }
-      else
-      {
-	pheromoneTimer.at(i) = noofPheromoneTimesteps;
-	_world->getAgent(i)->getWorldModel()->setRobotLED_colorValues(0,0,0);
-      }
-    }
-    if (_world->getAgent(i)->getWorldModel()->getRobotLED_greenValue() == 255 && useDefaultPheromones)
-    {
-      if (pheromoneTimer.at(i) > 0)
-      {
-	Pheromone *p = new Pheromone(_world, i, defaultInterval, defaultLifetime, defaultMaxDiffusion);
-	pheromoneDefaultQueue.push_back(p);
-	// Potentially create a new queue for default pheromones.
-	
-	pheromoneTimer.at(i)--;
-      }
-      else
-      {
-	//TODO is this the "time" between timesteps? separate for default pheromones?
-	pheromoneTimer.at(i) = noofPheromoneTimesteps;
-      }
-    }
-  }
-  
-}

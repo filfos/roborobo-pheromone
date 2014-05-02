@@ -45,11 +45,7 @@ class BasicPheromoneSensor
      */
     double _sensor[8][6];
     
-    int distanceToPheromone(int sensorId);
-    double getPheromoneIntensity(int sensorId, double distance);
-    
-    const static int sensorRange = 100;
-    
+        
     int foodFound();
     
     int getIndexOfMaxLeftLightSensor();
@@ -62,10 +58,10 @@ class BasicPheromoneSensor
     
     const static double pi = 3.141592;
 
-    const static double lengthLight = 30.0;
+    double lengthLight;
     
-    const static int x_offset = 15;
-    const static int y_offset = 15;
+    const static int x_offset = 0;
+    const static int y_offset = 0;
     
     int x_center;
     int y_center;
@@ -74,14 +70,8 @@ class BasicPheromoneSensor
     double sine(double theta);
     double cosine(double theta);
     
-    double findNearestWall(int x_center, int y_center, double x_cos, double y_sin);
     double getLightSensorValue(int x, int y);
-    void checkForFood(int x, int y);
     
-
-    int _foodFound;
-
-
     
     RobotAgentWorldModel *_wm;
     

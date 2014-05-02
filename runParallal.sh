@@ -19,12 +19,15 @@ oneRun()
 	mainTimeStamp=$2
 	postExperimentScript=$3
 	readSpawn=$4
+	expNo=$5
+
+	echo "LAUNCH COUNT $cnt"
 
 	isSuccess=0
 	timeStamp=`date +%H%M%S%N`	
 
 	#launch experiment
-	expNo=$(cat	"complete$mainTimeStamp")
+	#expNo=$(cat	"complete$mainTimeStamp")
 
         #Read spawn locations from file
 	if [ "$readSpawn" = "r" ]
@@ -128,6 +131,7 @@ else
 	completeCnt=0
 	totCnt=0
 	lastRunDone=0
+	launchCnt=0
 
 	if [ -e "./lastRunDone" ]
 	then
@@ -152,10 +156,11 @@ else
 		completeCnt=$(cat "complete$mainTimeStamp")
 		rm "take$mainTimeStamp" 
 
-		if [ $completeCnt -lt $nbExp ]
+		if [ $totCnt -lt $nbExp ]
 		then
-			oneRun $config $mainTimeStamp "$postExperimentScript" "$rdSpawn" &
+			oneRun $config $mainTimeStamp "$postExperimentScript" "$rdSpawn" "$launchCnt" &
 			totCnt=$((totCnt+1))
+			launchCnt=$((launchCnt+1))
 		fi
 		sleep 1
 	done

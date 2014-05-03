@@ -40,7 +40,6 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		int lifetime;
 		int interval;
 		
-		int cellSize;
 		
 		double evaporationFactor;
 		
@@ -48,10 +47,18 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		std::vector< std::vector<int> > intensityBuffer;
 		std::vector< std::vector<bool> > wallMap;
 
-		
+		/* Movement History */
  		std::vector< std::vector<int> > movementHistory;
+		void addToMovementHistory();
+		void displayMovementHistory();
+		
+		void clearPheromoneVisuals();
 
+		/* Tiles/Cells */
+		int cellSize;
 		std::vector< std::vector<bool> > visitedCells;
+		void drawGrid();
+		void colorVisitedCells();
 		
 		int cellCheckCounter;
 		double cellVisitedAverage;

@@ -22,7 +22,7 @@ BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgent
     
     isUsingPheromones = wo->isPheromonesInUse();
     
-    std::cout << wo->isPheromonesInUse() << " 0=wall avoidance, 1=pheromone "  << std::endl;
+//     std::cout << wo->isPheromonesInUse() << " 0=wall avoidance, 1=pheromone "  << std::endl;
     
     _pSensor = new BasicPheromoneSensor(__wm);
     stepCounter = 0;
@@ -215,12 +215,13 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	//PHEROMONE SHIFT RANDOM
 	else if (leftMax != -1 && _pSensor->_sensor[leftMax][LIGHT] == _pSensor->_sensor[rightMax][LIGHT])
 	{
-	  _wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
+	 // _wm->_desiredRotationalVelocity = 0.01 - (double)(rand()%10)/10.*0.02;
+	  std::cout << "now what.." << std::endl;
 	}
 	//PHEROMONE TURN RIGHT
 	else if (_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT])// && rightMax != -1)
 	{
-	  _wm->_desiredRotationalVelocity = +maxRot - maxRot*(_pSensor->_sensor[leftMax][LIGHT]);
+	  _wm->_desiredRotationalVelocity = rot + rot*(_pSensor->_sensor[leftMax][LIGHT]);//+maxRot - maxRot*(_pSensor->_sensor[leftMax][LIGHT]);
 	}
 	else
 		//WALL TURN LEFT
@@ -235,7 +236,7 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 		//PHEROMONE TURN LEFT
 		else if (_pSensor->_sensor[rightMax][LIGHT] > 0.01 && _pSensor->_sensor[rightMax][LIGHT] != _pSensor->_sensor[leftMax][LIGHT])// && leftMax != -1)
 		{
-			_wm->_desiredRotationalVelocity = -maxRot + maxRot*(_pSensor->_sensor[rightMax][LIGHT]);
+			_wm->_desiredRotationalVelocity = -rot - (rot*(_pSensor->_sensor[rightMax][LIGHT]));//-maxRot + maxRot*(_pSensor->_sensor[rightMax][LIGHT]);
 // 			releasePheromones = false;
 		}
 		else
@@ -486,10 +487,10 @@ bool BasicPheromoneControlArchitecture::checkWallStagnation()
     /* Pheromone stagnation hack. Not clean, but can't be bothered doing this twice */
     if (pheromoneCounter > 50)
     {
-      if (stdY + stdX < 50)
+      if (stdY + stdX < 10)
       {
 	isPheromoneStagnated = true;
-	std::cout << "pheromone stagnation" << std::endl;
+// 	std::cout << "pheromone stagnation" << std::endl;
       }
       else
 	isPheromoneStagnated = false;

@@ -1,0 +1,101 @@
+# =-=-=-=-=-=-=-=-=-=-=
+# PROPERTIES FILE DUMP 
+# =-=-=-=-=-=-=-=-=-=-=
+#
+# =-= Roborobo! 
+# =-= Official version tag    : 20120605
+# =-= Current build name      : Amsterdam build
+# =-= Compilation version tag : May  3 2014 - 09:52:28
+#
+# Loaded time stamp           : 20140503-17h28m02s402081us
+#
+# Original Properties file    : config/1default-pheromone.properties
+#
+
+
+ConfigurationLoaderObjectName=BasicPheromoneConfigurationLoader
+SlowMotionMode=false
+agent[0].orientation=77.6721
+agent[0].x=738
+agent[0].y=934
+agent[10].orientation=74.4322
+agent[10].x=785
+agent[10].y=204
+agent[11].orientation=67.3105
+agent[11].x=501
+agent[11].y=896
+agent[1].orientation=-99.3418
+agent[1].x=691
+agent[1].y=980
+agent[2].orientation=174.155
+agent[2].x=904
+agent[2].y=239
+agent[3].orientation=-6.87111
+agent[3].x=12
+agent[3].y=542
+agent[4].orientation=67.7023
+agent[4].x=143
+agent[4].y=454
+agent[5].orientation=-40.9892
+agent[5].x=315
+agent[5].y=179
+agent[6].orientation=141.02
+agent[6].x=589
+agent[6].y=75
+agent[7].orientation=-172.794
+agent[7].x=287
+agent[7].y=946
+agent[8].orientation=-155.309
+agent[8].x=714
+agent[8].y=410
+agent[9].orientation=98.0001
+agent[9].x=878
+agent[9].y=466
+gAgentCounter=20
+gAgentHeight=0
+gAgentIndexFocus=0
+gAgentMaskImageFilename=data/miniagent-mask.png
+gAgentRegistration=true
+gAgentSpecsImageFilename=data/miniagent-specs.png
+gAgentWidth=0
+gAreaHeight=0
+gAreaWidth=0
+gBackgroundImageFilename=data/pheromone/background_square.png
+gBatchMode=false
+gDisplayMode=0
+gDisplayZoneCaption=false
+gEnergyMode=false
+gEnvironmentImageFilename=data/pheromone/env.png
+gFastDisplayModeSpeed=60
+gForegroundImageFilename=data/pheromone/env.png
+gFramesPerSecond=60
+gInspectAgent=false
+gInspectorAgent=false
+gInspectorAgentXStart=100
+gInspectorAgentYStart=355
+gInspectorMode=false
+gLocomotionMode=0
+gLogCommentText=(under-development)
+gLogFilename=logs/log.txt
+gMaxIt=-1
+gMaxRadioDistance=-1
+gMaxRotationalSpeed=2
+gMaxSpeedOnXaxis=20
+gMaxSpeedOnYaxis=10
+gMaxTranslationalDeltaValue=1
+gMaxTranslationalSpeed=1
+gMoveStepHeight=1
+gMoveStepWidth=1
+gNbOfAgents=10
+gNiceRendering=true
+gParallaxFactor=1
+gPauseMode=false
+gRadioNetwork=false
+gRandomSeed=1399130882
+gScreenHeight=1000
+gScreenWidth=1000
+gSensorRange=50
+gUserCommandMode=false
+gVerbose=false
+gZoneCaptionPrefixFilename=data/zonecaption
+gZoneImageFilename=data/pheromone/background_square.png

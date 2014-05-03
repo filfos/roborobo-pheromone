@@ -27,10 +27,10 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	
 //Increase interval to reduce diffusion
 //Increase lifetime to reduce evaporation
-	lifetime = 500;
+	lifetime = 200;
 	interval = 20;
 		
-	cellSize = 25;
+	cellSize = 20;
 	
 	
 	//CHANGE TO DISABLE PHEROMONES COMPLETELY
@@ -44,9 +44,7 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	
 	
 	std::string spawnNumber = generateSpawnFileNumber();
-	
-	std::cout << "spawn number: " << spawnNumber << std::endl;
-		
+			
 	evaporationFactor = exp((log(0.5)/lifetime )*interval);
 	if (gBatchMode)
 	{
@@ -73,6 +71,10 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	intensities.resize(gScreenWidth);
 	intensityBuffer.resize(gScreenWidth);
 	wallMap.resize(gScreenWidth);
+	if (!gBatchMode)
+	{
+	  movementHistory.resize(gScreenWidth);
+	}
 	
 	int h = gScreenHeight/cellSize;
 	int w = gScreenWidth/cellSize;
@@ -86,6 +88,10 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	  intensities[i].resize(gScreenHeight);
 	  intensityBuffer[i].resize(gScreenHeight);
 	  wallMap[i].resize(gScreenHeight);
+	  if (!gBatchMode)
+	  {
+	    	movementHistory[i].resize(gScreenHeight);
+	  }
 	}
 	
 	for (int i = 0; i < w ; i++)
@@ -95,6 +101,13 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	for (int x = 0; x < w; x++)
 	  for (int y = 0; y < h; y++)
 	    visitedCells[x][y] = false;
+	  
+	if (!gBatchMode)
+	{
+	  for (int x = 0; x < gScreenWidth; x++)
+	    for (int y = 0; y < gScreenHeight; y++)
+	      movementHistory[x][y] = 0;
+	}
 	
 }
 
@@ -151,12 +164,27 @@ void BasicPheromoneWorldObserver::step()
     addCurrentCells();
     writeDispersionToFile();
     writeToTilesFoundFile();
+    if (!gBatchMode)
+    {
+      addToMovementHistory();
+    }
 
   }
-  if (cellCheckCounter == 10000)//20500)//6850)
+  if (!gBatchMode)
   {
-    countVisitedCells();
-  }  
+    if (cellCheckCounter == 10000)//20500)//6850)
+    {
+      std::cout << "DONE.. " << std::endl;
+      countVisitedCells();
+      clearPheromoneVisuals();
+      colorVisitedCells();
+      displayMovementHistory();
+      drawGrid();
+      
+//       cellCheckCounter = 0;
+      gPauseMode=true;
+    } 
+  }
 }
 
 std::string BasicPheromoneWorldObserver::generateSpawnFileNumber()
@@ -257,7 +285,7 @@ void BasicPheromoneWorldObserver::countVisitedCells()
       if (visitedCells[x][y])
 	++noofVisitedCells;
       
-      visitedCells[x][y] = false;
+//       visitedCells[x][y] = false;
     }
   }
   ++noofTimesCellCounted;
@@ -318,25 +346,7 @@ void BasicPheromoneWorldObserver::createWallMap()
   }
 }
 
-void BasicPheromoneWorldObserver::drawIntensities()
-{ 
-  SDL_LockSurface(gBackgroundImage);
-  for (Uint32 x = 1; x < intensities.size()-1; x+=1)
-  {
-    for (Uint32 y = 1; y < intensities[0].size()-1; y+=1)
-    {   
-	Uint8 intens = intensities[x][y];//eightNeighbourMean(x, y); //getAveragedIntensity(x, y);
-	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255-intens, 255-intens );
-	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
-	
-	
-	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
-	*((Uint32*)pixel) = color;      
-	
-    }
-  }
-  SDL_UnlockSurface(gBackgroundImage);
-}
+
 
 
 
@@ -578,4 +588,138 @@ bool BasicPheromoneWorldObserver::isPheromonesInUse()
   return isUsingPheromones;
 }
 
+void BasicPheromoneWorldObserver::addToMovementHistory()
+{
+  for (int i = 0; i < gAgentCounter; i++)
+  {
+    int x, y;
+    _world->getAgent(i)->getCoord(x, y);
+//     x += 15;
+//     y += 15;
+    
+    movementHistory[x][y] += 1;
+  }
+}
+
+void BasicPheromoneWorldObserver::drawIntensities()
+{ 
+  SDL_LockSurface(gBackgroundImage);
+  for (Uint32 x = 1; x < intensities.size()-1; x+=1)
+  {
+    for (Uint32 y = 1; y < intensities[0].size()-1; y+=1)
+    {   
+	Uint8 intens = intensities[x][y];//*eightNeighbourMean(x, y); //getAveragedIntensity(x, y);
+	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255-intens, 255-intens );
+	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
+	
+	
+	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
+	*((Uint32*)pixel) = color;      
+	
+    }
+  }
+  SDL_UnlockSurface(gBackgroundImage);
+}
+
+
+void BasicPheromoneWorldObserver::displayMovementHistory()
+{
+  
+  SDL_LockSurface(gBackgroundImage);
+  for (Uint32 y = 0; y < movementHistory[0].size(); y++)
+  {
+    for (Uint32 x = 0; x < movementHistory.size(); x++)
+    {
+	if (movementHistory[x][y] > 0)
+	{
+	  Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 0, 0);
+	  Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
+
+	  pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
+	  *((Uint32*)pixel) = color;
+	}
+    }
+  }
+  SDL_UnlockSurface(gBackgroundImage);  
+}
+
+void BasicPheromoneWorldObserver::drawGrid()
+{
+  SDL_LockSurface(gBackgroundImage);
+  
+  for (Uint32 x = 0; x < (Uint32)gScreenWidth; x++)
+  {
+    for (Uint32 y = cellSize; y < (Uint32)gScreenHeight; y+=cellSize)
+      {
+   
+//       std::cout << x << "  " << y << std::endl;
+	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 0, 0, 0 );
+	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
+
+	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
+	*((Uint32*)pixel) = color;
+    }
+  }
+  
+  
+  for (Uint32 y = 0; y < (Uint32)gScreenHeight; y++)
+  {
+    for (Uint32 x = cellSize; x < (Uint32)gScreenWidth; x+=cellSize)
+      {
+	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 0, 0, 0 );
+	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
+
+	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
+	*((Uint32*)pixel) = color;
+    }
+  }
+  SDL_UnlockSurface(gBackgroundImage);
+
+}
+void BasicPheromoneWorldObserver::colorVisitedCells()
+{
+  SDL_LockSurface(gBackgroundImage);
+  for (Uint32 y = 0; y < visitedCells[0].size(); y++)
+  {
+    for (Uint32 x = 0; x < visitedCells.size(); x++)
+    {
+      
+      if (visitedCells[x][y])
+      {
+	for (Uint32 _y = y*cellSize; _y < y*cellSize+cellSize; _y++)
+	{
+	  for (Uint32 _x = x*cellSize; _x < x*cellSize+cellSize; _x++)
+	  {
+	    Uint32 color = SDL_MapRGB(gBackgroundImage->format, 180, 255, 180 );
+	    Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
+	
+	    pixel += (_y * gBackgroundImage->pitch) + (_x * sizeof(Uint32));
+	    *((Uint32*)pixel) = color;
+	  }
+	
+	}
+      }
+    }
+  }
+  SDL_UnlockSurface(gBackgroundImage);
+
+}
+
+void BasicPheromoneWorldObserver::clearPheromoneVisuals()
+{
+  SDL_LockSurface(gBackgroundImage);
+  for (Uint32 x = 0; x < (Uint32)gScreenWidth; x++)
+  {
+    for (Uint32 y = 0; y < (Uint32)gScreenHeight; y++)
+    {   
+	Uint32 color = SDL_MapRGB(gBackgroundImage->format, 255, 255, 255 );
+	Uint8* pixel =(Uint8*) gBackgroundImage->pixels;
+	
+	pixel += (y * gBackgroundImage->pitch) + (x * sizeof(Uint32));
+	*((Uint32*)pixel) = color;      
+	
+    }
+  }
+  SDL_UnlockSurface(gBackgroundImage);
+}
 

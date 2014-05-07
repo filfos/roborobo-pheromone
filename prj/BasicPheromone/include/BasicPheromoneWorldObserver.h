@@ -46,6 +46,7 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		std::vector< std::vector<int> > intensities;
 		std::vector< std::vector<int> > intensityBuffer;
 		std::vector< std::vector<bool> > wallMap;
+		std::vector< std::vector<int> > pixelHeatMap;
 
 		/* Movement History */
  		std::vector< std::vector<int> > movementHistory;
@@ -68,6 +69,9 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		
 		void addCurrentCells();
   
+		void writePixelHeatMapToFile();
+		
+		bool isUsingHeatMap;
   
 		bool firstLoop;
 		bool isUsingPheromones;
@@ -96,8 +100,12 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		void diffuse();
 		void evaporate();
 		
-		int getMax(int a, int b, int c, int d);
+		int getMax(int a, int b, int c, int d, int e);
+		void averageFilter();
 		
+		
+		
+		void init();
 		
 	public:
 		BasicPheromoneWorldObserver( World *__world );
@@ -135,6 +143,8 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		std::ofstream dispersionFile;
 		std::ofstream tilesFoundFile;
 		std::ofstream spawnLocationFile;
+		std::ofstream pixelHeatMapFile;
+		
 		bool shouldWriteSpawnLocations;
 		void writeDispersionToFile();
 		void writeToTilesFoundFile();

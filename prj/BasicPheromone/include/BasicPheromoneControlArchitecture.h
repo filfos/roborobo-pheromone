@@ -47,7 +47,7 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 		int determineBehaviour();
 		
 		bool checkWallStagnation();
-		bool checkPheromoneStagnation();
+		void checkPheromoneStagnation();
 // 		bool checkPheromoneDetected();
 		
 		void reverse(int duration);
@@ -89,6 +89,19 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 		int goalDeg;
 		int reverseCounter;
 		
+		int stepsInPoo;
+		
+		/* decrement on left, increment on right */
+		int pDirectionCounter;
+		
+		int pLeftCounter;
+		int pRightCounter;
+		
+		bool pStagnationLeft;
+		bool pStagnationRight;
+		
+		int pLeftIgnoreCounter;
+		int pRightIgnoreCounter;
 		
 		int getAngleOfLightSensor(int sensorId);
 		int getAngleOfDistanceSensor(int sensorId);

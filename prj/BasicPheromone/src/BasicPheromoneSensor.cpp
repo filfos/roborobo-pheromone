@@ -111,7 +111,7 @@ double BasicPheromoneSensor::getLightSensorValue(int x, int y)
   Uint8 r, g, b;
   SDL_GetRGB(pixel, gBackgroundImage->format, &r, &g, &b);
   if (r == 255 && g < 255 && b < 255) //Using green and blue channel to get alpha, since SDL_GetRGBA surface format doesn't have alpha component
-    return (255.0 - (double)b)/255.0;
+    return (255.0 - (double)b)/255.0; //return normalized value
   
   return 0;
 }
@@ -149,6 +149,37 @@ int BasicPheromoneSensor::getIndexOfMaxRightLightSensor()
   }
   
   return maxIndex;
+}
+
+
+double BasicPheromoneSensor::getRightLightMax()
+{
+  double maxVal = 0;
+  
+  for (int i = 1; i <= 2; i++)
+  {
+    if (_sensor[i][5] > maxVal)
+    {
+      maxVal = _sensor[i][5];
+    }
+  }
+  
+  return maxVal;
+}
+
+double BasicPheromoneSensor::getLeftLightMax()
+{
+  double maxVal = 0;
+  
+  for (int i = 6; i <= 7; i++)
+  {
+    if (_sensor[i][5] > maxVal)
+    {
+      maxVal = _sensor[i][5];
+    } 
+  }
+  
+  return maxVal;
 }
 
 

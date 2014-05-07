@@ -1,0 +1,83 @@
+
+agent[0].x = 20
+agent[0].y = 20
+agent[0].orientation = -126.75
+
+agent[1].x = 15
+agent[1].y = 20
+agent[1].orientation = -84.6062
+
+agent[2].x = 20
+agent[2].y = 10
+agent[2].orientation = -82.3141
+
+agent[3].x = 15
+agent[3].y = 10
+agent[3].orientation = 145.559
+
+agent[4].x = 30
+agent[4].y = 15
+agent[4].orientation = 11.5578
+
+agent[5].x = 30
+agent[5].y = 20
+agent[5].orientation = 38.6759
+
+agent[6].x = 30
+agent[6].y = 30
+agent[6].orientation = 13.853
+
+agent[7].x = 15
+agent[7].y = 30
+agent[7].orientation = -64.1137
+
+agent[8].x = 20
+agent[8].y = 30
+agent[8].orientation = 59.3575
+
+agent[9].x = 10
+agent[9].y = 10
+agent[9].orientation = 140.149
+
+agent[10].x = 40
+agent[10].y = 10
+agent[10].orientation = -153.123
+
+agent[11].x = 40
+agent[11].y = 15
+agent[11].orientation = -116.397
+
+agent[12].x = 40
+agent[12].y = 20
+agent[12].orientation = -106.225
+
+agent[13].x = 40
+agent[13].y = 25
+agent[13].orientation = -165.924
+
+agent[14].x = 40
+agent[14].y = 30
+agent[14].orientation = -72.4221
+
+agent[15].x = 40
+agent[15].y = 35
+agent[15].orientation = -25.3878
+
+agent[16].x = 40
+agent[16].y = 40
+agent[16].orientation = 162.175
+
+agent[17].x = 10
+agent[17].y = 40
+agent[17].orientation = -174.486
+
+agent[18].x = 15
+agent[18].y = 40
+agent[18].orientation = -116.296
+
+agent[19].x = 20
+agent[19].y = 40
+agent[19].orientation = -31.7415
+
+
+

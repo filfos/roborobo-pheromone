@@ -22,15 +22,17 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	
 	firstLoop = true;
 	
+	isUsingHeatMap = false;
+	
 	c1 = 0;
 	c2 = 0;
 	
 //Increase interval to reduce diffusion
 //Increase lifetime to reduce evaporation
-	lifetime = 200;
-	interval = 20;
+	lifetime = 2000;
+	interval = 25;
 		
-	cellSize = 20;
+	cellSize = 50;
 	
 	
 	//CHANGE TO DISABLE PHEROMONES COMPLETELY
@@ -43,71 +45,10 @@ BasicPheromoneWorldObserver::BasicPheromoneWorldObserver( World *__world ) : Wor
 	noofTimesCellCounted = 0;
 	
 	
-	std::string spawnNumber = generateSpawnFileNumber();
 			
 	evaporationFactor = exp((log(0.5)/lifetime )*interval);
-	if (gBatchMode)
-	{
-	  std::string tiles = "output/batch/tiles"+gStartTime+".dat";
-	  std::string disp = "output/batch/dispersion"+gStartTime+".dat";
-	  	  
-	  tilesFoundFile.open(tiles.c_str());
-	  dispersionFile.open(disp.c_str());
-	  
-	  if (shouldWriteSpawnLocations)
-	  {
-	    std::string spawn = "output/spawn/"+spawnNumber+"spawn";
-	    spawnLocationFile.open(spawn.c_str());
-	  }
-	}
-	else
-	{
-	  dispersionFile.open("output/other/dispersion_distance.txt");
-	  tilesFoundFile.open("output/other/tiles_found.txt");
-	  spawnLocationFile.open("output/other/spawn_locations.txt");
-	}
+	init();
 	
-				
-	intensities.resize(gScreenWidth);
-	intensityBuffer.resize(gScreenWidth);
-	wallMap.resize(gScreenWidth);
-	if (!gBatchMode)
-	{
-	  movementHistory.resize(gScreenWidth);
-	}
-	
-	int h = gScreenHeight/cellSize;
-	int w = gScreenWidth/cellSize;
-	
-	std::cout << h << "   " << w << std::endl;
-	
-	visitedCells.resize(w);
-
-	for (int i = 0; i < gScreenWidth; i++)
-	{
-	  intensities[i].resize(gScreenHeight);
-	  intensityBuffer[i].resize(gScreenHeight);
-	  wallMap[i].resize(gScreenHeight);
-	  if (!gBatchMode)
-	  {
-	    	movementHistory[i].resize(gScreenHeight);
-	  }
-	}
-	
-	for (int i = 0; i < w ; i++)
-	{
-	  visitedCells[i].resize(h);
-	}
-	for (int x = 0; x < w; x++)
-	  for (int y = 0; y < h; y++)
-	    visitedCells[x][y] = false;
-	  
-	if (!gBatchMode)
-	{
-	  for (int x = 0; x < gScreenWidth; x++)
-	    for (int y = 0; y < gScreenHeight; y++)
-	      movementHistory[x][y] = 0;
-	}
 	
 }
 
@@ -144,19 +85,21 @@ void BasicPheromoneWorldObserver::step()
   stepCounter++;  
   
   if (isUsingPheromones)
-  {
+  {    
     if (stepCounter == interval)
     {
       //-------
+//       averageFilter();
       diffuse();
-//       evaporate();
-
+      averageFilter();
+//       averageFilter();
       //-----
       drawIntensities();
       
       stepCounter = 0;
     }
   }
+//   std::cout << untouchedStepCounter << std::endl;
   
   ++cellCheckCounter;
   if (cellCheckCounter >= 0) // Have to delay execution until agents are initialized
@@ -164,15 +107,31 @@ void BasicPheromoneWorldObserver::step()
     addCurrentCells();
     writeDispersionToFile();
     writeToTilesFoundFile();
-    if (!gBatchMode)
+    if (!gBatchMode || isUsingHeatMap)
     {
       addToMovementHistory();
     }
+    if (!gBatchMode && (c1 == (gScreenHeight/cellSize) * (gScreenWidth/cellSize)))
+    {
+      std::cout << "DONE IN: " << untouchedStepCounter << std::endl;
+      clearPheromoneVisuals();
+      colorVisitedCells();
+      displayMovementHistory();
+      drawGrid();
+      gPauseMode = true;
+    }
 
   }
+  
+  if (isUsingHeatMap && untouchedStepCounter == gMaxIt-1000)
+  {
+    writePixelHeatMapToFile();
+    std::cout << "CREATING HEATMAP FILES" << std::endl;
+  }
+  
   if (!gBatchMode)
   {
-    if (cellCheckCounter == 10000)//20500)//6850)
+    if (cellCheckCounter == 100000)//20500)//6850)
     {
       std::cout << "DONE.. " << std::endl;
       countVisitedCells();
@@ -180,6 +139,7 @@ void BasicPheromoneWorldObserver::step()
       colorVisitedCells();
       displayMovementHistory();
       drawGrid();
+      writePixelHeatMapToFile();
       
 //       cellCheckCounter = 0;
       gPauseMode=true;
@@ -300,14 +260,24 @@ void BasicPheromoneWorldObserver::countVisitedCells()
 
 void BasicPheromoneWorldObserver::addCurrentCells()
 {
+  bool newCell = false;
   for (int i = 0; i < gAgentCounter; i++)
   {
     int x, y;
-//      x += 15;
-//      y += 15;
     _world->getAgent(i)->getCoord(x, y);
+    
+     newCell = visitedCells[x/cellSize][y/cellSize];
+
+    
     visitedCells[x/cellSize][y/cellSize] = true;
+    
+     if (!newCell)
+     {
+//       c1++;
+//       std::cout << "Covered Cells " << c1 << std::endl;
+     }
   }
+ 
 }
 
 
@@ -365,12 +335,14 @@ void BasicPheromoneWorldObserver::diffuse()
 	intensityBuffer[x][y] = getMax(intensities[x+1][y], 
 					intensities[x-1][y], 
 					intensities[x][y+1], 
-					intensities[x][y-1])*evaporationFactor;
+					intensities[x][y-1], 
+					intensities[x][y])*evaporationFactor;
 	
       }
     }
   }
-  intensities = intensityBuffer;
+  
+  intensities = intensityBuffer;  
 }
 
 void BasicPheromoneWorldObserver::evaporate()
@@ -391,14 +363,29 @@ void BasicPheromoneWorldObserver::evaporate()
   }
 }
 
+void BasicPheromoneWorldObserver::averageFilter()
+{
+   for (int y = 1; y < gScreenHeight-1; y++)
+  {
+    for (int x = 1; x < gScreenWidth-1; x++)
+    {
+      if (wallMap[x][y] == 1)
+      {
+	continue;
+      }
+      intensityBuffer[x][y] = eightNeighbourMean(x, y);
+    }
+  }
+  intensities = intensityBuffer;
+}
 
 
-
-int BasicPheromoneWorldObserver::getMax(int a, int b, int c, int d)
+int BasicPheromoneWorldObserver::getMax(int a, int b, int c, int d, int e)
 {
   int max = a > b ? a : b;
   max = max > c ? max : c;
   max = max > d ? max : d;
+  max = max > e ? max : e;
     
   return max;
 }
@@ -407,7 +394,7 @@ double BasicPheromoneWorldObserver::eightNeighbourMean(int x, int y)
 {  
   double sum = 0;
   
-//   sum += intensities[x][y]*;
+//   sum += intensities[x][y];
   
   sum += intensities[x][y+1]*1; //N
   sum += intensities[x][y-1]*1; //S
@@ -424,17 +411,19 @@ double BasicPheromoneWorldObserver::eightNeighbourMean(int x, int y)
 
 void BasicPheromoneWorldObserver::activatePheromone(int x, int y, int intensity)
 {
-  
-  intensities[x][y] = intensity;
+  if (intensity == -1)
+    intensities[x][y] = 255; //force manual override
+  else
+    intensities[x][y] = intensity;
   
 //   for (int i = 1; i <= 1; i++)
 //   {
-//   
+// //   
 //   intensities[x+i][y] = intensity;
 //   intensities[x-i][y] = intensity;
 //   intensities[x][y+i] = intensity;
 //   intensities[x][y-i] = intensity;
-// 
+// // 
 //   intensities[x+i][y+i] = intensity;
 //   intensities[x+i][y-i] = intensity;
 //   intensities[x-i][y+i] = intensity;
@@ -469,6 +458,38 @@ void BasicPheromoneWorldObserver::writeAgentLocation()
   spawnLocationFile.close();
 }
 
+void BasicPheromoneWorldObserver::writePixelHeatMapToFile()
+{
+  pixelHeatMap.resize(cellSize);
+  for (int i = 0; i < cellSize; i++)
+    pixelHeatMap[i].resize(cellSize);
+  for (int i = 0; i < cellSize; i++)
+    for (int j = 0; j < cellSize; j++)
+      pixelHeatMap[i][j] = 0;
+  
+  std::cout << "WRITING HEAT MAP" << std::endl;
+  for (Uint32 y = 0; y < movementHistory.size(); y++)
+  {
+    for (Uint32 x = 0; x < movementHistory[y].size(); x++)
+    {
+      pixelHeatMap[x/cellSize][y/cellSize] += movementHistory[x][y];
+    }
+  }
+  int width = gScreenWidth/cellSize;
+  int height = gScreenHeight/cellSize;
+  for (int y = 0; y < height; y++)
+  {
+    for (int x = 0; x < width; x++)
+    {
+      if (x == width-1)
+	pixelHeatMapFile << pixelHeatMap[x][y] << std::endl;
+      else
+	pixelHeatMapFile << pixelHeatMap[x][y] << ",";
+    }
+//     pixelHeatMapFile << std::endl;// "\n";
+  }
+  pixelHeatMapFile.close();
+}
 
 
 Uint8 BasicPheromoneWorldObserver::getIntensityAt(int x, int y)
@@ -594,8 +615,6 @@ void BasicPheromoneWorldObserver::addToMovementHistory()
   {
     int x, y;
     _world->getAgent(i)->getCoord(x, y);
-//     x += 15;
-//     y += 15;
     
     movementHistory[x][y] += 1;
   }
@@ -723,3 +742,76 @@ void BasicPheromoneWorldObserver::clearPheromoneVisuals()
   SDL_UnlockSurface(gBackgroundImage);
 }
 
+void BasicPheromoneWorldObserver::init()
+{
+  if (gBatchMode)
+  {
+    std::string tiles = "output/batch/tiles"+gStartTime+".dat";
+    std::string disp = "output/batch/dispersion"+gStartTime+".dat";
+	    
+    tilesFoundFile.open(tiles.c_str());
+    dispersionFile.open(disp.c_str());
+    
+    
+    
+    if (shouldWriteSpawnLocations)
+    {
+      std::string spawnNumber = generateSpawnFileNumber();
+      std::string spawn = "output/spawn/"+spawnNumber+"spawn";
+      spawnLocationFile.open(spawn.c_str());
+    }
+  }
+  else
+  {
+    dispersionFile.open("output/other/dispersion_distance.txt");
+    tilesFoundFile.open("output/other/tiles_found.txt");
+    spawnLocationFile.open("output/other/spawn_locations.txt");
+  }
+  if (isUsingHeatMap)
+  {
+      std::string heat = "output/heatmap/heat"+gStartTime+".dat";
+      pixelHeatMapFile.open(heat.c_str());
+  }	
+				
+	intensities.resize(gScreenWidth);
+	intensityBuffer.resize(gScreenWidth);
+	wallMap.resize(gScreenWidth);
+	if (!gBatchMode || isUsingHeatMap)
+	{
+	  movementHistory.resize(gScreenWidth);
+	}
+	
+	int h = gScreenHeight/cellSize;
+	int w = gScreenWidth/cellSize;
+	
+	std::cout << h << "   " << w << std::endl;
+	
+	visitedCells.resize(w);
+
+	for (int i = 0; i < gScreenWidth; i++)
+	{
+	  intensities[i].resize(gScreenHeight);
+	  intensityBuffer[i].resize(gScreenHeight);
+	  wallMap[i].resize(gScreenHeight);
+	  if (!gBatchMode || isUsingHeatMap)
+	  {
+	    	movementHistory[i].resize(gScreenHeight);
+	  }
+	}
+	
+	for (int i = 0; i < w ; i++)
+	{
+	  visitedCells[i].resize(h);
+	}
+	for (int x = 0; x < w; x++)
+	  for (int y = 0; y < h; y++)
+	    visitedCells[x][y] = false;
+	  
+	if (!gBatchMode || isUsingHeatMap)
+	{
+	  for (int x = 0; x < gScreenWidth; x++)
+	    for (int y = 0; y < gScreenHeight; y++)
+	      movementHistory[x][y] = 0;
+	}
+  
+}

@@ -50,8 +50,12 @@ class BasicPheromoneSensor
     
     int getIndexOfMaxLeftLightSensor();
     int getIndexOfMaxRightLightSensor();
-
-
+    
+    double getRightLightMax();
+    double getLeftLightMax();
+    
+    
+    
 
 
   protected:

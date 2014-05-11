@@ -206,6 +206,8 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	double maxRot = (double)gMaxRotationalSpeed;
 	double rot = maxRot/2;
 	
+	double frontMaxPhero = _pSensor->_sensor[FRONT][LIGHT];
+		
 	
 // 	double pLeftRot = -(((_pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT])/2) *maxRot);
 // 	double pRightRot = +(((_pSensor->_sensor[LEFT][LIGHT] + _pSensor->_sensor[FRONT_LEFT][LIGHT])/2)*maxRot);
@@ -251,6 +253,10 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 // 	 _wm->_desiredRotationalVelocity = maxRot - (double)(rand()%10)/10.*rot;
 // // 	 releasePheromones=false;
 // // 	  std::cout << "  CENTER   " << std::endl;//stepsInPoo++ << std::endl;
+// 	}
+// 	else if (frontMaxPhero < leftMaxPhero && frontMaxPhero < rightMaxPhero && !isNearWall)
+// 	{
+// 	  _wm->_desiredRotationalVelocity = 0;
 // 	}
 	//PHEROMONE TURN RIGHT
 	else if (!isNearWall && !pStagnationRight &&  leftMaxPhero > rightMaxPhero )//_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT] )//_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT] && !isNearWall && !pStagnationRight)
@@ -319,9 +325,11 @@ void BasicPheromoneControlArchitecture::wallStagnation()
     {
       isReversing = false;
       Uint8 bestDirection = 10;
+      int sumTest = 0;
       int val = -1;
       for (Uint8 i = 0; i < 8; i++)
       {
+	sumTest += _wm->_sensors[i][5];
 	int temp = 0;
 	temp += _wm->_sensors[(i+7)%8][5];
 	temp += _wm->_sensors[i][5];
@@ -332,6 +340,11 @@ void BasicPheromoneControlArchitecture::wallStagnation()
 	{
 	  val = temp;
 	  bestDirection = i;
+	}
+	if (sumTest == gSensorRange*8)
+	{
+ 	  bestDirection = rand()%8;
+
 	}
       }
     

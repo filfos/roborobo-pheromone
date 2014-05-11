@@ -144,12 +144,21 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		std::ofstream tilesFoundFile;
 		std::ofstream spawnLocationFile;
 		std::ofstream pixelHeatMapFile;
+		std::ofstream coordHistoryFile;
 		
 		bool shouldWriteSpawnLocations;
 		void writeDispersionToFile();
 		void writeToTilesFoundFile();
 		void writeAgentLocation();
 		std::string generateSpawnFileNumber();
+		
+		std::vector<int> tilesFoundHistory;
+		void appendToTilesFoundHistory();
+		
+		std::vector< std::vector<int> > coordHistory;
+		void appendToCoordHistory();
+		
+		void writeToCoordHistoryFile();
 		
 		int c1;
 		int c2;

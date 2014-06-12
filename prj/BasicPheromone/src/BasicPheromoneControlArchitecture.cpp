@@ -21,9 +21,7 @@ BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgent
     BasicPheromoneWorldObserver* wo = (BasicPheromoneWorldObserver*)_wm->getWorld()->getWorldObserver();
     
     isUsingPheromones = wo->isPheromonesInUse();
-    
-//     std::cout << wo->isPheromonesInUse() << " 0=wall avoidance, 1=pheromone "  << std::endl;
-    
+        
     _pSensor = new BasicPheromoneSensor(__wm);
     stepCounter = 0;
     pheromoneCounter = 0;
@@ -46,9 +44,7 @@ BasicPheromoneControlArchitecture::BasicPheromoneControlArchitecture( RobotAgent
       
     goalDeg = 0;
     reverseCounter = 0;
-    
-    stepsInPoo = 0;
-    
+        
     pLeftCounter = 0;
     pRightCounter = 0;
     
@@ -113,14 +109,15 @@ void BasicPheromoneControlArchitecture::step()
 // 	std::cout << "---------------------" << std::endl;
 	
 	// SHOW ON-SCREEN LIGHT SENSOR LOCATION
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[0][2], _pSensor->_sensor[0][3], 2, 0, 255, 255, 255);
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[1][2], _pSensor->_sensor[1][3], 2, 0, 255, 255, 255);
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[2][2], _pSensor->_sensor[2][3], 2, 0, 255, 255, 255);
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[3][2], _pSensor->_sensor[3][3], 2, 0, 255, 255, 255);
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[4][2], _pSensor->_sensor[4][3], 2, 0, 255, 255, 255);
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[5][2], _pSensor->_sensor[5][3], 2, 0, 255, 255, 255);
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[6][2], _pSensor->_sensor[6][3], 2, 0, 255, 255, 255);
-// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[7][2], _pSensor->_sensor[7][3], 2, 0, 255, 255, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[0][2], _pSensor->_sensor[0][3], 1, 0, 189, 101, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[1][2], _pSensor->_sensor[1][3], 1, 0, 189, 101, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[2][2], _pSensor->_sensor[2][3], 1, 0, 189, 101, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[3][2], _pSensor->_sensor[3][3], 1, 0, 189, 101, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[4][2], _pSensor->_sensor[4][3], 1, 0, 189, 101, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[5][2], _pSensor->_sensor[5][3], 1, 0, 189, 101, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[6][2], _pSensor->_sensor[6][3], 1, 0, 189, 101, 255);
+// 	filledCircleRGBA(gBackgroundImage, _pSensor->_sensor[7][2], _pSensor->_sensor[7][3], 1, 0, 189, 101, 255);
+	
 
     // PRINT DISTANCE SENSORS
 //     std::cout << "         " << _wm->_sensors[2][5] << std::endl;
@@ -135,12 +132,10 @@ void BasicPheromoneControlArchitecture::step()
 
 
 //For 8-sensor CHiRP-robot
-void BasicPheromoneControlArchitecture::wallAvoidance()
+void BasicPheromoneControlArchitecture::wallAvoidance() //Not in use
 {
   releasePheromones = true;
   
-//   std::cout << "ONLY WALL" << std::endl;
-  //Slow down if wall is detected straight ahead
   _wm->_desiredTranslationalValue =  + 2 - 2*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
   
   if (_wm->_sensors[N][5] < (double)gSensorRange*(2/3) && _wm->_sensors[NE][5] == (double)gSensorRange &&  _wm->_sensors[NW][5] == (double)gSensorRange)
@@ -151,12 +146,8 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 	double rot = 1;
 	if ( _wm->_sensors[W][5] + _wm->_sensors[NW][5] <  _wm->_sensors[NE][5] + _wm->_sensors[E][5] )
 	{
-	//robot body radius = 16, thus right triangle created by sensors have hypotenuse 80
-	// and adjacent side: 80*cos(45) = 40*sqrt(2). To weigh them equally the ratio 80/40*sqrt(2) = 1.41
-	//is used reduce the importance of side sensors (right/east and left/west)... or maybe not after all
 		rot += (( (double)gSensorRange - _wm->_sensors[NW][5] ) / (double)gSensorRange);
 		rot += (( (double)gSensorRange - (_wm->_sensors[W][5]))/ (double)gSensorRange);
-// 		std::cout << "WEST "<< rot <<std::endl;
 		_wm->_desiredRotationalVelocity = rot;
 	}	
 	else
@@ -195,7 +186,6 @@ void BasicPheromoneControlArchitecture::wallAvoidance()
 void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 {
 	releasePheromones = true;
-// 	std::cout << " WALL AND PHEROMONE" << std::endl;
 	int leftMax = _pSensor->getIndexOfMaxLeftLightSensor();	
 	int rightMax = _pSensor->getIndexOfMaxRightLightSensor();
 	
@@ -205,15 +195,7 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	double maxSpeed = (double)gMaxTranslationalSpeed;
 	double maxRot = (double)gMaxRotationalSpeed;
 	double rot = maxRot/2;
-	
-	double frontMaxPhero = _pSensor->_sensor[FRONT][LIGHT];
 		
-	
-// 	double pLeftRot = -(((_pSensor->_sensor[RIGHT][LIGHT] + _pSensor->_sensor[FRONT_RIGHT][LIGHT])/2) *maxRot);
-// 	double pRightRot = +(((_pSensor->_sensor[LEFT][LIGHT] + _pSensor->_sensor[FRONT_LEFT][LIGHT])/2)*maxRot);
-// 	double pRot = pLeftRot + pRightRot;
-	
-// 	std::cout << pLeftRot << "   " << pRightRot << std::endl;
 	
 	bool isNearWall = false;
 	for (int i = 0; i < 8; i++)
@@ -228,16 +210,6 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 	checkPheromoneStagnation();
 
 	_wm->_desiredTranslationalValue =  + maxSpeed - maxSpeed*(( (double)gSensorRange - (_wm->_sensors[N][5] ) ) / (double)gSensorRange);
-	
-// 	_wm->_desiredTranslationalValue = gMaxTranslationalSpeed - (_pSensor->_sensor[FRONT][LIGHT] / (double)gMaxTranslationalSpeed);
-	
-	//Random Rotation when only front sensor detects an object
-// 	if (_wm->_sensors[N][5] < (double)gSensorRange*(2/3) && _wm->_sensors[NE][5] == (double)gSensorRange &&  _wm->_sensors[NW][5] == (double)gSensorRange)
-//     	_wm->_desiredRotationalVelocity = 0.4 - (double)(rand()%10)/10.*0.2;
-
-	
-// 	if (_pSensor->_sensor[FRONT][LIGHT] > 0)
-// 	  _wm->_desiredTranslationalValue =  + 2 - 1*(( 255.0 - _pSensor->_sensor[FRONT][LIGHT] ) / 255.0);
 	  
 	//WALL TURN RIGHT
 	if ( _wm->_sensors[W][5] + _wm->_sensors[NW][5] <  _wm->_sensors[NE][5] + _wm->_sensors[E][5] ) 
@@ -247,27 +219,12 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 		_wm->_desiredRotationalVelocity = rot;
 // 		pLeftCounter--;
 	}
-	//PHEROMONE SHIFT RANDOM
-// 	else if (leftMax != -1 && _pSensor->_sensor[leftMax][LIGHT] == _pSensor->_sensor[rightMax][LIGHT] && !isNearWall && !ignorePheromones)
-// 	{
-// 	 _wm->_desiredRotationalVelocity = maxRot - (double)(rand()%10)/10.*rot;
-// // 	 releasePheromones=false;
-// // 	  std::cout << "  CENTER   " << std::endl;//stepsInPoo++ << std::endl;
-// 	}
-// 	else if (frontMaxPhero < leftMaxPhero && frontMaxPhero < rightMaxPhero && !isNearWall)
-// 	{
-// 	  _wm->_desiredRotationalVelocity = 0;
-// 	}
+
 	//PHEROMONE TURN RIGHT
-	else if (!isNearWall && !pStagnationRight &&  leftMaxPhero > rightMaxPhero )//_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT] )//_pSensor->_sensor[leftMax][LIGHT] > _pSensor->_sensor[rightMax][LIGHT] && !isNearWall && !pStagnationRight)
+	else if (!isNearWall && !pStagnationRight &&  leftMaxPhero > rightMaxPhero )
 	{
 	  _wm->_desiredRotationalVelocity = rot+rot*(_pSensor->_sensor[leftMax][LIGHT]);
-// 	  _wm->_desiredRotationalVelocity = pRightRot;
-	  pDirectionCounter++;
 	  pRightCounter++;
-// 	  releasePheromones=false;
-// 	  std::cout << "LEFT " << pRightCounter <<  std::endl;
-
 	}
 	else
 		//WALL TURN LEFT
@@ -280,31 +237,18 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 
 		}
 		//PHEROMONE TURN LEFT
-		else if (!isNearWall && !pStagnationLeft && rightMaxPhero > leftMaxPhero )//_pSensor->_sensor[rightMax][LIGHT] > 0.01) //_pSensor->_sensor[rightMax][LIGHT] > 0.01 && _pSensor->_sensor[rightMax][LIGHT] != _pSensor->_sensor[leftMax][LIGHT] && !isNearWall && !pStagnationLeft)
+		else if (!isNearWall && !pStagnationLeft && rightMaxPhero > leftMaxPhero )
 		{
 			_wm->_desiredRotationalVelocity = -rot - (rot*(_pSensor->_sensor[rightMax][LIGHT]));
-// 			_wm->_desiredRotationalVelocity = pLeftRot;
 
-			pDirectionCounter--;
 			pLeftCounter++;
-// 			releasePheromones=false;
-// 			std::cout << "      RIGHT " << pLeftCounter << std::endl;
 		}
 		else
 		{
-			pDirectionCounter = 0;
-			pLeftCounter = pLeftCounter < 0 ? 0 : pLeftCounter--;
-			pRightCounter = pRightCounter < 0 ? 0 : pRightCounter--;
+			pLeftCounter = pLeftCounter < 0 ? 0 : pLeftCounter-1;
+			pRightCounter = pRightCounter < 0 ? 0 : pRightCounter-1;
 			
-			_wm->_desiredRotationalVelocity = 0;// .01;
-			//STRAIGHTEN OUT
-// 			if ( _wm->_desiredRotationalVelocity > 0 ) 
-// 				_wm->_desiredRotationalVelocity -= 0.1;
-// 			else
-// 				if ( _wm->_desiredRotationalVelocity < 0) 
-// 					_wm->_desiredRotationalVelocity += 0.1;
-// 				else
-// 					_wm->_desiredRotationalVelocity = 0;// 0.1 - (double)(rand()%10)/10.*0.2;
+			_wm->_desiredRotationalVelocity = 0;;
 				
 		}
 }
@@ -314,7 +258,6 @@ void BasicPheromoneControlArchitecture::wallAndPheromoneAvoidance()
 void BasicPheromoneControlArchitecture::wallStagnation()
 {
   releasePheromones = false;
-  pDirectionCounter=0;
   if (!doneReversing)
   {
       reverse(40);
@@ -355,14 +298,6 @@ void BasicPheromoneControlArchitecture::wallStagnation()
   }
 }
 
-/*
-void BasicPheromoneControlArchitecture::pheromoneStagnation()
-{
-  ignorePheromones = true;
-  pheromoneIgnoreCounter--;
-  
-
-}*/
 
 
 void BasicPheromoneControlArchitecture::reverse(int duration)
@@ -422,7 +357,6 @@ void BasicPheromoneControlArchitecture::stopAndRotate(int deg)
   else if (deg < 0)
     _wm->_desiredRotationalVelocity = -3;
   
- // std::cout <<"input: "<< deg << "    actual orientation " << _wm->_agentAbsoluteOrientation << "  /  " << goalDeg << std::endl;
   
   if ( (goalDeg+360) <= (_wm->_agentAbsoluteOrientation+362)
     && (goalDeg+360) >= (_wm->_agentAbsoluteOrientation+358)
@@ -489,22 +423,14 @@ int BasicPheromoneControlArchitecture::determineBehaviour()
 {
   if (isRotating || isReversing) // Continue previous action
 {
-//   std::cout << "	Status: continue same action"  << std::endl;
     return mStatus;
 } 
   if (checkWallStagnation())
   {
-//     std::cout << "	status: wall stagnation" << std::endl;
     return WALL_STAGNATION;
   }
   
-//   if (checkPheromoneStagnation())
-//   {
-//     std::cout << "	status: pheromone stagnation" << std::endl;
-//     return PHEROMONE_STAGNATION;
-//   }
 
-//   std::cout << "	status: default" << std::endl;
   return DEFAULT;
 }
 
@@ -545,25 +471,18 @@ bool BasicPheromoneControlArchitecture::checkWallStagnation()
     stdX = sqrt(stdX);
     stdY = sqrt(stdY);
     
-//     std::cout << "Wall Stagnation limit 20:    Value:   "    << stdX + stdY << std::endl;
     lastLocations.clear();
     stepCounter = 0;
     
     if (stdX + stdY < 20)
     {
-//       std::cout << "|||||||||| STAGNATION |||||||||" << std::endl;
       return true;
     }
   }
   return false;
 }
 void BasicPheromoneControlArchitecture::checkPheromoneStagnation()
-{
-  
-//   std::cout << "      RIGHT " << pLeftCounter << std::endl;
-//   	  std::cout << "LEFT " << pRightCounter <<  std::endl;
-
-  
+{  
   int threshold = 50;
   int stagDuration = 10;
   if (!pStagnationLeft)
@@ -572,7 +491,7 @@ void BasicPheromoneControlArchitecture::checkPheromoneStagnation()
     {
       pLeftIgnoreCounter = stagDuration;
       pStagnationLeft = true;
-//       std::cout << "STAG LEFT" << std::endl;
+//       std::cout <<"STAG LEFT" << std::endl;
     }
   }
   else
@@ -587,8 +506,6 @@ void BasicPheromoneControlArchitecture::checkPheromoneStagnation()
 
   }
   
-  
-  
   if (!pStagnationRight)
   {
     if (pRightCounter >= threshold)
@@ -596,7 +513,7 @@ void BasicPheromoneControlArchitecture::checkPheromoneStagnation()
       pRightIgnoreCounter = stagDuration;
       pRightCounter = 0;
       pStagnationRight = true;
-//       std::cout << "     STAG RIGHT " << std::endl;
+//        std::cout << "     STAG RIGHT " << std::endl;
     }
   }
   else
@@ -610,36 +527,6 @@ void BasicPheromoneControlArchitecture::checkPheromoneStagnation()
     pStagnationRight=false;
   }
   
-//   if (!isPheromoneStagnated)
-//   {
-//   //   std::cout << pDirectionCounter << std::endl;
-//     int threshold = 50;
-//     if (pDirectionCounter >= threshold || pDirectionCounter <= -threshold)
-//     {
-//       if (pDirectionCounter > 0)
-// 	std::cout << "    STAG RIGHT" << std::endl;
-//       else if (pDirectionCounter < 0)
-// 	std::cout << "STAG LEFT" << std::endl;
-//       isPheromoneStagnated = true;
-//       pheromoneIgnoreCounter = 200;
-//       pDirectionCounter = 0;
-//     }
-//   }
-//   else 
-//   {
-//     pheromoneIgnoreCounter--;
-//     ignorePheromones = true;
-// //     releasePheromones = false;
-//   
-//   if (pheromoneIgnoreCounter <= 0)
-//   {
-//     ignorePheromones = false;
-//     isPheromoneStagnated = false;
-// //     releasePheromones = true;
-//     pDirectionCounter = 0;
-//     std::cout << "ENDED" << std::endl;
-//   }
-//   }
 }
 
 

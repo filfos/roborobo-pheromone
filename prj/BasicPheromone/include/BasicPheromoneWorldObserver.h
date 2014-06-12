@@ -98,7 +98,6 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		
 // 		void updatePheromones();
 		void diffuse();
-		void evaporate();
 		
 		int getMax(int a, int b, int c, int d, int e);
 		void averageFilter();
@@ -162,6 +161,7 @@ class BasicPheromoneWorldObserver : public WorldObserver
 		
 		int c1;
 		int c2;
+		int pauseAndDisplayMovementAt;
 };
 
 #endif

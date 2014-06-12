@@ -88,12 +88,7 @@ class BasicPheromoneControlArchitecture : public BehaviorControlArchitecture
 				
 		int goalDeg;
 		int reverseCounter;
-		
-		int stepsInPoo;
-		
-		/* decrement on left, increment on right */
-		int pDirectionCounter;
-		
+						
 		int pLeftCounter;
 		int pRightCounter;
 		
